@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <title>david hallin</title>
+    <title>David Hallin</title>
     <link href="https://davidhallin.com/" />
     <link type="application/atom+xml" rel="self" href="https://davidhallin.com/blog/feed.atom" />
-    <updated>2020-03-25T12:24:52+00:00</updated>
+    <updated>2020-03-25T12:40:31+00:00</updated>
     <id>https://davidhallin.com/blog/feed.atom</id>
     <author>
         <name>David Hallin</name>
@@ -15,7 +15,7 @@
     <published>2020-03-25T00:00:00+00:00</published>
     <updated>2020-03-25T00:00:00+00:00</updated>
     <author>
-        <name>dave</name>
+        <name>Dave</name>
     </author>
     <summary type="html">Well - I just used Jigsaw to build this site.  I started at 6:30 AM, and at the time of writing, it&#039;s 7:28 AM on March 25th, 2020.
 
@@ -39,7 +39,7 @@ If you&#039;re already comfortable with Laravel, Jigsaw is by far the easiest st
     <published>2020-03-25T00:00:00+00:00</published>
     <updated>2020-03-25T00:00:00+00:00</updated>
     <author>
-        <name>dave</name>
+        <name>Dave</name>
     </author>
     <summary type="html">Website
      Git Repo
