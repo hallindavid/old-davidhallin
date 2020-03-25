@@ -9,8 +9,6 @@
         About
     </a>
 
-    <a title="{{ $page->siteName }} Contact" href="/contact"
-        class="ml-6 text-gray-700 hover:text-blue-600 {{ $page->isActive('/contact') ? 'active text-blue-600' : '' }}">
-        Contact
-    </a>
+    <a title="Dave's Twitter" target="_blank()" class="ml-6 text-gray-700 hover:text-blue-600" href="https://twitter.com/hallindavid"><i class="fab fa-twitter"></i></a>
+    <a title="Dave's GitHub" target="_blank()" class="ml-6 text-gray-700 hover:text-blue-600" href="https://github.com/hallindavid"><i class="fab fa-github"></i></a>
 </nav>

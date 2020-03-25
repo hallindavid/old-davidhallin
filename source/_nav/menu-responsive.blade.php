@@ -15,11 +15,18 @@
             >About</a>
         </li>
         <li class="pl-4">
-            <a
-                title="{{ $page->siteName }} Contact"
-                href="/contact"
-                class="nav-menu__item hover:text-blue-500 {{ $page->isActive('/contact') ? 'active text-blue' : '' }}"
-            >Contact</a>
+            <a  title="Dave's Twitter" 
+                target="_blank()" 
+                class="nav-menu__item hover:text-blue-500 {{ $page->isActive('/contact') ? 'active text-blue' : '' }}" 
+                href="https://twitter.com/hallindavid"
+            ><i class="fab fa-twitter"></i> Dave's Twitter</a>
+        </li>
+        <li class="pl-4">
+            <a  title="Dave's GitHub" 
+                target="_blank()" 
+                class="nav-menu__item hover:text-blue-500 {{ $page->isActive('/contact') ? 'active text-blue' : '' }}" 
+                href="https://github.com/hallindavid">
+            <i class="fab fa-github"></i> Dave's GitHub</a>
         </li>
     </ul>
 </nav>

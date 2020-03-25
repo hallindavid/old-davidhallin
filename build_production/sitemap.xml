@@ -1,73 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
  <url>
-  <loc>https://hallindavid.github.io/davidhallin</loc>
-  <lastmod>2020-03-25T09:26:10+00:00</lastmod>
+  <loc>https://davidhallin.com</loc>
+  <lastmod>2020-03-25T10:14:19+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
-  <loc>https://hallindavid.github.io/davidhallin/blog</loc>
-  <lastmod>2020-03-25T09:26:10+00:00</lastmod>
+  <loc>https://davidhallin.com/blog</loc>
+  <lastmod>2020-03-25T10:14:19+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
-  <loc>https://hallindavid.github.io/davidhallin/blog/2</loc>
-  <lastmod>2020-03-25T09:26:10+00:00</lastmod>
+  <loc>https://davidhallin.com/blog/2</loc>
+  <lastmod>2020-03-25T10:14:19+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
-  <loc>https://hallindavid.github.io/davidhallin/blog/fuse-search</loc>
-  <lastmod>2020-03-25T09:26:10+00:00</lastmod>
+  <loc>https://davidhallin.com/blog/fuse-search</loc>
+  <lastmod>2020-03-25T10:14:19+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
-  <loc>https://hallindavid.github.io/davidhallin/blog/custom-404-page</loc>
-  <lastmod>2020-03-25T09:26:10+00:00</lastmod>
+  <loc>https://davidhallin.com/blog/custom-404-page</loc>
+  <lastmod>2020-03-25T10:14:19+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
-  <loc>https://hallindavid.github.io/davidhallin/blog/getting-started</loc>
-  <lastmod>2020-03-25T09:26:10+00:00</lastmod>
+  <loc>https://davidhallin.com/blog/getting-started</loc>
+  <lastmod>2020-03-25T10:14:19+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
-  <loc>https://hallindavid.github.io/davidhallin/blog/mailchimp-newsletters</loc>
-  <lastmod>2020-03-25T09:26:10+00:00</lastmod>
+  <loc>https://davidhallin.com/blog/mailchimp-newsletters</loc>
+  <lastmod>2020-03-25T10:14:19+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
-  <loc>https://hallindavid.github.io/davidhallin/blog/my-first-blog-post</loc>
-  <lastmod>2020-03-25T09:26:10+00:00</lastmod>
+  <loc>https://davidhallin.com/blog/my-first-blog-post</loc>
+  <lastmod>2020-03-25T10:14:19+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
-  <loc>https://hallindavid.github.io/davidhallin/blog/customizing-your-site</loc>
-  <lastmod>2020-03-25T09:26:10+00:00</lastmod>
+  <loc>https://davidhallin.com/blog/customizing-your-site</loc>
+  <lastmod>2020-03-25T10:14:19+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
-  <loc>https://hallindavid.github.io/davidhallin/blog/feed.atom</loc>
-  <lastmod>2020-03-25T09:26:10+00:00</lastmod>
+  <loc>https://davidhallin.com/blog/feed.atom</loc>
+  <lastmod>2020-03-25T10:14:19+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
-  <loc>https://hallindavid.github.io/davidhallin/about</loc>
-  <lastmod>2020-03-25T09:26:10+00:00</lastmod>
+  <loc>https://davidhallin.com/about</loc>
+  <lastmod>2020-03-25T10:14:19+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
-  <loc>https://hallindavid.github.io/davidhallin/contact</loc>
-  <lastmod>2020-03-25T09:26:10+00:00</lastmod>
+  <loc>https://davidhallin.com/contact</loc>
+  <lastmod>2020-03-25T10:14:19+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
-  <loc>https://hallindavid.github.io/davidhallin/blog/categories/configuration</loc>
-  <lastmod>2020-03-25T09:26:10+00:00</lastmod>
+  <loc>https://davidhallin.com/blog/categories/configuration</loc>
+  <lastmod>2020-03-25T10:14:19+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
-  <loc>https://hallindavid.github.io/davidhallin/blog/categories/feature</loc>
-  <lastmod>2020-03-25T09:26:10+00:00</lastmod>
+  <loc>https://davidhallin.com/blog/categories/feature</loc>
+  <lastmod>2020-03-25T10:14:19+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
 </urlset>

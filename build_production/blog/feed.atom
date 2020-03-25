@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title>david hallin</title>
-    <link href="https://hallindavid.github.io/davidhallin/" />
-    <link type="application/atom+xml" rel="self" href="https://hallindavid.github.io/davidhallin/blog/feed.atom" />
-    <updated>2020-03-25T09:26:10+00:00</updated>
-    <id>https://hallindavid.github.io/davidhallin/blog/feed.atom</id>
+    <link href="https://davidhallin.com/" />
+    <link type="application/atom+xml" rel="self" href="https://davidhallin.com/blog/feed.atom" />
+    <updated>2020-03-25T10:14:19+00:00</updated>
+    <id>https://davidhallin.com/blog/feed.atom</id>
     <author>
         <name>David Hallin</name>
     </author>
                 <entry>
-    <id>https://hallindavid.github.io/davidhallin/blog/getting-started</id>
-    <link type="text/html" rel="alternate" href="https://hallindavid.github.io/davidhallin/blog/getting-started" />
+    <id>https://davidhallin.com/blog/getting-started</id>
+    <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/getting-started" />
     <title>Getting Started</title>
     <published>2018-12-25T00:00:00+00:00</published>
     <updated>2018-12-25T00:00:00+00:00</updated>
@@ -84,8 +84,8 @@ npm run dev
     ]]></content>
 </entry>
             <entry>
-    <id>https://hallindavid.github.io/davidhallin/blog/customizing-your-site</id>
-    <link type="text/html" rel="alternate" href="https://hallindavid.github.io/davidhallin/blog/customizing-your-site" />
+    <id>https://davidhallin.com/blog/customizing-your-site</id>
+    <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/customizing-your-site" />
     <title>Customizing Your Site</title>
     <published>2018-12-24T00:00:00+00:00</published>
     <updated>2018-12-24T00:00:00+00:00</updated>
@@ -166,8 +166,8 @@ npm run dev
     ]]></content>
 </entry>
             <entry>
-    <id>https://hallindavid.github.io/davidhallin/blog/custom-404-page</id>
-    <link type="text/html" rel="alternate" href="https://hallindavid.github.io/davidhallin/blog/custom-404-page" />
+    <id>https://davidhallin.com/blog/custom-404-page</id>
+    <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/custom-404-page" />
     <title>Custom 404 Pages</title>
     <published>2018-12-23T00:00:00+00:00</published>
     <updated>2018-12-23T00:00:00+00:00</updated>
@@ -209,8 +209,8 @@ Depending on where your site is hosted, you may need to......</summary>
     ]]></content>
 </entry>
             <entry>
-    <id>https://hallindavid.github.io/davidhallin/blog/fuse-search</id>
-    <link type="text/html" rel="alternate" href="https://hallindavid.github.io/davidhallin/blog/fuse-search" />
+    <id>https://davidhallin.com/blog/fuse-search</id>
+    <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/fuse-search" />
     <title>Fuse Search</title>
     <published>2018-12-22T00:00:00+00:00</published>
     <updated>2018-12-22T00:00:00+00:00</updated>
@@ -227,8 +227,8 @@ Depending on where your site is hosted, you may need to......</summary>
     ]]></content>
 </entry>
             <entry>
-    <id>https://hallindavid.github.io/davidhallin/blog/mailchimp-newsletters</id>
-    <link type="text/html" rel="alternate" href="https://hallindavid.github.io/davidhallin/blog/mailchimp-newsletters" />
+    <id>https://davidhallin.com/blog/mailchimp-newsletters</id>
+    <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/mailchimp-newsletters" />
     <title>Mailchimp Newsletters</title>
     <published>2018-11-21T00:00:00+00:00</published>
     <updated>2018-11-21T00:00:00+00:00</updated>
@@ -273,8 +273,8 @@ To begin accepting......</summary>
     ]]></content>
 </entry>
             <entry>
-    <id>https://hallindavid.github.io/davidhallin/blog/my-first-blog-post</id>
-    <link type="text/html" rel="alternate" href="https://hallindavid.github.io/davidhallin/blog/my-first-blog-post" />
+    <id>https://davidhallin.com/blog/my-first-blog-post</id>
+    <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/my-first-blog-post" />
     <title>My First Blog Post</title>
     <published>2017-03-23T00:00:00+00:00</published>
     <updated>2017-03-23T00:00:00+00:00</updated>
