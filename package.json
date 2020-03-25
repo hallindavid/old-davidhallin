@@ -6,7 +6,7 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --env=production --config=node_modules/laravel-mix/setup/webpack.config.js",
         "dev": "npm run local",
         "watch": "npm run local -- --watch",
-        "deploy": "npm run production && echo 'davidhallin.com' > build_production/CNAME && git add build_production && git commit -m \"build for production\" && git subtree push --prefix build_production origin gh-pages"
+        "deploy": "npm run production && echo 'davidhallin.com' > build_production/CNAME && git add build_production && git commit -m \"build for production\" && git subtree split --prefix build_production -b gh-pages && git push -f origin gh-pages:gh-pages && git branch -D gh-pages"
     },
     "devDependencies": {
         "axios": "^0.18.0",
