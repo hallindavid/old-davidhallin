@@ -5,14 +5,14 @@ use Illuminate\Support\Str;
 return [
     'baseUrl' => '',
     'production' => false,
-    'siteName' => 'david hallin',
+    'siteName' => 'David Hallin',
     'siteDescription' => "mostly development projects and learning",
     'siteAuthor' => 'David Hallin',
 
     // collections
     'collections' => [
         'posts' => [
-            'author' => 'dave', // Default author, if not provided in a post
+            'author' => 'Dave', // Default author, if not provided in a post
             'sort' => '-date',
             'path' => 'blog/{filename}',
         ],

@@ -67,7 +67,7 @@
         <footer class="bg-white text-center text-sm mt-12 py-4" role="contentinfo">
             <ul class="flex flex-col md:flex-row justify-center list-none">
                 <li class="md:mr-2">
-                    &copy; david hallin {{ date('Y') }}.
+                    &copy; David Hallin {{ date('Y') }}.
                 </li>
 
                 <li>

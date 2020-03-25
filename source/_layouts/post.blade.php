@@ -26,8 +26,24 @@
         @endforeach
     @endif
 
-    <div class="border-b border-blue-200 mb-10 pb-4" v-pre>
+    <div class="border-b border-gray-300 mb-4 pb-4" v-pre>
         @yield('content')
+    </div>
+
+    <div class="border-b border-gray-300 pb-4 mb-10" v-pre>
+        <!-- AddToAny BEGIN -->
+        <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+        <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+        <a class="a2a_button_facebook"></a>
+        <a class="a2a_button_twitter"></a>
+        <a class="a2a_button_email"></a>
+        <a class="a2a_button_reddit"></a>
+        <a class="a2a_button_pocket"></a>
+        <a class="a2a_button_print"></a>
+        </div>
+        <script async src="https://static.addtoany.com/menu/page.js"></script>
+        <!-- AddToAny END -->
+
     </div>
 
     <nav class="flex justify-between text-sm md:text-base">
