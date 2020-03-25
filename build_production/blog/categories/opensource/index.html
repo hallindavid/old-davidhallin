@@ -6,26 +6,28 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="description" content="mostly development projects and learning">
 
-        <meta property="og:title" content="david hallin"/>
+        <meta property="og:title" content="Open Source | david hallin"/>
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://davidhallin.com/contact"/>
+        <meta property="og:url" content="https://davidhallin.com/blog/categories/opensource"/>
         <meta property="og:description" content="mostly development projects and learning" />
 
-        <title>david hallin</title>
+        <title>Open Source | david hallin</title>
 
         <link rel="home" href="https://davidhallin.com/">
         <link rel="icon" href="/favicon.ico">
         <link href="/blog/feed.atom" type="application/atom+xml" rel="alternate" title="david hallin Atom Feed">
 
-            <meta property="og:title" content="Contact david hallin" />
+            <meta property="og:title" content="Open Source" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://davidhallin.com/contact"/>
-    <meta property="og:description" content="Get in touch with david hallin" />
+    <meta property="og:url" content="https://davidhallin.com/blog/categories/opensource"/>
+    <meta property="og:description" content="open source projects" />
 
                     <!-- Insert analytics code here -->
         
         <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet">
-        <link rel="stylesheet" href="/assets/build/css/main.css?id=44709d7f03a9fa62c251">
+        <link rel="stylesheet" href="/assets/build/css/main.css?id=5be8124d3294112fde7f">
+        <link rel="stylesheet" href="/assets/build/css/fontawesome.min.css">
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
     </head>
 
     <body class="flex flex-col justify-between min-h-screen bg-gray-100 text-gray-800 leading-normal font-sans pt-24">
@@ -53,12 +55,8 @@
         About
     </a>
 
-    <a title="david hallin Contact" href="/contact"
-        class="ml-6 text-gray-700 hover:text-blue-600 active text-blue-600">
-        Contact
-    </a>
-    <a title="Dave's Twitter" target="_blank()" class="ml-6 text-gray-700 hover:text-blue-600" href="https://twitter.com/hallindavid">Twitter</a>
-    <a title="Dave's GitHub" target="_blank()" class="ml-6 text-gray-700 hover:text-blue-600" href="https://github.com/hallindavid">Github</a>
+    <a title="Dave's Twitter" target="_blank()" class="ml-6 text-gray-700 hover:text-blue-600" href="https://twitter.com/hallindavid"><i class="fab fa-twitter"></i></a>
+    <a title="Dave's GitHub" target="_blank()" class="ml-6 text-gray-700 hover:text-blue-600" href="https://github.com/hallindavid"><i class="fab fa-github"></i></a>
 </nav>
 
                     <button class="flex justify-center items-center bg-blue-500 border border-blue-500 h-10 px-5 rounded-full lg:hidden focus:outline-none"
@@ -98,78 +96,53 @@
             >About</a>
         </li>
         <li class="pl-4">
-            <a
-                title="david hallin Contact"
-                href="/contact"
-                class="nav-menu__item hover:text-blue-500 active text-blue"
-            >Contact</a>
+            <a  title="Dave's Twitter" 
+                target="_blank()" 
+                class="nav-menu__item hover:text-blue-500 " 
+                href="https://twitter.com/hallindavid"
+            ><i class="fab fa-twitter"></i> Dave's Twitter</a>
+        </li>
+        <li class="pl-4">
+            <a  title="Dave's GitHub" 
+                target="_blank()" 
+                class="nav-menu__item hover:text-blue-500 " 
+                href="https://github.com/hallindavid">
+            <i class="fab fa-github"></i> Dave's GitHub</a>
         </li>
     </ul>
 </nav>
 
         <main role="main" class="flex-auto w-full container max-w-4xl mx-auto py-16 px-6">
-            <h1>Contact</h1>
+                <h1>Open Source</h1>
 
-<p class="mb-8">
-    Static sites are unable to handle form submissions. However, there are third-party services, like Tighten’s <a href="https://fieldgoal.io" title="FieldGoal">FieldGoal</a>, which can accept the form submission, email you the result, and redirect back to a thank you page.
-</p>
-
-<form action="/contact" class="mb-12">
-    <div class="flex flex-wrap mb-6 -mx-3">
-        <div class="w-full md:w-1/2 mb-6 md:mb-0 px-3">
-            <label class="block mb-2 text-gray-800 text-sm font-semibold" for="contact-name">
-                Name
-            </label>
-
-            <input
-                type="text"
-                id="contact-name"
-                placeholder="Jane Doe"
-                name="name"
-                class="block w-full border shadow rounded-lg outline-none mb-2 px-4 py-3"
-                required
-            >
-        </div>
-
-        <div class="w-full px-3 md:w-1/2">
-            <label class="block text-gray-800 text-sm font-semibold mb-2" for="contact-email">
-                Email Address
-            </label>
-
-            <input
-                type="email"
-                id="contact-email"
-                placeholder="email@domain.com"
-                name="email"
-                class="block w-full border shadow rounded-lg outline-none mb-2 px-4 py-3"
-                required
-            >
-        </div>
+    <div class="text-2xl border-b border-blue-200 mb-6 pb-10">
+        <p>Here are some open source projects that I've worked on</p>
     </div>
 
-    <div class="w-full mb-12">
-        <label class="block text-gray-800 text-sm font-semibold mb-2" for="contact-message">
-            Message
-        </label>
+    
+    <div class="flex justify-center lg:-mx-12 my-12 p-6 md:px-12 bg-gray-200 border border-gray-400 text-sm md:rounded shadow">
+    <!-- Begin Mailchimp Signup Form -->
+    <div id="mc_embed_signup">
+        <form action="https://your-mail-chimp-list-manage-url" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+            <div id="mc_embed_signup_scroll">
+                <h2>Sign up for our newsletter</h2>
+                <div class="mc-field-group">
+                    <label for="mce-EMAIL">Email Address </label>
+                    <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Email address">
+                </div>
+                <div id="mce-responses" class="clear">
+                    <div class="response" id="mce-error-response" style="display:none"></div>
+                    <div class="response" id="mce-success-response" style="display:none"></div>
+                </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
 
-        <textarea
-            id="contact-message"
-            rows="4"
-            name="message"
-            class="block w-full border shadow rounded-lg outline-none appearance-none mb-2 px-4 py-3"
-            placeholder="A lovely message here."
-            required
-        ></textarea>
+                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_25582686a9fc051afd5453557_189578c854" tabindex="-1" value=""></div>
+                <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+            </div>
+        </form>
     </div>
+    <!--End Mailchimp Signup Form -->
+</div>
 
-    <div class="flex justify-end w-full">
-        <input
-            type="submit"
-            value="Submit"
-            class="block bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold leading-snug tracking-wide uppercase shadow rounded-lg cursor-pointer px-6 py-3"
-        >
-    </div>
-</form>
         </main>
 
         <footer class="bg-white text-center text-sm mt-12 py-4" role="contentinfo">
@@ -187,7 +160,11 @@
 
         <script src="/assets/build/js/main.js?id=cfb528a5e0c7c3c5b4ca"></script>
 
-        <script>
+            <script src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
+    <script>(function($) {
+        window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);
+    </script>
+<script>
     const navMenu = {
         toggle() {
             const menu = document.getElementById('js-nav-menu');
