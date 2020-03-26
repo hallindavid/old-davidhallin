@@ -2,47 +2,52 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
  <url>
   <loc>https://davidhallin.com</loc>
-  <lastmod>2020-03-25T12:40:31+00:00</lastmod>
+  <lastmod>2020-03-26T14:33:37+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
   <loc>https://davidhallin.com/blog</loc>
-  <lastmod>2020-03-25T12:40:31+00:00</lastmod>
+  <lastmod>2020-03-26T14:33:37+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
   <loc>https://davidhallin.com/blog/first-post</loc>
-  <lastmod>2020-03-25T12:40:31+00:00</lastmod>
+  <lastmod>2020-03-26T14:33:37+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
   <loc>https://davidhallin.com/blog/bootstrap-vue-form-builder</loc>
-  <lastmod>2020-03-25T12:40:31+00:00</lastmod>
+  <lastmod>2020-03-26T14:33:37+00:00</lastmod>
+  <changefreq>daily</changefreq>
+ </url>
+ <url>
+  <loc>https://davidhallin.com/blog/sublime-snippets-location</loc>
+  <lastmod>2020-03-26T14:33:37+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
   <loc>https://davidhallin.com/blog/feed.atom</loc>
-  <lastmod>2020-03-25T12:40:31+00:00</lastmod>
+  <lastmod>2020-03-26T14:33:37+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
   <loc>https://davidhallin.com/about</loc>
-  <lastmod>2020-03-25T12:40:31+00:00</lastmod>
+  <lastmod>2020-03-26T14:33:37+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
   <loc>https://davidhallin.com/blog/categories/general</loc>
-  <lastmod>2020-03-25T12:40:31+00:00</lastmod>
+  <lastmod>2020-03-26T14:33:37+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
   <loc>https://davidhallin.com/blog/categories/php</loc>
-  <lastmod>2020-03-25T12:40:31+00:00</lastmod>
+  <lastmod>2020-03-26T14:33:37+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
   <loc>https://davidhallin.com/blog/categories/opensource</loc>
-  <lastmod>2020-03-25T12:40:31+00:00</lastmod>
+  <lastmod>2020-03-26T14:33:37+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
 </urlset>

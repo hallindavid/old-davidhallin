@@ -6,21 +6,21 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="description" content="mostly development projects and learning">
 
-        <meta property="og:title" content="Open Source | David Hallin"/>
+        <meta property="og:title" content="How to use Sublime Text Snippets and improve your workflow | David Hallin"/>
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://davidhallin.com/blog/categories/opensource"/>
+        <meta property="og:url" content="https://davidhallin.com/blog/sublime-snippets-location"/>
         <meta property="og:description" content="mostly development projects and learning" />
 
-        <title>Open Source | David Hallin</title>
+        <title>How to use Sublime Text Snippets and improve your workflow | David Hallin</title>
 
         <link rel="home" href="https://davidhallin.com/">
         <link rel="icon" href="/favicon.ico">
         <link href="/blog/feed.atom" type="application/atom+xml" rel="alternate" title="David Hallin Atom Feed">
 
-            <meta property="og:title" content="Open Source" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://davidhallin.com/blog/categories/opensource"/>
-    <meta property="og:description" content="open source projects" />
+            <meta property="og:title" content="How to use Sublime Text Snippets and improve your workflow" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://davidhallin.com/blog/sublime-snippets-location"/>
+    <meta property="og:description" content="Why sublime snippets are great, how to make them, and how to edit them" />
 
                     <!-- Global site tag (gtag.js) - Google Analytics -->
             <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34189472-1"></script>
@@ -121,50 +121,115 @@
 </nav>
 
         <main role="main" class="flex-auto w-full container max-w-4xl mx-auto py-16 px-6">
-                <h1>Open Source</h1>
+                
+    <h1 class="leading-none mb-2">How to use Sublime Text Snippets and improve your workflow</h1>
 
-    <div class="text-2xl border-b border-blue-200 mb-6 pb-10">
-        <p>Here are some open source projects that I've worked on</p>
+    <p class="text-gray-700 text-xl md:mt-0">Dave  •  March 26, 2020</p>
+
+                        <a
+                href="/blog/categories/general"
+                title="View posts in general"
+                class="inline-block bg-gray-300 hover:bg-blue-200 leading-loose tracking-wide text-gray-800 uppercase text-xs font-semibold rounded mr-4 px-3 pt-px"
+            >general</a>
+            
+    <div class="border-b border-gray-300 mb-4 pb-4" v-pre>
+        <h2>What is a snippet?</h2>
+
+<p>If you've never played with Sublime Text, it's a fantastic editor and feels so much faster than most of the other editors out there today.  It does cost some money up front, but there is no monthly/annual subscription that you need.  One of I think it's most powerful features is snippets.</p>
+
+<p>When I first started using snippets, the way I understood them was like a multi-copy paste function.  Instead of having just one thing copied at a time, you could have a bunch.  So when there is a repeatable piece of code, you make a snippet and then just pump them out, but the power of snippets in Sublime Text runs deeper than that.  The super-feature is the tabbed selections in a snippet.</p>
+
+<p>Here is an example of a snippet I use all the time when I'm designing forms in Laravel with Bootstrap.</p>
+
+<pre><code>&lt;snippet&gt;
+    &lt;content&gt;&lt;![CDATA[
+&lt;div class="form-group row"&gt;
+    &lt;label for="${1}" class="col-sm-2 col-form-label"&gt;${2}&lt;/label&gt;
+    &lt;div class="col-sm-10"&gt;
+        &lt;input  class="form-control @error('${1}') is-valid @else is-invalid @enderror" 
+                type="text" 
+                id="${1}" name="${1}"
+                value="{{ old('${1}') }}"&gt;
+        @error('${1}')
+        &lt;div class="invalid-feedback"&gt;
+            {{ \$message }}
+        &lt;/div&gt;
+        @enderror
+    &lt;/div&gt;
+&lt;/div&gt;
+]]&gt;&lt;/content&gt;
+    &lt;tabTrigger&gt;lbinput&lt;/tabTrigger&gt;
+&lt;/snippet&gt;
+</code></pre>
+
+<p>So - I'd use my "Laravel Bootstrap Input" snippet - <code>lbinput</code> and automatically, all the fields where there is a <code>${1}</code> are highlighted, meaning I can type that string in just once to fill all of them in.</p>
+
+<p><img src="/assets/images/post-3/lbinput.gif" class="w-full"></p>
+
+<p>This is cool for so many reasons</p>
+
+<ul>
+<li>You just wrote over 10 lines of code with 8 keystrokes</li>
+<li>Perfect accuracy - because you had the label-for, input id, value, and name, plus the error handling methods all in the same selection, they're all going to be the exact same text.  So feel free to use <code>frist_name</code> - it'll still work! (at least on the front end)</li>
+<li>More consistency - If you're looping through many of these input fields, sometimes you can forget classes to apply or neglect error handling on certain fields.</li>
+</ul>
+
+<p>Awesome right?</p>
+
+<h2>How do I make the snippets?</h2>
+
+<p>In Sublime all you have to do is go to Tools -> Developer -> New Snippet.</p>
+
+<p>This will open a new snippet template and give you some areas to fill in the blank.</p>
+
+<p>Once you're finished, you have to save it with a <code>.sublime-snippet</code> extension.  Then you should be good to go.</p>
+
+<h2>How do I edit a snippet?</h2>
+
+<p>So if you've just created your first snippet, and saved it properly, and it works, but now you need to edit it, you may be wondering where you actually just saved that file to because it's not in your home directory.</p>
+
+<p>This path for mine are here:</p>
+
+<pre><code>~/Library/Application Support/Sublime Text 3/ Packages/User/snippets/
+</code></pre>
+
+<p>It's hard to that folder in finder, so you should use the Sublime CLI tool (see <a href="https://www.sublimetext.com/docs/3/osx_command_line.html">here</a>) so you're able to do something like this</p>
+
+<pre><code>subl ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
+</code></pre>
+
+<p>I do this enough that I made an alias in my .zshrc file</p>
+
+<pre><code>alias sublsnippets="subl ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User"
+</code></pre>
     </div>
 
-            <div class="flex flex-col mb-4">
-    <p class="text-gray-700 font-medium my-2">
-        March 25, 2020
-    </p>
+    <div class="border-b border-gray-300 pb-4 mb-10" v-pre>
+        <!-- AddToAny BEGIN -->
+        <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+        <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+        <a class="a2a_button_facebook"></a>
+        <a class="a2a_button_twitter"></a>
+        <a class="a2a_button_email"></a>
+        <a class="a2a_button_reddit"></a>
+        <a class="a2a_button_pocket"></a>
+        <a class="a2a_button_print"></a>
+        </div>
+        <script async src="https://static.addtoany.com/menu/page.js"></script>
+        <!-- AddToAny END -->
 
-    <h2 class="text-3xl mt-0">
-        <a
-            href="https://davidhallin.com/blog/bootstrap-vue-form-builder"
-            title="Read more - BootstrapVueFormBuilder"
-            class="text-gray-900 font-extrabold"
-        >BootstrapVueFormBuilder</a>
-    </h2>
-                        <span><a
-                href="/blog/categories/opensource"
-                title="View posts in opensource"
-                class="inline-block bg-gray-300 hover:bg-gray-400 leading-loose tracking-wide text-gray-800 uppercase text-xs font-semibold rounded mr-4 px-3 pt-px"
-            >opensource</a></span>
-            
-    <p class="mb-4 mt-1">Website
-     Git Repo
+    </div>
 
+    <nav class="flex justify-between text-sm md:text-base">
+        <div>
+                            <a href="https://davidhallin.com/blog/first-post" title="Older Post: First Post">
+                    &LeftArrow; First Post
+                </a>
+                    </div>
 
-Throughout my career, a huge portion of my regular work comes from creating forms for people.  People always need forms.
-
-The regular progression in my situation is this.
-
-
-I...</p>
-
-    <a
-        href="https://davidhallin.com/blog/bootstrap-vue-form-builder"
-        title="Read more - BootstrapVueFormBuilder"
-        class="uppercase font-semibold tracking-wide mb-2"
-    >Read</a>
-</div>
-
-            
-    
+        <div>
+                    </div>
+    </nav>
         </main>
 
         <footer class="bg-white text-center text-sm mt-12 py-4" role="contentinfo">
