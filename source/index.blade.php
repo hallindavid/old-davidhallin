@@ -3,19 +3,20 @@
 @section('body')
     @foreach ($posts->where('featured', true) as $featuredPost)
         <div class="w-full mb-6">
-            @if ($featuredPost->cover_image)
-                <img src="{{ $featuredPost->cover_image }}" alt="{{ $featuredPost->title }} cover image" class="mb-6">
-            @endif
-
-            <p class="text-gray-700 font-medium my-2">
-                {{ $featuredPost->getDate()->format('F j, Y') }}
-            </p>
-
-            <h2 class="text-3xl mt-0">
-                <a href="{{ $featuredPost->getUrl() }}" title="Read {{ $featuredPost->title }}" class="text-gray-900 font-extrabold">
-                    {{ $featuredPost->title }}
-                </a>
-            </h2>
+            <div class="flex flex-wrap justify-between w-full">
+                <div class="w-full md:w-2/3">
+                <h2 class="text-3xl mt-0">
+                    <a href="{{ $featuredPost->getUrl() }}" title="Read {{ $featuredPost->title }}" class="text-gray-900 font-extrabold">
+                        {{ $featuredPost->title }}
+                    </a>
+                </h2>
+                </div>
+                <div class="w-full md:w-1/3 text-right">
+                    <span class="text-gray-700 font-medium my-2">
+                        {{ $featuredPost->getDate()->format('F j, Y') }}
+                    </span>
+                </div>
+            </div>
 
             <p class="mt-0 mb-4">{!! $featuredPost->getExcerpt() !!}</p>
 
