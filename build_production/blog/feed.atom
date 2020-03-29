@@ -3,7 +3,7 @@
     <title>David Hallin</title>
     <link href="https://davidhallin.com/" />
     <link type="application/atom+xml" rel="self" href="https://davidhallin.com/blog/feed.atom" />
-    <updated>2020-03-29T22:22:29+00:00</updated>
+    <updated>2020-03-29T22:24:04+00:00</updated>
     <id>https://davidhallin.com/blog/feed.atom</id>
     <author>
         <name>David Hallin</name>
@@ -91,7 +91,8 @@ git branch -D gh-pages
 },
 </code></pre>
 
-<p>but you could just as easily make a new file like <code>build.sh</code></p>
+<p>and then I execute by running <code>npm run deploy</code>
+but you could just as easily make a new file like <code>build.sh</code></p>
 
 <pre><code class="language-sh">npm run production
 echo 'davidhallin.com' &gt; build_production/CNAME
@@ -102,7 +103,7 @@ git push -f origin gh-pages:gh-pages
 git branch -D gh-pages
 </code></pre>
 
-<p>and then run <code>./build.sh</code> to deploy when ever you need to.</p>
+<p>and then run <code>./build.sh</code> to deploy when ever you want to deploy.</p>
 
 <p>Hope somebody finds this useful!</p>
     ]]></content>
