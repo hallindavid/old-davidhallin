@@ -6,21 +6,21 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="description" content="mostly development projects and learning">
 
-        <meta property="og:title" content="Open Source | David Hallin"/>
+        <meta property="og:title" content="My first open source package | David Hallin"/>
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://davidhallin.com/blog/categories/opensource"/>
+        <meta property="og:url" content="https://davidhallin.com/blog/my-first-open-source-package"/>
         <meta property="og:description" content="mostly development projects and learning" />
 
-        <title>Open Source | David Hallin</title>
+        <title>My first open source package | David Hallin</title>
 
         <link rel="home" href="https://davidhallin.com/">
         <link rel="icon" href="/favicon.ico">
         <link href="/blog/feed.atom" type="application/atom+xml" rel="alternate" title="David Hallin Atom Feed">
 
-            <meta property="og:title" content="Open Source" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://davidhallin.com/blog/categories/opensource"/>
-    <meta property="og:description" content="open source projects" />
+            <meta property="og:title" content="My first open source package" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://davidhallin.com/blog/my-first-open-source-package"/>
+    <meta property="og:description" content="I just released my first open-source package" />
 
                     <!-- Global site tag (gtag.js) - Google Analytics -->
             <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34189472-1"></script>
@@ -121,89 +121,97 @@
 </nav>
 
         <main role="main" class="flex-auto w-full container max-w-4xl mx-auto py-16 px-6">
-                <h1>Open Source</h1>
+                
+    <h1 class="leading-none mb-2">My first open source package</h1>
 
-    <div class="text-2xl border-b border-blue-200 mb-6 pb-10">
-        <p>Here are some open source projects that I've worked on</p>
-    </div>
+    <p class="text-gray-700 text-xl md:mt-0">Dave  •  March 29, 2020</p>
 
-            <div class="flex flex-col mb-4">
-    <p class="text-gray-700 font-medium my-2">
-        March 29, 2020
-    </p>
-
-    <h2 class="text-3xl mt-0">
-        <a
-            href="https://davidhallin.com/blog/my-first-open-source-package"
-            title="Read more - My first open source package"
-            class="text-gray-900 font-extrabold"
-        >My first open source package</a>
-    </h2>
-                        <span><a
+                        <a
                 href="/blog/categories/opensource"
                 title="View posts in opensource"
-                class="inline-block bg-gray-300 hover:bg-gray-400 leading-loose tracking-wide text-gray-800 uppercase text-xs font-semibold rounded mr-4 px-3 pt-px"
-            >opensource</a></span>
-                    <span><a
+                class="inline-block bg-gray-300 hover:bg-blue-200 leading-loose tracking-wide text-gray-800 uppercase text-xs font-semibold rounded mr-4 px-3 pt-px"
+            >opensource</a>
+                    <a
                 href="/blog/categories/php"
                 title="View posts in php"
-                class="inline-block bg-gray-300 hover:bg-gray-400 leading-loose tracking-wide text-gray-800 uppercase text-xs font-semibold rounded mr-4 px-3 pt-px"
-            >php</a></span>
+                class="inline-block bg-gray-300 hover:bg-blue-200 leading-loose tracking-wide text-gray-800 uppercase text-xs font-semibold rounded mr-4 px-3 pt-px"
+            >php</a>
             
-    <p class="mb-4 mt-1">So the other day I was working with Caleb Porzio's Livewire package, and I ran into a unique situation - atleast for me.
+    <div class="border-b border-gray-300 mb-4 pb-4" v-pre>
+        <p>So the other day I was working with <a href="https://calebporzio.com/">Caleb Porzio</a>'s <a href="https://laravel-livewire.com/">Livewire</a> package, and I ran into a unique situation - atleast for me.</p>
 
-In my normal php builds, when you fill out a form like this
+<p>In my normal php builds, when you fill out a form like this</p>
 
+<p><img src="/assets/images/first-open-source-package/sample-form.png" /></p>
 
+<p>You would use some javascript library to mask the input on the phone number field like <a href="https://nosir.github.io/cleave.js/">Cleave</a>.  Then when the user would submit the form, I'd remove all formatting characters with regex</p>
 
-You would use...</p>
+<pre><code>$cleansed_phone = preg_replace('/[^0-9]/', '', $posted_phone);
+</code></pre>
 
-    <a
-        href="https://davidhallin.com/blog/my-first-open-source-package"
-        title="Read more - My first open source package"
-        class="uppercase font-semibold tracking-wide mb-2"
-    >Read</a>
-</div>
+<p>and format into the desired format - like E.164 if using it for SMS, or if it was a more CRM-like application, storing it like <code>888-888-8888</code> so that people can easily search for it.</p>
 
-                    <hr class="w-full border-b mt-2 mb-6">
-                    <div class="flex flex-col mb-4">
-    <p class="text-gray-700 font-medium my-2">
-        March 25, 2020
-    </p>
+<p>In Livewire though, the data is process in PHP - which is super interesting.  Now - I'm sure that there's probably a way to do this with Javascript on top of Livewire, but Livewire already syncs the values accross and makes it super easy to due PHP functions on the data models and send them back to the page.  So in a way, we use Livewire and PHP to build our markup function.</p>
 
-    <h2 class="text-3xl mt-0">
-        <a
-            href="https://davidhallin.com/blog/bootstrap-vue-form-builder"
-            title="Read more - BootstrapVueFormBuilder"
-            class="text-gray-900 font-extrabold"
-        >BootstrapVueFormBuilder</a>
-    </h2>
-                        <span><a
-                href="/blog/categories/opensource"
-                title="View posts in opensource"
-                class="inline-block bg-gray-300 hover:bg-gray-400 leading-loose tracking-wide text-gray-800 uppercase text-xs font-semibold rounded mr-4 px-3 pt-px"
-            >opensource</a></span>
-            
-    <p class="mb-4 mt-1">Website
-     Git Repo
+<p>At first I thought to just make the regex calls within the updated function like this:</p>
 
+<pre><code>public function updated($field)
+{
+    if ($field == 'phone')
+    {
+        $newPhone = preg_replace('/[^0-9]/', '', $this-&gt;phone);
+        $this-&gt;phone = '(' . substr($newPhone, 0,3) . 
+                        . (strlen($newPhone) &gt; 3 ? ') ' . substr($newPhone,3,3) : '')
+                        . (strlen($newPhone) &gt; 6 ? '-' . substr($newPhone,6,4) : '');
+    }
+}
+</code></pre>
 
-Throughout my career, a huge portion of my regular work comes from creating forms for people.  People always need forms.
+<p>And make no mistake - that will work, but it's a bit of a pain.  I have all this functionality pre-done for me in jQuery &amp; Vue.js and I'm really liking Livewire so far, so I thought I'd make a package of it.</p>
 
-The regular progression in my situation is this.
+<p>So - here's the package: <a target="_blank()" href="https://github.com/hallindavid/phonehelper">hallindavid/phonehelper</a>.  installable via composer, and Laravel auto-recognizes the ServiceProvider &amp; Alias so when you're wanting to mask phone inputs (just form Canada / US) for the example above, it looks like this</p>
 
+<pre><code>public function updated($field)
+{
+    if ($field == 'phone')
+    {
+        $this-&gt;phone = PhoneHelper::format($this-&gt;phone);
+    }
+}
+</code></pre>
 
-I...</p>
+<p>It's also super easy to add your own formats by using a configuration file, but it ships with 10 formats by default - checkout the readme for better examples.</p>
+    </div>
 
-    <a
-        href="https://davidhallin.com/blog/bootstrap-vue-form-builder"
-        title="Read more - BootstrapVueFormBuilder"
-        class="uppercase font-semibold tracking-wide mb-2"
-    >Read</a>
-</div>
+    <div class="border-b border-gray-300 pb-4 mb-10" v-pre>
+        <!-- AddToAny BEGIN -->
+        <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+        <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+        <a class="a2a_button_facebook"></a>
+        <a class="a2a_button_twitter"></a>
+        <a class="a2a_button_email"></a>
+        <a class="a2a_button_reddit"></a>
+        <a class="a2a_button_pocket"></a>
+        <a class="a2a_button_print"></a>
+        </div>
+        <script async src="https://static.addtoany.com/menu/page.js"></script>
+        <!-- AddToAny END -->
 
-            
-    
+    </div>
+
+    <nav class="flex justify-between text-sm md:text-base">
+        <div>
+                            <a href="https://davidhallin.com/blog/sublime-snippets-location" title="Older Post: How to use Sublime Text Snippets and improve your workflow">
+                    &LeftArrow; How to use Sublime Text Snippets and improve your workflow
+                </a>
+                    </div>
+
+        <div>
+                            <a href="https://davidhallin.com/blog/deploying-a-static-site-to-github-pages" title="Newer Post: Deploying a static site to a repo subtree and hosting it for free on github pages">
+                    Deploying a static site to a repo subtree and hosting it for free on github pages &RightArrow;
+                </a>
+                    </div>
+    </nav>
         </main>
 
         <footer class="bg-white text-center text-sm mt-12 py-4" role="contentinfo">

@@ -3,7 +3,7 @@
     <title>David Hallin</title>
     <link href="https://davidhallin.com/" />
     <link type="application/atom+xml" rel="self" href="https://davidhallin.com/blog/feed.atom" />
-    <updated>2020-03-29T22:24:04+00:00</updated>
+    <updated>2020-03-29T23:49:32+00:00</updated>
     <id>https://davidhallin.com/blog/feed.atom</id>
     <author>
         <name>David Hallin</name>
@@ -106,6 +106,68 @@ git branch -D gh-pages
 <p>and then run <code>./build.sh</code> to deploy when ever you want to deploy.</p>
 
 <p>Hope somebody finds this useful!</p>
+    ]]></content>
+</entry>
+            <entry>
+    <id>https://davidhallin.com/blog/my-first-open-source-package</id>
+    <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/my-first-open-source-package" />
+    <title>My first open source package</title>
+    <published>2020-03-29T00:00:00+00:00</published>
+    <updated>2020-03-29T00:00:00+00:00</updated>
+    <author>
+        <name>Dave</name>
+    </author>
+    <summary type="html">So the other day I was working with Caleb Porzio&#039;s Livewire package, and I ran into a unique situation - atleast for me.
+
+In my normal php builds, when you fill out a form like this
+
+
+
+You would use some javascript library to mask the input on the phone......</summary>
+    <content type="html"><![CDATA[
+        <p>So the other day I was working with <a href="https://calebporzio.com/">Caleb Porzio</a>'s <a href="https://laravel-livewire.com/">Livewire</a> package, and I ran into a unique situation - atleast for me.</p>
+
+<p>In my normal php builds, when you fill out a form like this</p>
+
+<p><img src="/assets/images/first-open-source-package/sample-form.png" /></p>
+
+<p>You would use some javascript library to mask the input on the phone number field like <a href="https://nosir.github.io/cleave.js/">Cleave</a>.  Then when the user would submit the form, I'd remove all formatting characters with regex</p>
+
+<pre><code>$cleansed_phone = preg_replace('/[^0-9]/', '', $posted_phone);
+</code></pre>
+
+<p>and format into the desired format - like E.164 if using it for SMS, or if it was a more CRM-like application, storing it like <code>888-888-8888</code> so that people can easily search for it.</p>
+
+<p>In Livewire though, the data is process in PHP - which is super interesting.  Now - I'm sure that there's probably a way to do this with Javascript on top of Livewire, but Livewire already syncs the values accross and makes it super easy to due PHP functions on the data models and send them back to the page.  So in a way, we use Livewire and PHP to build our markup function.</p>
+
+<p>At first I thought to just make the regex calls within the updated function like this:</p>
+
+<pre><code>public function updated($field)
+{
+    if ($field == 'phone')
+    {
+        $newPhone = preg_replace('/[^0-9]/', '', $this-&gt;phone);
+        $this-&gt;phone = '(' . substr($newPhone, 0,3) . 
+                        . (strlen($newPhone) &gt; 3 ? ') ' . substr($newPhone,3,3) : '')
+                        . (strlen($newPhone) &gt; 6 ? '-' . substr($newPhone,6,4) : '');
+    }
+}
+</code></pre>
+
+<p>And make no mistake - that will work, but it's a bit of a pain.  I have all this functionality pre-done for me in jQuery &amp; Vue.js and I'm really liking Livewire so far, so I thought I'd make a package of it.</p>
+
+<p>So - here's the package: <a target="_blank()" href="https://github.com/hallindavid/phonehelper">hallindavid/phonehelper</a>.  installable via composer, and Laravel auto-recognizes the ServiceProvider &amp; Alias so when you're wanting to mask phone inputs (just form Canada / US) for the example above, it looks like this</p>
+
+<pre><code>public function updated($field)
+{
+    if ($field == 'phone')
+    {
+        $this-&gt;phone = PhoneHelper::format($this-&gt;phone);
+    }
+}
+</code></pre>
+
+<p>It's also super easy to add your own formats by using a configuration file, but it ships with 10 formats by default - checkout the readme for better examples.</p>
     ]]></content>
 </entry>
             <entry>
