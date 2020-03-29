@@ -69,7 +69,7 @@ So - I made this into an npm script
     "deploy": "npm run production && echo 'davidhallin.com' > build_production/CNAME && git add build_production && git commit -m \"build for production\" && git subtree split --prefix build_production -b gh-pages && git push -f origin gh-pages:gh-pages && git branch -D gh-pages"
 },
 ```
-
+and then I execute by running `npm run deploy`
 but you could just as easily make a new file like `build.sh`
 ```sh
 npm run production
@@ -82,6 +82,6 @@ git branch -D gh-pages
 ```
 
 
-and then run `./build.sh` to deploy when ever you need to.
+and then run `./build.sh` to deploy when ever you want to deploy.
 
 Hope somebody finds this useful!
