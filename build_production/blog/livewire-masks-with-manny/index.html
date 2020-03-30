@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="description" content="mostly development projects and learning">
+
+        <meta property="og:title" content="Masking Livewire inputs with manny | David Hallin"/>
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://davidhallin.com/blog/livewire-masks-with-manny"/>
+        <meta property="og:description" content="mostly development projects and learning" />
+
+        <title>Masking Livewire inputs with manny | David Hallin</title>
+
+        <link rel="home" href="https://davidhallin.com/">
+        <link rel="icon" href="/favicon.ico">
+        <link href="/blog/feed.atom" type="application/atom+xml" rel="alternate" title="David Hallin Atom Feed">
+
+            <meta property="og:title" content="Masking Livewire inputs with manny" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://davidhallin.com/blog/livewire-masks-with-manny"/>
+    <meta property="og:description" content="How to create masks for livewire inputs using hallindavid/manny package" />
+
+                    <!-- Global site tag (gtag.js) - Google Analytics -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34189472-1"></script>
+            <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-34189472-1');
+            </script>
+        
+        <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet">
+        <link rel="stylesheet" href="/assets/build/css/main.css?id=195379294a65d37406fd">
+        <link rel="stylesheet" href="/assets/build/css/fontawesome.min.css">
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+    </head>
+
+    <body class="flex flex-col justify-between min-h-screen bg-gray-100 text-gray-800 leading-normal font-sans pt-24">
+        <header class="flex items-center shadow bg-white border-b h-24 py-4 fixed left-0 right-0 top-0 z-10" role="banner">
+            <div class="container flex items-center max-w-8xl mx-auto px-4 lg:px-8">
+                <div class="flex items-center">
+                    <a href="/" title="David Hallin home" class="inline-flex items-center">
+                        <img class="h-8 md:h-10 mr-3 rounded-full" src="/assets/img/davidhallin.png" alt="David Hallin logo" />
+
+                        <h1 class="text-lg md:text-2xl text-blue-800 font-semibold hover:text-blue-600 my-0">David Hallin</h1>
+                    </a>
+                </div>
+
+                <div id="vue-search" class="flex flex-1 justify-end items-center">
+                    <search></search>
+
+                    <nav class="hidden lg:flex items-center justify-end text-lg">
+    <a title="David Hallin Blog" href="/blog"
+        class="ml-6 text-gray-700 hover:text-blue-600 ">
+        Blog
+    </a>
+
+    <a title="David Hallin About" href="/about"
+        class="ml-6 text-gray-700 hover:text-blue-600 ">
+        About
+    </a>
+
+    <a title="Dave's Twitter" target="_blank()" class="ml-6 text-gray-700 hover:text-blue-600" href="https://twitter.com/hallindavid"><i class="fab fa-twitter"></i></a>
+    <a title="Dave's GitHub" target="_blank()" class="ml-6 text-gray-700 hover:text-blue-600" href="https://github.com/hallindavid"><i class="fab fa-github"></i></a>
+</nav>
+
+                    <button class="flex justify-center items-center bg-blue-500 border border-blue-500 h-10 px-5 rounded-full lg:hidden focus:outline-none"
+    onclick="navMenu.toggle()"
+>
+    <svg id="js-nav-menu-show" xmlns="http://www.w3.org/2000/svg"
+        class="fill-current text-white h-9 w-4" viewBox="0 0 32 32"
+    >
+        <path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/>
+    </svg>
+
+    <svg id="js-nav-menu-hide" xmlns="http://www.w3.org/2000/svg"
+        class="hidden fill-current text-white h-9 w-4" viewBox="0 0 36 30"
+    >
+        <polygon points="32.8,4.4 28.6,0.2 18,10.8 7.4,0.2 3.2,4.4 13.8,15 3.2,25.6 7.4,29.8 18,19.2 28.6,29.8 32.8,25.6 22.2,15 "/>
+    </svg>
+</button>
+
+                </div>
+            </div>
+        </header>
+
+        <nav id="js-nav-menu" class="nav-menu hidden lg:hidden">
+    <ul class="my-0">
+        <li class="pl-4">
+            <a
+                title="David Hallin Blog"
+                href="/blog"
+                class="nav-menu__item hover:text-blue-500 "
+            >Blog</a>
+        </li>
+        <li class="pl-4">
+            <a
+                title="David Hallin About"
+                href="/about"
+                class="nav-menu__item hover:text-blue-500 "
+            >About</a>
+        </li>
+        <li class="pl-4">
+            <a  title="Dave's Twitter" 
+                target="_blank()" 
+                class="nav-menu__item hover:text-blue-500 " 
+                href="https://twitter.com/hallindavid"
+            ><i class="fab fa-twitter"></i> Dave's Twitter</a>
+        </li>
+        <li class="pl-4">
+            <a  title="Dave's GitHub" 
+                target="_blank()" 
+                class="nav-menu__item hover:text-blue-500 " 
+                href="https://github.com/hallindavid">
+            <i class="fab fa-github"></i> Dave's GitHub</a>
+        </li>
+    </ul>
+</nav>
+
+        <main role="main" class="flex-auto w-full container max-w-4xl mx-auto py-16 px-6">
+                
+    <h1 class="leading-none mb-2">Masking Livewire inputs with manny</h1>
+
+    <p class="text-gray-700 text-xl md:mt-0">Dave  •  March 30, 2020</p>
+
+                        <a
+                href="/blog/categories/php"
+                title="View posts in php"
+                class="inline-block bg-gray-300 hover:bg-blue-200 leading-loose tracking-wide text-gray-800 uppercase text-xs font-semibold rounded mr-4 px-3 pt-px"
+            >php</a>
+            
+    <div class="border-b border-gray-300 mb-4 pb-4" v-pre>
+        <p>This post expects you to be comfy with Laravel development, and a bit of Livewire as well - although I do go through setting up livewire.</p>
+
+<h3>Creating the Project</h3>
+
+<p>So let's start off by creating our project and stepping into it.</p>
+
+<pre><code class="language-sh">laravel new livewiremask
+cd livewiremask
+</code></pre>
+
+<h3>Pull in scaffolding and livewire</h3>
+
+<p>Let's pull in Livewire and also pull in the ui front-end scaffolding - just so we don't have to build much in terms of a theme.</p>
+
+<pre><code class="language-sh">composer require livewire/livewire
+composer require laravel/ui 
+php artisan ui bootstrap --auth
+npm install &amp;&amp; npm run dev
+</code></pre>
+
+<p>Although we really don't need the the auth - I just want to steal the register form for this example.</p>
+
+<p>At this point, you'll need to set up the dev environment for however you use Laravel normally.  For me, it's valet.</p>
+
+<pre><code>valet link
+</code></pre>
+
+<p>open your browser window and check out what we've done so far.  You should be greeted with the laravel default landing page
+<img src="/assets/images/livewire-masks-with-manny/livewire-mask-start.png" class="mx-auto w-50"/></p>
+
+<h3>Setup Livewire Component</h3>
+
+<p>So the first thing we need to do is add the livewire assets into the layout.</p>
+
+<p>So let's go to <code>resources/view/layouts/app.blade.php</code> and add in our styles + scripts</p>
+
+<p>styles in the head</p>
+
+<pre><code class="language-html">    ...
+    &lt;!-- Styles --&gt;
+    &lt;link href="{{ asset('css/app.css') }}" rel="stylesheet"&gt;
+
+    //add this line
+    &lt;livewire:styles&gt;
+&lt;/head&gt;
+</code></pre>
+
+<p>scripts just before the end of the body tag</p>
+
+<pre><code class="language-html">        ...
+        &lt;main class="py-4"&gt;
+            @yield('content')
+        &lt;/main&gt;
+    &lt;/div&gt;
+
+    //add this line
+    &lt;livewire:scripts&gt;
+&lt;/body&gt;
+</code></pre>
+
+<h3>Create the Livewire Component</h3>
+
+<p>Next up we're going to create the livewire component, and create a route to serve the livewire component.</p>
+
+<pre><code class="language-php">php artisan make:livewire maskedform
+</code></pre>
+
+<p>This should have created 2 new files for you.<br />
+<code>app/Http/Livewire/MaskedForm.php</code> This is the component code, and <br />
+<code>resources/views/livewire/maskedform.blade.php</code> this is the component view.</p>
+
+<p>Let's also create the view <code>livewireform.blade.php</code> in the <code>resources/views</code> folder.  This view will hold our livewire component for us</p>
+
+<pre><code class="language-html">@extends('layouts.app')
+
+@section('content')
+&lt;div class="container"&gt;
+    &lt;div class="row justify-content-center"&gt;
+        &lt;div class="col-md-8"&gt;
+            &lt;div class="card"&gt;
+                &lt;div class="card-body"&gt;
+                    &lt;livewire:maskedform&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+@endsection
+</code></pre>
+
+<p>Let's create a route to the livewire component by adding this line into <code>routes/web.php</code></p>
+
+<pre><code class="language-php">Route::get('/maskedform', function() {
+    return view ('livewireform');
+});
+</code></pre>
+
+<p>and finally let's add this code to to our livewire component view</p>
+
+<pre><code class="language-html">&lt;form&gt;
+    &lt;div class="form-group row"&gt;
+        &lt;label class="col-md-4 col-form-label text-md-right"&gt;Phone&lt;/label&gt;
+        &lt;div class="col-md-6"&gt;
+            &lt;input type="text" class="form-control" autofocus&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+
+<p>Now if you browse to the route, (with valet, mine is <code>livewiremask.test/maskedform</code> ) you should see this</p>
+
+<p><img src="/assets/images/livewire-masks-with-manny/phone-view.png"/></p>
+
+<p>Ok - so now we can start defining the different variables we want to play with</p>
+
+<h3>Defining the Livewire Variables</h3>
+
+<p>Let's jump into livewire code, <code>app/Http/Livewire/Maskedform.php</code>.
+It should look like this:</p>
+
+<pre><code class="language-php">&lt;?php
+
+namespace App\Http\Livewire;
+
+use Livewire\Component;
+
+class Maskedform extends Component
+{
+    public function render()
+    {
+        return view('livewire.maskedform');
+    }
+}
+</code></pre>
+
+<p>The first thing we want to do is bind the phone field we created in the view to a variable in the code.</p>
+
+<pre><code>class Maskedform extends Component
+{
+    public $phone;
+
+    public function updated($field)
+    {
+        if ($field == 'phone') {
+            //this is where we will detect any changes to the phone field.
+        }
+    }
+    ...
+</code></pre>
+
+<p>and in the livewire view, we are going to bind it by adding the <code>wire:model="phone"</code> to the input.</p>
+
+<pre><code class="language-html">&lt;div class="form-group row"&gt;
+    &lt;label for="phone" class="col-md-4 col-form-label text-md-right"&gt;Phone&lt;/label&gt;
+    &lt;div class="col-md-6"&gt;
+        &lt;input wire:model="phone" id="phone" type="text" class="form-control" autofocus&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h3>Pull in Manny - start masking</h3>
+
+<p>now it's time to pull in Manny - (manny is short for manipulator)</p>
+
+<pre><code class="language-sh">composer require hallindavid/manny
+</code></pre>
+
+<p>The docs for Manny are available here: <a href="https://github.com/hallindavid/manny">github.com/hallindavid/manny</a> there are quite a few little functions that are super helpful with Livewire.</p>
+
+<p>The first mask we'll play with is, just to eliminate all non-numeric characters.  You can do through using <code>preg_replace</code> with regular expressions, but Manny has a function called <code>Stripper</code> which can also do this for us without the need for remembering how to write regular expressions.</p>
+
+<p>In our <code>app/Http/Livewire/Maskedform.php</code> file, let's update our code</p>
+
+<pre><code class="language-php">use Livewire\Component;
+use Manny;
+
+class Maskedform extends Component
+{
+    public $phone;
+
+    public function updated($field)
+    {
+        if ($field == 'phone')
+        {
+            $this-&gt;phone = Manny::stripper($this-&gt;phone, ['num']);
+        }
+    }
+
+
+    public function render()
+    ...
+</code></pre>
+
+<p>Now if you go back to your browser and play with the phone field, you should see this happening:
+<img src="/assets/images/livewire-masks-with-manny/manny-stripper-num-mask.gif"/></p>
+
+<p>Well that's great for stripping all the non-numeric characters out, but what if you want to format it in a specific way?  In Canada/US we have 10 digit phone numbers in most places, and usually people don't include the country code on the number.  So you see phone numbers that look like this: <code>(987) 123-4567</code> or <code>987-123-4567</code>.</p>
+
+<p>Let's change the Component code to this:</p>
+
+<pre><code class="language-php">if ($field == 'phone')
+{
+    $this-&gt;phone = Manny::mask($this-&gt;phone, "(111) 111-1111");
+}
+</code></pre>
+
+<p>go back to your page, and you should be see this now:
+<img src="/assets/images/livewire-masks-with-manny/manny-mask.gif"/></p>
+
+<p>For more advanced phone numbers there is actually a class - <code>Manny\Phone</code> that you can extend to do more advanced phone number support - with extensions and other special formatting.</p>
+
+<p>What about other types of fields?
+Another great example of using the Manny::mask function is for canadian postal codes.  Canadian postal codes are 2 groups of 3 characters, each group alternates between alphbetical and numeric, so like this:  A1A 1A1</p>
+
+<p>In the view, let's create a seperate input for the postal code.</p>
+
+<pre><code class="language-html">&lt;form&gt;
+    &lt;div class="form-group row"&gt;
+        &lt;label class="col-md-4 col-form-label text-md-right"&gt;Phone&lt;/label&gt;
+        &lt;div class="col-md-6"&gt;
+            &lt;input wire:model="phone" type="text" class="form-control" autofocus&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group row"&gt;
+        &lt;label class="col-md-4 col-form-label text-md-right"&gt;Postal Code&lt;/label&gt;
+        &lt;div class="col-md-6"&gt;
+            &lt;input wire:model="postal" type="text" class="form-control" autofocus&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+
+<p>and let's also make the variable in the code</p>
+
+<pre><code class="language-php">public $phone;
+    public $postal;
+
+    public function updated($field)
+    {
+        if ($field == 'postal')
+        {
+            $this-&gt;postal = strtoupper(Manny::mask($this-&gt;postal, "A1A 1A1"));
+        }
+        ...
+</code></pre>
+
+<p>Go ahead and reload - you should see this now.
+<img src="/assets/images/livewire-masks-with-manny/manny-mask-postal.gif"/></p>
+
+<p>The mask function is pretty nifty for doing a lot of different patterns.
+some other ones to try would be</p>
+
+<pre><code class="language-php">$this-&gt;birthday = Manny::mask($this-&gt;birthday, "11/11/1111");
+$this-&gt;date = Manny::mask($this-&gt;date, "1111-11-11");
+$this-&gt;time = Manny::mask($this-&gt;time, "11:11");
+</code></pre>
+
+<h3>Note on masking with Livewire</h3>
+
+<p>Livewire is very fast, but due to the fact that is being sent through ajax, processed in PHP then returned in javascript, the default debounce may not be good enough for some masks.  Some tips to deal with this could be:</p>
+
+<p>Increase the debounce</p>
+
+<pre><code class="language-html">&lt;input type="text" wire:model.debounce.500ms="phone"&gt;
+</code></pre>
+
+<p>Make the inputs lazy (masks after the user has left the input field)</p>
+
+<pre><code class="language-html">&lt;input type="text" wire:model.lazy="phone"&gt;
+</code></pre>
+
+<h3>Source Code</h3>
+
+<p>To view the source code from this example go to the GitHub repo
+<a href="https://github.com/hallindavid/livewire-masks-with-manny">hallindavid/livewire-masks-with-manny</a></p>
+    </div>
+
+    <div class="border-b border-gray-300 pb-4 mb-10" v-pre>
+        <!-- AddToAny BEGIN -->
+        <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+        <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+        <a class="a2a_button_facebook"></a>
+        <a class="a2a_button_twitter"></a>
+        <a class="a2a_button_email"></a>
+        <a class="a2a_button_reddit"></a>
+        <a class="a2a_button_pocket"></a>
+        <a class="a2a_button_print"></a>
+        </div>
+        <script async src="https://static.addtoany.com/menu/page.js"></script>
+        <!-- AddToAny END -->
+
+    </div>
+
+    <nav class="flex justify-between text-sm md:text-base">
+        <div>
+                            <a href="https://davidhallin.com/blog/its-important-to-be-part-of-a-dev-community" title="Older Post: The importance of being a part of a dev community">
+                    &LeftArrow; The importance of being a part of a dev community
+                </a>
+                    </div>
+
+        <div>
+                    </div>
+    </nav>
+        </main>
+
+        <footer class="bg-white text-center text-sm mt-12 py-4" role="contentinfo">
+            <ul class="flex flex-col md:flex-row justify-center list-none">
+                <li class="md:mr-2">
+                    &copy; David Hallin 2020.
+                </li>
+
+                <li>
+                    Built with <a href="http://jigsaw.tighten.co" title="Jigsaw by Tighten">Jigsaw</a>
+                    and <a href="https://tailwindcss.com" title="Tailwind CSS, a utility-first CSS framework">Tailwind CSS</a>.
+                </li>
+            </ul>
+        </footer>
+
+        <script src="/assets/build/js/main.js?id=cfb528a5e0c7c3c5b4ca"></script>
+
+        <script>
+    const navMenu = {
+        toggle() {
+            const menu = document.getElementById('js-nav-menu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('lg:block');
+            document.getElementById('js-nav-menu-hide').classList.toggle('hidden');
+            document.getElementById('js-nav-menu-show').classList.toggle('hidden');
+        },
+    }
+</script>
+    </body>
+</html>
