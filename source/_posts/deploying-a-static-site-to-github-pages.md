@@ -2,7 +2,7 @@
 extends: _layouts.post
 section: content
 title: Deploying a static site to a repo subtree and hosting it for free on github pages
-date: 2020-03-29
+date: 2020-03-28
 description: I explain how I setup an easy way of deploying to github pages with a domain name
 categories: [general]
 ---
