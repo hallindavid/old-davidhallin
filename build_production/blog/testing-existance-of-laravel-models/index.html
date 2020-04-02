@@ -6,21 +6,21 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="description" content="mostly development projects and learning">
 
-        <meta property="og:title" content="PHP | David Hallin"/>
+        <meta property="og:title" content="Testing the Existance of Laravel Models | David Hallin"/>
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://davidhallin.com/blog/categories/php"/>
+        <meta property="og:url" content="https://davidhallin.com/blog/testing-existance-of-laravel-models"/>
         <meta property="og:description" content="mostly development projects and learning" />
 
-        <title>PHP | David Hallin</title>
+        <title>Testing the Existance of Laravel Models | David Hallin</title>
 
         <link rel="home" href="https://davidhallin.com/">
         <link rel="icon" href="/favicon.ico">
         <link href="/blog/feed.atom" type="application/atom+xml" rel="alternate" title="David Hallin Atom Feed">
 
-            <meta property="og:title" content="PHP" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://davidhallin.com/blog/categories/php"/>
-    <meta property="og:description" content="This is a collection of my PHP related learning" />
+            <meta property="og:title" content="Testing the Existance of Laravel Models" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://davidhallin.com/blog/testing-existance-of-laravel-models"/>
+    <meta property="og:description" content="Coming from Codeigniter, using Eloquent to test for results can be different" />
 
                     <!-- Global site tag (gtag.js) - Google Analytics -->
             <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34189472-1"></script>
@@ -121,149 +121,131 @@
 </nav>
 
         <main role="main" class="flex-auto w-full container max-w-4xl mx-auto py-16 px-6">
-                <h1>PHP</h1>
+                
+    <h1 class="leading-none mb-2">Testing the Existance of Laravel Models</h1>
 
-    <div class="text-2xl border-b border-blue-200 mb-6 pb-10">
-        <p>These are relating to PHP - right now that consists mostly of Laravel, and Codeigniter</p>
+    <p class="text-gray-700 text-xl md:mt-0">Dave  •  April 2, 2020</p>
+
+                        <a
+                href="/blog/categories/php"
+                title="View posts in php"
+                class="inline-block bg-gray-300 hover:bg-blue-200 leading-loose tracking-wide text-gray-800 uppercase text-xs font-semibold rounded mr-4 px-3 pt-px"
+            >php</a>
+            
+    <div class="border-b border-gray-300 mb-4 pb-4" v-pre>
+        <p>This is something I had to google so many times when I got started with Laravel, so I hope others find it helpful.</p>
+
+<p>In Codeigniter, there isn't really any ORM, so if you're looking to check if something exists in your database, you'd check out the number of rows returned eg.</p>
+
+<pre><code class="language-php">$postExists = ( $this-&gt;db-&gt;query("  Select COUNT(*) as CNT 
+                                    from posts 
+                                    where user_id = ?",  array(10))-&gt;row()-&gt;CNT &gt; 0);
+if ($postExists) {
+    //proceed with code
+}
+</code></pre>
+
+<p>Or with query codeigniter query builder</p>
+
+<pre><code class="language-php">$this-&gt;db-&gt;where('user_id', 10);
+if ($this-&gt;db-&gt;count_all_results('posts') &gt; 0) {
+    //post exists, proceed
+}
+</code></pre>
+
+<h2>The Laravel Model Exists Check</h2>
+
+<p>Now when I went from Codeigniter to Laravel this was a total change of mindset for me.  The manipulators that Laravel offers for this are huge.</p>
+
+<p>To do the same thing as above, the easiest way to use Eloquent (without already having the user model as a variable) is to do something like this</p>
+
+<pre><code class="language-php">use App\Post;
+...
+if (Post::where('user_id',10)-&gt;exists()) {
+    //post exists, proceed
+}
+</code></pre>
+
+<p>But when you start to look at the use cases for testing existance, there are a huge variety that are super helpful.</p>
+
+<h2>Throw Error when the model doesn't exist</h2>
+
+<pre><code class="language-php">use App\Post;
+...
+$post = Post::where('user_id',10)-&gt;firstOrFail();
+</code></pre>
+
+<p>then you may want to handle the error in a custom way - like redirecting the user, or Logging the error</p>
+
+<pre><code class="language-php">use App\Post;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+...
+try {
+$post = Post::where('user_id', 10)-&gt;firstorFail();
+} catch(ModelNotFoundException $e) {
+    //Log the error, redirect the user etc.
+}
+</code></pre>
+
+<h2>Create the model if it doesn't exist</h2>
+
+<p>Sometimes you want to basically create an empty/default model if none exists.</p>
+
+<pre><code class="language-php">use App\Post;
+...
+$post = Post::firstOrCreate(['user_id'=&gt;10]);
+</code></pre>
+
+<p>This way requires that the user_id is a fillable field in the posts model, if you're using the eloquent relationship and don't want to make user_id a fillable field, you would do something like this.</p>
+
+<pre><code class="language-php">use App\Post;
+...
+$post = User::find(10)-&gt;posts()-&gt;firstOrCreate([]);
+</code></pre>
+
+<h2>Alternative existance checks that work</h2>
+
+<pre><code class="language-php">use App\Post;
+...
+
+if (Post::where('user_id',10)-&gt;count() &gt; 0) {
+    //Post exists
+}
+
+if (Post::where('user_id', 10)-&gt;first() !== NULL) {
+    //Post exists
+}
+</code></pre>
+
+<p>That's all - Hopefully it helps someone!</p>
     </div>
 
-            <div class="flex flex-col mb-4">
-    <p class="text-gray-700 font-medium my-2">
-        April 2, 2020
-    </p>
+    <div class="border-b border-gray-300 pb-4 mb-10" v-pre>
+        <!-- AddToAny BEGIN -->
+        <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+        <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+        <a class="a2a_button_facebook"></a>
+        <a class="a2a_button_twitter"></a>
+        <a class="a2a_button_email"></a>
+        <a class="a2a_button_reddit"></a>
+        <a class="a2a_button_pocket"></a>
+        <a class="a2a_button_print"></a>
+        </div>
+        <script async src="https://static.addtoany.com/menu/page.js"></script>
+        <!-- AddToAny END -->
 
-    <h2 class="text-3xl mt-0">
-        <a
-            href="https://davidhallin.com/blog/testing-existance-of-laravel-models"
-            title="Read more - Testing the Existance of Laravel Models"
-            class="text-gray-900 font-extrabold"
-        >Testing the Existance of Laravel Models</a>
-    </h2>
-                        <span><a
-                href="/blog/categories/php"
-                title="View posts in php"
-                class="inline-block bg-gray-300 hover:bg-gray-400 leading-loose tracking-wide text-gray-800 uppercase text-xs font-semibold rounded mr-4 px-3 pt-px"
-            >php</a></span>
-            
-    <p class="mb-4 mt-1">This is something I had to google so many times when I got started with Laravel, so I hope others find it helpful.
+    </div>
 
-In Codeigniter, there isn't really any ORM, so if you're looking to check if...</p>
+    <nav class="flex justify-between text-sm md:text-base">
+        <div>
+                            <a href="https://davidhallin.com/blog/its-important-to-be-part-of-a-dev-community" title="Older Post: The importance of being a part of a dev community">
+                    &LeftArrow; The importance of being a part of a dev community
+                </a>
+                    </div>
 
-    <a
-        href="https://davidhallin.com/blog/testing-existance-of-laravel-models"
-        title="Read more - Testing the Existance of Laravel Models"
-        class="uppercase font-semibold tracking-wide mb-2"
-    >Read</a>
-</div>
-
-                    <hr class="w-full border-b mt-2 mb-6">
-                    <div class="flex flex-col mb-4">
-    <p class="text-gray-700 font-medium my-2">
-        March 30, 2020
-    </p>
-
-    <h2 class="text-3xl mt-0">
-        <a
-            href="https://davidhallin.com/blog/its-important-to-be-part-of-a-dev-community"
-            title="Read more - The importance of being a part of a dev community"
-            class="text-gray-900 font-extrabold"
-        >The importance of being a part of a dev community</a>
-    </h2>
-                        <span><a
-                href="/blog/categories/opensource"
-                title="View posts in opensource"
-                class="inline-block bg-gray-300 hover:bg-gray-400 leading-loose tracking-wide text-gray-800 uppercase text-xs font-semibold rounded mr-4 px-3 pt-px"
-            >opensource</a></span>
-                    <span><a
-                href="/blog/categories/php"
-                title="View posts in php"
-                class="inline-block bg-gray-300 hover:bg-gray-400 leading-loose tracking-wide text-gray-800 uppercase text-xs font-semibold rounded mr-4 px-3 pt-px"
-            >php</a></span>
-            
-    <p class="mb-4 mt-1">** Note - this is a non-technical post.  If you're here for the techno-goodies, this is safe to skip. **
-
-I don't mean "part of a dev community" in a weird cliquey way - when I say being part of a...</p>
-
-    <a
-        href="https://davidhallin.com/blog/its-important-to-be-part-of-a-dev-community"
-        title="Read more - The importance of being a part of a dev community"
-        class="uppercase font-semibold tracking-wide mb-2"
-    >Read</a>
-</div>
-
-                    <hr class="w-full border-b mt-2 mb-6">
-                    <div class="flex flex-col mb-4">
-    <p class="text-gray-700 font-medium my-2">
-        March 30, 2020
-    </p>
-
-    <h2 class="text-3xl mt-0">
-        <a
-            href="https://davidhallin.com/blog/livewire-masks-with-manny"
-            title="Read more - Masking Livewire inputs with manny"
-            class="text-gray-900 font-extrabold"
-        >Masking Livewire inputs with manny</a>
-    </h2>
-                        <span><a
-                href="/blog/categories/php"
-                title="View posts in php"
-                class="inline-block bg-gray-300 hover:bg-gray-400 leading-loose tracking-wide text-gray-800 uppercase text-xs font-semibold rounded mr-4 px-3 pt-px"
-            >php</a></span>
-            
-    <p class="mb-4 mt-1">This post expects you to be comfy with Laravel development, and a bit of Livewire as well - although I do go through setting up livewire.
-
-
-
-So let's start off by creating our project and stepping...</p>
-
-    <a
-        href="https://davidhallin.com/blog/livewire-masks-with-manny"
-        title="Read more - Masking Livewire inputs with manny"
-        class="uppercase font-semibold tracking-wide mb-2"
-    >Read</a>
-</div>
-
-                    <hr class="w-full border-b mt-2 mb-6">
-                    <div class="flex flex-col mb-4">
-    <p class="text-gray-700 font-medium my-2">
-        March 29, 2020
-    </p>
-
-    <h2 class="text-3xl mt-0">
-        <a
-            href="https://davidhallin.com/blog/my-first-open-source-package"
-            title="Read more - My first open source package"
-            class="text-gray-900 font-extrabold"
-        >My first open source package</a>
-    </h2>
-                        <span><a
-                href="/blog/categories/opensource"
-                title="View posts in opensource"
-                class="inline-block bg-gray-300 hover:bg-gray-400 leading-loose tracking-wide text-gray-800 uppercase text-xs font-semibold rounded mr-4 px-3 pt-px"
-            >opensource</a></span>
-                    <span><a
-                href="/blog/categories/php"
-                title="View posts in php"
-                class="inline-block bg-gray-300 hover:bg-gray-400 leading-loose tracking-wide text-gray-800 uppercase text-xs font-semibold rounded mr-4 px-3 pt-px"
-            >php</a></span>
-            
-    <p class="mb-4 mt-1">So the other day I was working with Caleb Porzio's Livewire package, and I ran into a unique situation - atleast for me.
-
-In my normal php builds, when you fill out a form like this
-
-
-
-You would use...</p>
-
-    <a
-        href="https://davidhallin.com/blog/my-first-open-source-package"
-        title="Read more - My first open source package"
-        class="uppercase font-semibold tracking-wide mb-2"
-    >Read</a>
-</div>
-
-            
-    
+        <div>
+                    </div>
+    </nav>
         </main>
 
         <footer class="bg-white text-center text-sm mt-12 py-4" role="contentinfo">
