@@ -3,12 +3,121 @@
     <title>David Hallin</title>
     <link href="https://davidhallin.com/" />
     <link type="application/atom+xml" rel="self" href="https://davidhallin.com/blog/feed.atom" />
-    <updated>2020-04-02T16:11:20+00:00</updated>
+    <updated>2020-06-02T13:08:03+00:00</updated>
     <id>https://davidhallin.com/blog/feed.atom</id>
     <author>
         <name>David Hallin</name>
     </author>
                 <entry>
+    <id>https://davidhallin.com/blog/laravel-handling-null-in-order-by-query</id>
+    <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/laravel-handling-null-in-order-by-query" />
+    <title>Handling null values in an &#039;order by&#039; query with Laravel Eloquent (Laravel Beginner, mysql + postgres compatible)</title>
+    <published>2020-06-02T00:00:00+00:00</published>
+    <updated>2020-06-02T00:00:00+00:00</updated>
+    <author>
+        <name>Dave</name>
+    </author>
+    <summary type="html">In Laravel, there is a precedent to use a nullable datetime/timestamp field similar to a boolean value, for example things like the field &lt;code&gt;deleted_at&lt;/code&gt; which is automatically added to your eloquent models when you use soft_deletes.
+
+When you&#039;re......</summary>
+    <content type="html"><![CDATA[
+        <p>In Laravel, there is a precedent to use a nullable datetime/timestamp field similar to a boolean value, for example things like the field <code>deleted_at</code> which is automatically added to your eloquent models when you use soft_deletes.</p>
+
+<p>When you're working with that within that frame, sometimes you're going to want handle these date times in different ways.</p>
+
+<p>Say for instance, the field <code>email_verified_at</code> in the <code>User</code> model which is pretty default/standard in a Laravel installation.</p>
+
+<pre><code class="language-php">    public function up()
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table-&gt;id();
+            $table-&gt;string('name');
+            $table-&gt;string('email')-&gt;unique();
+            $table-&gt;timestamp('email_verified_at')-&gt;nullable();
+            $table-&gt;string('password');            
+            $table-&gt;rememberToken();
+            $table-&gt;timestamps();
+        });
+    }
+</code></pre>
+
+<p>Then you have an administration page or report which needs to show all the users, and include their status.  You would probably do something like this:</p>
+
+<pre><code class="language-php">    return App\User::orderBy('email_verified_at','ASC')-&gt;get()-&gt;toArray();
+</code></pre>
+
+<p>Here is a subset of the sample results from this query from a super-basic factory user loaded laravel project.
+ ```php
+[
+       "id" => 38,
+       "name" => "Laila Jacobi",
+       "email" => "spinka.florence@example.com",
+       "email_verified_at" => null,
+       "created_at" => "2020-06-02T12:40:32.000000Z",
+       "updated_at" => "2020-06-02T12:40:32.000000Z",
+     ],
+     [
+       "id" => 45,
+       "name" => "Carmelo Bernhard",
+       "email" => "gwolf@example.org",
+       "email_verified_at" => null,
+       "created_at" => "2020-06-02T12:40:32.000000Z",
+       "updated_at" => "2020-06-02T12:40:32.000000Z",
+     ],
+     [
+       "id" => 2,
+       "name" => "Dr. Anais Graham",
+       "email" => "adrian.feest@example.net",
+       "email_verified_at" => "2020-06-02T12:40:32.000000Z",
+       "created_at" => "2020-06-02T12:40:32.000000Z",
+       "updated_at" => "2020-06-02T12:40:32.000000Z",
+     ],
+     [
+       "id" => 3,
+       "name" => "Norris Kuhic",
+       "email" => "iswaniawski@example.net",
+       "email_verified_at" => "2020-06-02T12:40:32.000000Z",
+       "created_at" => "2020-06-02T12:40:32.000000Z",
+       "updated_at" => "2020-06-02T12:40:32.000000Z",
+     ],
+     [
+       "id" => 4,
+       "name" => "Curt Anderson DVM",
+       "email" => "uschmeler@example.net",
+       "email_verified_at" => "2020-06-02T12:40:32.000000Z",
+       "created_at" => "2020-06-02T12:40:32.000000Z",
+       "updated_at" => "2020-06-02T12:40:32.000000Z",
+     ],</p>
+
+<pre><code>You can see the people who haven't verified their email come first in this query.
+Say you want them at the end though - active users first is a common thing that people want to see, so logically: 
+```php
+return App\User::orderBy('email_verified_at','DESC')-&gt;get()-&gt;toArray();
+</code></pre>
+
+<p>This works - now the results have all the <code>"email_verified_at" =&gt; null,</code> at the very end, but now the order has your most recently verified users at the top.</p>
+
+<p>So if we wanted a list of our users who have been verified the longest to shortest, where the unverified users would obviously be at the end, we'd have to do this a bit differently.  This also get's complicated when you are trying to stay database agnostic for MySQL and Postgres.</p>
+
+<h2>Solution</h2>
+
+<pre><code class="language-php">    // email_verified_at oldest to newest, with nulls last
+    App\User::orderByRaw("CASE WHEN email_verified_at IS NULL THEN 0 ELSE 1 END DESC")-&gt;orderBy('email_verified_at','DESC')-&gt;get()-&gt;toArray();
+
+    // email_verified_at newest to oldest, with nulls last
+    App\User::orderByRaw("CASE WHEN email_verified_at IS NULL THEN 0 ELSE 1 END DESC")-&gt;orderBy('email_verified_at', 'ASC')-&gt;get()-&gt;toArray();
+
+    // email_verified_at newest to oldest, with nulls first
+    App\User::orderByRaw("CASE WHEN email_verified_at IS NULL THEN 0 ELSE 1 END ASC")-&gt;orderBy('email_verified_at', 'DESC')-&gt;get()-&gt;toArray();
+
+    // email_verified_at newest to oldest, with nulls first
+    App\User::orderByRaw("CASE WHEN email_verified_at IS NULL THEN 0 ELSE 1 END ASC")-&gt;orderBy('email_verified_at', 'ASC')-&gt;get()-&gt;toArray();
+</code></pre>
+
+<p>By keeping the null handling in a separate orderBy statement, it allows you to order the nulls which ever way you like, and continue sorting or using query builder to build out your query.</p>
+    ]]></content>
+</entry>
+            <entry>
     <id>https://davidhallin.com/blog/testing-existance-of-laravel-models</id>
     <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/testing-existance-of-laravel-models" />
     <title>Testing the Existance of Laravel Models</title>

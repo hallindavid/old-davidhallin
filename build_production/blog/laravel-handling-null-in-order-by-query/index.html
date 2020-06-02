@@ -6,21 +6,21 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="description" content="mostly development projects and learning">
 
-        <meta property="og:title" content="Testing the Existance of Laravel Models | David Hallin"/>
+        <meta property="og:title" content="Handling null values in an &#039;order by&#039; query with Laravel Eloquent (Laravel Beginner, mysql + postgres compatible) | David Hallin"/>
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://davidhallin.com/blog/testing-existance-of-laravel-models"/>
+        <meta property="og:url" content="https://davidhallin.com/blog/laravel-handling-null-in-order-by-query"/>
         <meta property="og:description" content="mostly development projects and learning" />
 
-        <title>Testing the Existance of Laravel Models | David Hallin</title>
+        <title>Handling null values in an &#039;order by&#039; query with Laravel Eloquent (Laravel Beginner, mysql + postgres compatible) | David Hallin</title>
 
         <link rel="home" href="https://davidhallin.com/">
         <link rel="icon" href="/favicon.ico">
         <link href="/blog/feed.atom" type="application/atom+xml" rel="alternate" title="David Hallin Atom Feed">
 
-            <meta property="og:title" content="Testing the Existance of Laravel Models" />
+            <meta property="og:title" content="Handling null values in an &#039;order by&#039; query with Laravel Eloquent (Laravel Beginner, mysql + postgres compatible)" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://davidhallin.com/blog/testing-existance-of-laravel-models"/>
-    <meta property="og:description" content="Coming from Codeigniter, using Eloquent to test for results can be different" />
+    <meta property="og:url" content="https://davidhallin.com/blog/laravel-handling-null-in-order-by-query"/>
+    <meta property="og:description" content="Sometimes you want nulls first, other times you want them last" />
 
                     <!-- Global site tag (gtag.js) - Google Analytics -->
             <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34189472-1"></script>
@@ -122,9 +122,9 @@
 
         <main role="main" class="flex-auto w-full container max-w-4xl mx-auto py-16 px-6">
                 
-    <h1 class="leading-none mb-2">Testing the Existance of Laravel Models</h1>
+    <h1 class="leading-none mb-2">Handling null values in an &#039;order by&#039; query with Laravel Eloquent (Laravel Beginner, mysql + postgres compatible)</h1>
 
-    <p class="text-gray-700 text-xl md:mt-0">Dave  •  April 2, 2020</p>
+    <p class="text-gray-700 text-xl md:mt-0">Dave  •  June 2, 2020</p>
 
                         <a
                 href="/blog/categories/php"
@@ -133,91 +133,100 @@
             >php</a>
             
     <div class="border-b border-gray-300 mb-4 pb-4" v-pre>
-        <p>This is something I had to google so many times when I got started with Laravel, so I hope others find it helpful.</p>
+        <p>In Laravel, there is a precedent to use a nullable datetime/timestamp field similar to a boolean value, for example things like the field <code>deleted_at</code> which is automatically added to your eloquent models when you use soft_deletes.</p>
 
-<p>In Codeigniter, there isn't really any ORM, so if you're looking to check if something exists in your database, you'd check out the number of rows returned eg.</p>
+<p>When you're working with that within that frame, sometimes you're going to want handle these date times in different ways.</p>
 
-<pre><code class="language-php">$postExists = ( $this-&gt;db-&gt;query("  Select COUNT(*) as CNT 
-                                    from posts 
-                                    where user_id = ?",  array(10))-&gt;row()-&gt;CNT &gt; 0);
-if ($postExists) {
-    //proceed with code
-}
+<p>Say for instance, the field <code>email_verified_at</code> in the <code>User</code> model which is pretty default/standard in a Laravel installation.</p>
+
+<pre><code class="language-php">    public function up()
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table-&gt;id();
+            $table-&gt;string('name');
+            $table-&gt;string('email')-&gt;unique();
+            $table-&gt;timestamp('email_verified_at')-&gt;nullable();
+            $table-&gt;string('password');            
+            $table-&gt;rememberToken();
+            $table-&gt;timestamps();
+        });
+    }
 </code></pre>
 
-<p>Or with query codeigniter query builder</p>
+<p>Then you have an administration page or report which needs to show all the users, and include their status.  You would probably do something like this:</p>
 
-<pre><code class="language-php">$this-&gt;db-&gt;where('user_id', 10);
-if ($this-&gt;db-&gt;count_all_results('posts') &gt; 0) {
-    //post exists, proceed
-}
+<pre><code class="language-php">    return App\User::orderBy('email_verified_at','ASC')-&gt;get()-&gt;toArray();
 </code></pre>
 
-<h2>The Laravel Model Exists Check</h2>
+<p>Here is a subset of the sample results from this query from a super-basic factory user loaded laravel project.
+ ```php
+[
+       "id" => 38,
+       "name" => "Laila Jacobi",
+       "email" => "spinka.florence@example.com",
+       "email_verified_at" => null,
+       "created_at" => "2020-06-02T12:40:32.000000Z",
+       "updated_at" => "2020-06-02T12:40:32.000000Z",
+     ],
+     [
+       "id" => 45,
+       "name" => "Carmelo Bernhard",
+       "email" => "gwolf@example.org",
+       "email_verified_at" => null,
+       "created_at" => "2020-06-02T12:40:32.000000Z",
+       "updated_at" => "2020-06-02T12:40:32.000000Z",
+     ],
+     [
+       "id" => 2,
+       "name" => "Dr. Anais Graham",
+       "email" => "adrian.feest@example.net",
+       "email_verified_at" => "2020-06-02T12:40:32.000000Z",
+       "created_at" => "2020-06-02T12:40:32.000000Z",
+       "updated_at" => "2020-06-02T12:40:32.000000Z",
+     ],
+     [
+       "id" => 3,
+       "name" => "Norris Kuhic",
+       "email" => "iswaniawski@example.net",
+       "email_verified_at" => "2020-06-02T12:40:32.000000Z",
+       "created_at" => "2020-06-02T12:40:32.000000Z",
+       "updated_at" => "2020-06-02T12:40:32.000000Z",
+     ],
+     [
+       "id" => 4,
+       "name" => "Curt Anderson DVM",
+       "email" => "uschmeler@example.net",
+       "email_verified_at" => "2020-06-02T12:40:32.000000Z",
+       "created_at" => "2020-06-02T12:40:32.000000Z",
+       "updated_at" => "2020-06-02T12:40:32.000000Z",
+     ],</p>
 
-<p>Now when I went from Codeigniter to Laravel this was a total change of mindset for me.  The manipulators that Laravel offers for this are huge.</p>
-
-<p>To do the same thing as above, the easiest way to use Eloquent (without already having the user model as a variable) is to do something like this</p>
-
-<pre><code class="language-php">use App\Post;
-...
-if (Post::where('user_id',10)-&gt;exists()) {
-    //post exists, proceed
-}
+<pre><code>You can see the people who haven't verified their email come first in this query.
+Say you want them at the end though - active users first is a common thing that people want to see, so logically: 
+```php
+return App\User::orderBy('email_verified_at','DESC')-&gt;get()-&gt;toArray();
 </code></pre>
 
-<p>But when you start to look at the use cases for testing existance, there are a huge variety that are super helpful.</p>
+<p>This works - now the results have all the <code>"email_verified_at" =&gt; null,</code> at the very end, but now the order has your most recently verified users at the top.</p>
 
-<h2>Throw Error when the model doesn't exist</h2>
+<p>So if we wanted a list of our users who have been verified the longest to shortest, where the unverified users would obviously be at the end, we'd have to do this a bit differently.  This also get's complicated when you are trying to stay database agnostic for MySQL and Postgres.</p>
 
-<pre><code class="language-php">use App\Post;
-...
-$post = Post::where('user_id',10)-&gt;firstOrFail();
+<h2>Solution</h2>
+
+<pre><code class="language-php">    // email_verified_at oldest to newest, with nulls last
+    App\User::orderByRaw("CASE WHEN email_verified_at IS NULL THEN 0 ELSE 1 END DESC")-&gt;orderBy('email_verified_at','DESC')-&gt;get()-&gt;toArray();
+
+    // email_verified_at newest to oldest, with nulls last
+    App\User::orderByRaw("CASE WHEN email_verified_at IS NULL THEN 0 ELSE 1 END DESC")-&gt;orderBy('email_verified_at', 'ASC')-&gt;get()-&gt;toArray();
+
+    // email_verified_at newest to oldest, with nulls first
+    App\User::orderByRaw("CASE WHEN email_verified_at IS NULL THEN 0 ELSE 1 END ASC")-&gt;orderBy('email_verified_at', 'DESC')-&gt;get()-&gt;toArray();
+
+    // email_verified_at newest to oldest, with nulls first
+    App\User::orderByRaw("CASE WHEN email_verified_at IS NULL THEN 0 ELSE 1 END ASC")-&gt;orderBy('email_verified_at', 'ASC')-&gt;get()-&gt;toArray();
 </code></pre>
 
-<p>then you may want to handle the error in a custom way - like redirecting the user, or Logging the error</p>
-
-<pre><code class="language-php">use App\Post;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-...
-try {
-$post = Post::where('user_id', 10)-&gt;firstorFail();
-} catch(ModelNotFoundException $e) {
-    //Log the error, redirect the user etc.
-}
-</code></pre>
-
-<h2>Create the model if it doesn't exist</h2>
-
-<p>Sometimes you want to basically create an empty/default model if none exists.</p>
-
-<pre><code class="language-php">use App\Post;
-...
-$post = Post::firstOrCreate(['user_id'=&gt;10]);
-</code></pre>
-
-<p>This way requires that the user_id is a fillable field in the posts model, if you're using the eloquent relationship and don't want to make user_id a fillable field, you would do something like this.</p>
-
-<pre><code class="language-php">use App\Post;
-...
-$post = User::find(10)-&gt;posts()-&gt;firstOrCreate([]);
-</code></pre>
-
-<h2>Alternative existance checks that work</h2>
-
-<pre><code class="language-php">use App\Post;
-...
-
-if (Post::where('user_id',10)-&gt;count() &gt; 0) {
-    //Post exists
-}
-
-if (Post::where('user_id', 10)-&gt;first() !== NULL) {
-    //Post exists
-}
-</code></pre>
-
-<p>That's all - Hopefully it helps someone!</p>
+<p>By keeping the null handling in a separate orderBy statement, it allows you to order the nulls which ever way you like, and continue sorting or using query builder to build out your query.</p>
     </div>
 
     <div class="border-b border-gray-300 pb-4 mb-10" v-pre>
@@ -238,15 +247,12 @@ if (Post::where('user_id', 10)-&gt;first() !== NULL) {
 
     <nav class="flex justify-between text-sm md:text-base">
         <div>
-                            <a href="https://davidhallin.com/blog/its-important-to-be-part-of-a-dev-community" title="Older Post: The importance of being a part of a dev community">
-                    &LeftArrow; The importance of being a part of a dev community
+                            <a href="https://davidhallin.com/blog/testing-existance-of-laravel-models" title="Older Post: Testing the Existance of Laravel Models">
+                    &LeftArrow; Testing the Existance of Laravel Models
                 </a>
                     </div>
 
         <div>
-                            <a href="https://davidhallin.com/blog/laravel-handling-null-in-order-by-query" title="Newer Post: Handling null values in an &#039;order by&#039; query with Laravel Eloquent (Laravel Beginner, mysql + postgres compatible)">
-                    Handling null values in an &#039;order by&#039; query with Laravel Eloquent (Laravel Beginner, mysql + postgres compatible) &RightArrow;
-                </a>
                     </div>
     </nav>
         </main>
