@@ -160,49 +160,47 @@
 
 <p>Here is a subset of the sample results from this query from a super-basic factory user loaded laravel project.</p>
 
-<p>```php</p>
-
-<pre><code>[  "id" =&gt; 38,
-   "name" =&gt; "Laila Jacobi",
-   "email" =&gt; "spinka.florence@example.com",
-   "email_verified_at" =&gt; null,
-   "created_at" =&gt; "2020-06-02T12:40:32.000000Z",
-   "updated_at" =&gt; "2020-06-02T12:40:32.000000Z",
- ],
- [ "id" =&gt; 45,
-   "name" =&gt; "Carmelo Bernhard",
-   "email" =&gt; "gwolf@example.org",
-   "email_verified_at" =&gt; null,
-   "created_at" =&gt; "2020-06-02T12:40:32.000000Z",
-   "updated_at" =&gt; "2020-06-02T12:40:32.000000Z",
- ],
- [ "id" =&gt; 2,
-   "name" =&gt; "Dr. Anais Graham",
-   "email" =&gt; "adrian.feest@example.net",
-   "email_verified_at" =&gt; "2020-06-02T12:40:32.000000Z",
-   "created_at" =&gt; "2020-06-02T12:40:32.000000Z",
-   "updated_at" =&gt; "2020-06-02T12:40:32.000000Z",
- ],
- [ "id" =&gt; 3,
-   "name" =&gt; "Norris Kuhic",
-   "email" =&gt; "iswaniawski@example.net",
-   "email_verified_at" =&gt; "2020-06-02T12:40:32.000000Z",
-   "created_at" =&gt; "2020-06-02T12:40:32.000000Z",
-   "updated_at" =&gt; "2020-06-02T12:40:32.000000Z",
- ],
- [ "id" =&gt; 4,
-   "name" =&gt; "Curt Anderson DVM",
-   "email" =&gt; "uschmeler@example.net",
-   "email_verified_at" =&gt; "2020-06-02T12:40:32.000000Z",
-   "created_at" =&gt; "2020-06-02T12:40:32.000000Z",
-   "updated_at" =&gt; "2020-06-02T12:40:32.000000Z",
- ]
+<pre><code class="language-php">    [  "id" =&gt; 38,
+       "name" =&gt; "Laila Jacobi",
+       "email" =&gt; "spinka.florence@example.com",
+       "email_verified_at" =&gt; null,
+       "created_at" =&gt; "2020-06-02T12:40:32.000000Z",
+       "updated_at" =&gt; "2020-06-02T12:40:32.000000Z",
+     ],
+     [ "id" =&gt; 45,
+       "name" =&gt; "Carmelo Bernhard",
+       "email" =&gt; "gwolf@example.org",
+       "email_verified_at" =&gt; null,
+       "created_at" =&gt; "2020-06-02T12:40:32.000000Z",
+       "updated_at" =&gt; "2020-06-02T12:40:32.000000Z",
+     ],
+     [ "id" =&gt; 2,
+       "name" =&gt; "Dr. Anais Graham",
+       "email" =&gt; "adrian.feest@example.net",
+       "email_verified_at" =&gt; "2020-06-02T12:40:32.000000Z",
+       "created_at" =&gt; "2020-06-02T12:40:32.000000Z",
+       "updated_at" =&gt; "2020-06-02T12:40:32.000000Z",
+     ],
+     [ "id" =&gt; 3,
+       "name" =&gt; "Norris Kuhic",
+       "email" =&gt; "iswaniawski@example.net",
+       "email_verified_at" =&gt; "2020-06-02T12:40:32.000000Z",
+       "created_at" =&gt; "2020-06-02T12:40:32.000000Z",
+       "updated_at" =&gt; "2020-06-02T12:40:32.000000Z",
+     ],
+     [ "id" =&gt; 4,
+       "name" =&gt; "Curt Anderson DVM",
+       "email" =&gt; "uschmeler@example.net",
+       "email_verified_at" =&gt; "2020-06-02T12:40:32.000000Z",
+       "created_at" =&gt; "2020-06-02T12:40:32.000000Z",
+       "updated_at" =&gt; "2020-06-02T12:40:32.000000Z",
+     ]
 </code></pre>
 
-<pre><code><br />You can see the people who haven't verified their email come first in this query.
-Say you want them at the end though - active users first is a common thing that people want to see, so logically: 
-```php
-return App\User::orderBy('email_verified_at','DESC')-&gt;get()-&gt;toArray();
+<p>You can see the people who haven't verified their email come first in this query.
+Say you want them at the end though - active users first is a common thing that people want to see, so logically:</p>
+
+<pre><code class="language-php">return App\User::orderBy('email_verified_at','DESC')-&gt;get()-&gt;toArray();
 </code></pre>
 
 <p>This works - now the results have all the <code>"email_verified_at" =&gt; null,</code> at the very end, but now the order has your most recently verified users at the top.</p>
