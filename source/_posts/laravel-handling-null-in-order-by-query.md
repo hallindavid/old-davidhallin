@@ -35,48 +35,45 @@ Then you have an administration page or report which needs to show all the users
     return App\User::orderBy('email_verified_at','ASC')->get()->toArray();
 ```
  Here is a subset of the sample results from this query from a super-basic factory user loaded laravel project.
- ```php
-[
-       "id" => 38,
+ 
+```php
+    [  "id" => 38,
        "name" => "Laila Jacobi",
        "email" => "spinka.florence@example.com",
        "email_verified_at" => null,
        "created_at" => "2020-06-02T12:40:32.000000Z",
        "updated_at" => "2020-06-02T12:40:32.000000Z",
      ],
-     [
-       "id" => 45,
+     [ "id" => 45,
        "name" => "Carmelo Bernhard",
        "email" => "gwolf@example.org",
        "email_verified_at" => null,
        "created_at" => "2020-06-02T12:40:32.000000Z",
        "updated_at" => "2020-06-02T12:40:32.000000Z",
      ],
-     [
-       "id" => 2,
+     [ "id" => 2,
        "name" => "Dr. Anais Graham",
        "email" => "adrian.feest@example.net",
        "email_verified_at" => "2020-06-02T12:40:32.000000Z",
        "created_at" => "2020-06-02T12:40:32.000000Z",
        "updated_at" => "2020-06-02T12:40:32.000000Z",
      ],
-     [
-       "id" => 3,
+     [ "id" => 3,
        "name" => "Norris Kuhic",
        "email" => "iswaniawski@example.net",
        "email_verified_at" => "2020-06-02T12:40:32.000000Z",
        "created_at" => "2020-06-02T12:40:32.000000Z",
        "updated_at" => "2020-06-02T12:40:32.000000Z",
      ],
-     [
-       "id" => 4,
+     [ "id" => 4,
        "name" => "Curt Anderson DVM",
        "email" => "uschmeler@example.net",
        "email_verified_at" => "2020-06-02T12:40:32.000000Z",
        "created_at" => "2020-06-02T12:40:32.000000Z",
        "updated_at" => "2020-06-02T12:40:32.000000Z",
-     ],
+     ]
 ```
+
 You can see the people who haven't verified their email come first in this query.
 Say you want them at the end though - active users first is a common thing that people want to see, so logically: 
 ```php
