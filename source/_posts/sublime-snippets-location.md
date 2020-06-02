@@ -3,7 +3,6 @@ extends: _layouts.post
 section: content
 title: How to use Sublime Text Snippets and improve your workflow
 date: 2020-03-26
-featured: true
 description: Why sublime snippets are great, how to make them, and how to edit them
 categories: [general]
 ---
