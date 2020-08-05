@@ -2,92 +2,92 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
  <url>
   <loc>https://davidhallin.com</loc>
-  <lastmod>2020-06-02T13:12:16+00:00</lastmod>
+  <lastmod>2020-08-05T10:45:55+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
   <loc>https://davidhallin.com/blog</loc>
-  <lastmod>2020-06-02T13:12:16+00:00</lastmod>
+  <lastmod>2020-08-05T10:45:55+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
   <loc>https://davidhallin.com/blog/2</loc>
-  <lastmod>2020-06-02T13:12:16+00:00</lastmod>
+  <lastmod>2020-08-05T10:45:55+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
   <loc>https://davidhallin.com/blog/3</loc>
-  <lastmod>2020-06-02T13:12:16+00:00</lastmod>
+  <lastmod>2020-08-05T10:45:55+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
   <loc>https://davidhallin.com/blog/deploying-a-static-site-to-github-pages</loc>
-  <lastmod>2020-06-02T13:12:16+00:00</lastmod>
+  <lastmod>2020-08-05T10:45:55+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
   <loc>https://davidhallin.com/blog/testing-existance-of-laravel-models</loc>
-  <lastmod>2020-06-02T13:12:16+00:00</lastmod>
+  <lastmod>2020-08-05T10:45:55+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
   <loc>https://davidhallin.com/blog/first-post</loc>
-  <lastmod>2020-06-02T13:12:16+00:00</lastmod>
+  <lastmod>2020-08-05T10:45:55+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
   <loc>https://davidhallin.com/blog/my-first-open-source-package</loc>
-  <lastmod>2020-06-02T13:12:16+00:00</lastmod>
+  <lastmod>2020-08-05T10:45:55+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
   <loc>https://davidhallin.com/blog/bootstrap-vue-form-builder</loc>
-  <lastmod>2020-06-02T13:12:16+00:00</lastmod>
+  <lastmod>2020-08-05T10:45:55+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
   <loc>https://davidhallin.com/blog/sublime-snippets-location</loc>
-  <lastmod>2020-06-02T13:12:16+00:00</lastmod>
+  <lastmod>2020-08-05T10:45:55+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
   <loc>https://davidhallin.com/blog/its-important-to-be-part-of-a-dev-community</loc>
-  <lastmod>2020-06-02T13:12:16+00:00</lastmod>
+  <lastmod>2020-08-05T10:45:55+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
   <loc>https://davidhallin.com/blog/laravel-handling-null-in-order-by-query</loc>
-  <lastmod>2020-06-02T13:12:16+00:00</lastmod>
+  <lastmod>2020-08-05T10:45:55+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
   <loc>https://davidhallin.com/blog/livewire-masks-with-manny</loc>
-  <lastmod>2020-06-02T13:12:16+00:00</lastmod>
+  <lastmod>2020-08-05T10:45:55+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
   <loc>https://davidhallin.com/blog/feed.atom</loc>
-  <lastmod>2020-06-02T13:12:16+00:00</lastmod>
+  <lastmod>2020-08-05T10:45:55+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
   <loc>https://davidhallin.com/about</loc>
-  <lastmod>2020-06-02T13:12:16+00:00</lastmod>
+  <lastmod>2020-08-05T10:45:55+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
   <loc>https://davidhallin.com/blog/categories/general</loc>
-  <lastmod>2020-06-02T13:12:16+00:00</lastmod>
+  <lastmod>2020-08-05T10:45:55+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
   <loc>https://davidhallin.com/blog/categories/php</loc>
-  <lastmod>2020-06-02T13:12:16+00:00</lastmod>
+  <lastmod>2020-08-05T10:45:55+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
  <url>
   <loc>https://davidhallin.com/blog/categories/opensource</loc>
-  <lastmod>2020-06-02T13:12:16+00:00</lastmod>
+  <lastmod>2020-08-05T10:45:55+00:00</lastmod>
   <changefreq>daily</changefreq>
  </url>
 </urlset>
