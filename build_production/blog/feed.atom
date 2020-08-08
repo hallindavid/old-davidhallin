@@ -3,12 +3,45 @@
     <title>David Hallin</title>
     <link href="https://davidhallin.com/" />
     <link type="application/atom+xml" rel="self" href="https://davidhallin.com/blog/feed.atom" />
-    <updated>2020-08-05T10:45:55+00:00</updated>
+    <updated>2020-08-08T13:11:33+00:00</updated>
     <id>https://davidhallin.com/blog/feed.atom</id>
     <author>
         <name>David Hallin</name>
     </author>
                 <entry>
+    <id>https://davidhallin.com/blog/confirming-actions-with-laravel-livewire</id>
+    <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/confirming-actions-with-laravel-livewire" />
+    <title>Javascript confirm before calling wire:click in Laravel Livewire</title>
+    <published>2020-08-08T00:00:00+00:00</published>
+    <updated>2020-08-08T00:00:00+00:00</updated>
+    <author>
+        <name>Dave</name>
+    </author>
+    <summary type="html">First off - I should say - this is taken from this issue conversation on github - particularly from fra000&#039;s comment on November 14th, 2019
+
+When building any sort of database-driven app, I&#039;ll want to have a Javascript Confirmation before actually......</summary>
+    <content type="html"><![CDATA[
+        <p>First off - I should say - this is taken from <a href="https://github.com/livewire/livewire/issues/366">this issue conversation on github</a> - particularly from <a href="https://github.com/fra000">fra000</a>'s comment on November 14th, 2019</p>
+
+<p>When building any sort of database-driven app, I'll want to have a Javascript Confirmation before actually performing an action for things like deleting something, or modifying something which performs a significant change.</p>
+
+<p>With Livewire, you call the PHP function easily with something like this</p>
+
+<pre><code class="language-html">&lt;button wire:click="delete_object"&gt;DELETE!&lt;/button&gt;
+</code></pre>
+
+<p>But that will call the delete code right away, so rather than doing that, we want to have something that prompts the user to say "Are you sure?" or something along those lines.</p>
+
+<p><img src="/assets/images/post-10/alert-preview.png" /></p>
+
+<p>And here is how -</p>
+
+<pre><code class="language-html">&lt;button onclick="confirm('Are you sure?') || event.stopImmediatePropagation()" 
+        wire:click="delete_object"&gt;DELETE!&lt;/button&gt;
+</code></pre>
+    ]]></content>
+</entry>
+            <entry>
     <id>https://davidhallin.com/blog/laravel-handling-null-in-order-by-query</id>
     <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/laravel-handling-null-in-order-by-query" />
     <title>Handling null values in an &#039;order by&#039; query with Laravel Eloquent (Laravel Beginner, mysql + postgres compatible)</title>
