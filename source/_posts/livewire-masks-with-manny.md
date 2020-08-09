@@ -3,7 +3,7 @@ extends: _layouts.post
 section: content
 title: Masking Livewire inputs with manny
 date: 2020-03-30
-featured: true
+featured: false
 description: How to create masks for livewire inputs using hallindavid/manny package
 categories: [php]
 ---

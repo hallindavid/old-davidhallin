@@ -4,7 +4,7 @@ section: content
 title: Handling null values in an 'order by' query with Laravel Eloquent (Laravel Beginner, mysql + postgres compatible)
 date: 2020-06-02
 description: Sometimes you want nulls first, other times you want them last
-featured: true
+featured: false
 categories: [php]
 ---
 

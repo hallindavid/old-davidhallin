@@ -4,6 +4,7 @@ section: content
 title: Javascript confirm before calling wire:click in Laravel Livewire
 date: 2020-08-08
 description: Confirm an action with javascript before calling the livewire php function
+featured: true
 categories: [general]
 ---
 
