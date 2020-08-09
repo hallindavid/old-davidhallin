@@ -6,21 +6,21 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="description" content="mostly development projects and learning">
 
-        <meta property="og:title" content="Deploying a static site to a repo subtree and hosting it for free on github pages | David Hallin"/>
+        <meta property="og:title" content="Easy Tailwindcss Buttons | David Hallin"/>
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://davidhallin.com/blog/deploying-a-static-site-to-github-pages"/>
+        <meta property="og:url" content="https://davidhallin.com/blog/easy-tailwind-buttons"/>
         <meta property="og:description" content="mostly development projects and learning" />
 
-        <title>Deploying a static site to a repo subtree and hosting it for free on github pages | David Hallin</title>
+        <title>Easy Tailwindcss Buttons | David Hallin</title>
 
         <link rel="home" href="https://davidhallin.com/">
         <link rel="icon" href="/favicon.ico">
         <link href="/blog/feed.atom" type="application/atom+xml" rel="alternate" title="David Hallin Atom Feed">
 
-            <meta property="og:title" content="Deploying a static site to a repo subtree and hosting it for free on github pages" />
+            <meta property="og:title" content="Easy Tailwindcss Buttons" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://davidhallin.com/blog/deploying-a-static-site-to-github-pages"/>
-    <meta property="og:description" content="I explain how I setup an easy way of deploying to github pages with a domain name" />
+    <meta property="og:url" content="https://davidhallin.com/blog/easy-tailwind-buttons"/>
+    <meta property="og:description" content="Easy Button Templates for TailwindCss" />
 
                     <!-- Global site tag (gtag.js) - Google Analytics -->
             <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34189472-1"></script>
@@ -123,9 +123,9 @@
 
         <main role="main" class="flex-auto w-full container max-w-4xl mx-auto py-16 px-6">
                 
-    <h1 class="leading-none mb-2">Deploying a static site to a repo subtree and hosting it for free on github pages</h1>
+    <h1 class="leading-none mb-2">Easy Tailwindcss Buttons</h1>
 
-    <p class="text-gray-700 text-xl md:mt-0">Dave  •  March 28, 2020</p>
+    <p class="text-gray-700 text-xl md:mt-0">Dave  •  August 10, 2020</p>
 
                         <a
                 href="/blog/categories/general"
@@ -134,91 +134,188 @@
             >general</a>
             
     <div class="border-b border-gray-300 mb-4 pb-4" v-pre>
-        <p>Well - for anyone interested in free hosting for a static website using a service like github pages - that's what this post is about.</p>
+        <p>If you've not heard of <a href="https://tailwindcss.com/">TailwindCSS</a>, you're missing out.</p>
 
-<p>I mentioned in my <a href="/blog/first-post">First Post</a> that I whipped up this site in about an hour with a Static Site Generator called Jigsaw, and deployed it to github pages.</p>
+<p>It's a utility framework - super light weight, easy to learn, and absolutely awesome.</p>
 
-<p><a href="https://jigsaw.tighten.co/">Jigsaw</a> comes with fantastic <a href="https://jigsaw.tighten.co/docs/installation/">documentation</a> so is generally pretty easy generate the static files, but there is a bit of a catch when using free git repo static hosting if you want to keep it all in one repository.</p>
+<p>I've been using Tailwind for all my recent projects, and most of my projects are data-driven web applications, with buttons as such.</p>
 
-<p>In the documentation, they say do this</p>
+<p>Now if you've worked with Bootstrap, you're probably used to creating buttons like this</p>
 
-<pre><code>npm run production
-git add build_production &amp;&amp; git commit -m "build for deploy"
-git subtree push --prefix build_production origin gh-pages
+<pre><code class="language-html">&lt;button class="btn btn-primary"&gt;Primary&lt;/button&gt;
 </code></pre>
 
-<p>This will work the first time.  Then when you go and point your domain to github pages though, github adds a file called <code>CNAME</code> it's contents are super basic, it's just the domain name - you can check it out in my <code>gh-pages</code> <a href="https://github.com/hallindavid/davidhallin/tree/gh-pages">branch for this website</a>.</p>
+<p>and out would pop a button like this:</p>
 
-<p>So then you move along, it's published, but you change something.  When you go to deploy again, your <code>build_production</code> folder get's rebuilt.</p>
+<p><img src="/assets/images/post-11/bootstrap-primary-button.png" /></p>
 
-<p>Then you run through the same thing again, you add the modified files and then go to run this command again</p>
+<p>This is pretty straight-forward, and I liked being able to remember that if I needed a button, I just had to remember a couple of quick classes to make it how ever I want.</p>
 
-<pre><code>git subtree push --prefix build_production origin gh-pages
+<p>TailwindCSS, out of the box, doesn't do this for you - but it's super easy to do it for yourself.</p>
+
+<p>For my Laravel Projects, when I use the TALL stack preset (TailwindCSS, AlpineJS, Laravel, Livewire), it creates your Sass file like this:</p>
+
+<pre><code class="language-scss"><br />/**
+ * This injects Tailwind's base styles, which is a combination of
+ * Normalize.css and some additional base styles.
+ */
+@tailwind base;
+
+/**
+ * Remove the default box-shadow for invalid elements to prevent
+ * inputs in Livewire components showing with a
+ * red border by default in Firefox.
+ */
+input:invalid, textarea:invalid, select:invalid {
+    box-shadow: none;
+}
+/**
+ * This injects any component classes registered by plugins.
+ */
+@tailwind components;
+/**
+ *  CUSTOM CLASSES/COMPONENTS HERE
+ */
+
+
+/**
+ * This injects all of Tailwind's utility classes, generated based on your
+ * config file.
+ */
+@tailwind utilities;
+
+[x-cloak] {
+    display: none;
+}
 </code></pre>
 
-<p>and it says that your local version of gh-pages is behind the origins - which it is, Github added a file there, so you are behind.</p>
+<p>Then after you compile with npm, then it pushes all this into your application.</p>
 
-<p>So there is actually a little list of things which need to happen when you're ready to deploy</p>
+<p>So - to do something that makes Tailwind buttons as easy as Bootstrap Buttons, I throw in these custom components</p>
 
-<ol>
-<li>You need build for production again</li>
-</ol>
+<pre><code class="language-scss">.btn {
+    @apply inline-flex items-center border font-medium transition ease-in-out duration-150 justify-center;
+}
 
-<pre><code class="language-sh">npm run production
+.btn:focus {
+    @apply outline-none;
+}
+
+.btn-xs {
+    @apply px-2.5 py-1.5 text-xs leading-4 rounded;
+}
+
+.btn-sm {
+    @apply px-3 py-2 text-sm leading-4 rounded-md;
+}
+
+.btn-base {
+    @apply px-4 py-2 text-sm leading-5 rounded-md;
+}
+
+.btn-lg {
+    @apply px-4 py-2 text-base leading-6 rounded-md;
+}
+
+.btn-xl {
+    @apply px-6 py-3 text-base leading-6 rounded-md;
+}
+
+.btn-white {
+    @apply border-gray-300 bg-white text-gray-700;
+}
+
+.btn-white:focus {
+    @apply border-blue-300 shadow-outline-blue;
+}
+
+.btn-white:hover {
+    @apply text-gray-500;
+}
+
+.btn-white:active {
+    @apply text-gray-800 bg-gray-50;
+}
+
+.btn-primary {
+    @apply border-transparent bg-indigo-600 text-white;
+}
+
+.btn-primary:focus {
+    @apply border-indigo-700 shadow-outline-indigo;
+}
+
+.btn-primary:hover {
+    @apply bg-indigo-500;
+}
+
+.btn-primary:active {
+    @apply bg-indigo-700;
+}
+
+.btn-danger {
+    @apply border-transparent bg-red-600 text-white;
+}
+
+.btn-danger:focus {
+    @apply border-red-700 shadow-outline-red;
+}
+
+.btn-danger:hover {
+    @apply bg-red-500;
+}
+
+.btn-danger:active {
+    @apply bg-red-700;
+}
+
+.btn-secondary {
+    @apply border-transparent text-indigo-700 bg-indigo-100;
+}
+
+.btn-secondary:focus {
+    @apply border-indigo-300 shadow-outline-indigo;
+}
+
+.btn-secondary:hover {
+    @apply bg-indigo-50;
+}
+
+.btn-secondary:active {
+    @apply bg-indigo-200;
+}
 </code></pre>
 
-<ol start="2">
-<li>You will need to recreate the <code>CNAME</code> record, because that will have been deleted during the build.  You can do that through something like this.</li>
-</ol>
+<p>Then you can make super easy, and great looking buttons that look like this:</p>
 
-<pre><code class="language-sh">echo 'davidhallin.com' &gt; build_production/CNAME
+<p><img src="/assets/images/post-11/buttons.png" width="80%"></p>
+
+<p>And it's easy to add in what ever other colors or sizes you want eg:</p>
+
+<pre><code class="language-scss"><br />/* For a new color use this */
+.btn-blue {
+    @apply border-transparent bg-blue-600 text-white;
+}
+
+.btn-blue:focus {
+    @apply border-blue-700 shadow-outline-blue;
+}
+
+.btn-blue:hover {
+    @apply bg-blue-500;
+}
+
+.btn-blue:active {
+    @apply bg-blue-700;
+}
+
+/* For a new size use this */
+.btn-really-big {
+    @apply px-10 py-8 text-lg leading-7 rounded-md;
+}
+
+
 </code></pre>
-
-<p><small class="italic">Obviously replace davidhallin.com with your CNAME value.</small></p>
-
-<ol start="3">
-<li>You will want to go through the git process again, but force-override the existing gh-pages version on github.</li>
-</ol>
-
-<pre><code class="language-sh"># add build_production to commit
-git add build_production
-# commit build production
-git commit -m "build for production" 
-# new local branch for build_production
-git subtree split --prefix build_production -b gh-pages
-# this will overwrite the github gh-pages with your new local gh-pages
-git push -f origin gh-pages:gh-pages
-# this will delete the local branch you just wrote
-git branch -D gh-pages
-</code></pre>
-
-<p>So this is the workflow that allows for easy, no-bologna configuration deployment, and this will work with anything - this is less about static site generation than it is about serving a sub-folder on static hosting.  You could use this same logic to serve content on netlify, or render or aws s3.</p>
-
-<p>So - I made this into an npm script</p>
-
-<pre><code>"scripts": {
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --env=production --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "dev": "npm run local",
-    "watch": "npm run local -- --watch",
-    "deploy": "npm run production &amp;&amp; echo 'davidhallin.com' &gt; build_production/CNAME &amp;&amp; git add build_production &amp;&amp; git commit -m \"build for production\" &amp;&amp; git subtree split --prefix build_production -b gh-pages &amp;&amp; git push -f origin gh-pages:gh-pages &amp;&amp; git branch -D gh-pages"
-},
-</code></pre>
-
-<p>and then I execute by running <code>npm run deploy</code>
-but you could just as easily make a new file like <code>build.sh</code></p>
-
-<pre><code class="language-sh">npm run production
-echo 'davidhallin.com' &gt; build_production/CNAME
-git add build_production
-git commit -m "Build for Production"
-git subtree split --prefix build_production -b gh-pages
-git push -f origin gh-pages:gh-pages
-git branch -D gh-pages
-</code></pre>
-
-<p>and then run <code>./build.sh</code> to deploy when ever you want to deploy.</p>
-
-<p>Hope somebody finds this useful!</p>
     </div>
 
     <div class="border-b border-gray-300 pb-4 mb-10" v-pre>
@@ -239,15 +336,12 @@ git branch -D gh-pages
 
     <nav class="flex justify-between text-sm md:text-base">
         <div>
-                            <a href="https://davidhallin.com/blog/sublime-snippets-location" title="Older Post: How to use Sublime Text Snippets and improve your workflow">
-                    &LeftArrow; How to use Sublime Text Snippets and improve your workflow
+                            <a href="https://davidhallin.com/blog/confirming-actions-with-laravel-livewire" title="Older Post: Javascript confirm before calling wire:click in Laravel Livewire">
+                    &LeftArrow; Javascript confirm before calling wire:click in Laravel Livewire
                 </a>
                     </div>
 
         <div>
-                            <a href="https://davidhallin.com/blog/my-first-open-source-package" title="Newer Post: My first open source package">
-                    My first open source package &RightArrow;
-                </a>
                     </div>
     </nav>
         </main>
