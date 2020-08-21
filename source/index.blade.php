@@ -1,26 +1,26 @@
 @extends('_layouts.master')
 
 @section('body')
-    @foreach ($posts->where('featured', true) as $featuredPost)
+    @foreach ($posts->take(20) as $post)
         <div class="w-full mb-6">
             <div class="flex flex-wrap justify-between w-full">
                 <div class="w-full md:w-2/3">
                 <h2 class="text-3xl mt-0">
-                    <a href="{{ $featuredPost->getUrl() }}" title="Read {{ $featuredPost->title }}" class="text-gray-900 font-extrabold">
-                        {{ $featuredPost->title }}
+                    <a href="{{ $post->getUrl() }}" title="Read {{ $post->title }}" class="text-gray-900 font-extrabold">
+                        {{ $post->title }}
                     </a>
                 </h2>
                 </div>
                 <div class="w-full md:w-1/3 text-right">
                     <span class="text-gray-700 font-medium my-2">
-                        {{ $featuredPost->getDate()->format('F j, Y') }}
+                        {{ $post->getDate()->format('F j, Y') }}
                     </span>
                 </div>
             </div>
 
-            <p class="mt-0 mb-4">{!! $featuredPost->getExcerpt() !!}</p>
+            <p class="mt-0 mb-4">{!! $post->getExcerpt() !!}</p>
 
-            <a href="{{ $featuredPost->getUrl() }}" title="Read - {{ $featuredPost->title }}" class="uppercase tracking-wide mb-4">
+            <a href="{{ $post->getUrl() }}" title="Read - {{ $post->title }}" class="uppercase tracking-wide mb-4">
                 Read
             </a>
         </div>
@@ -30,22 +30,4 @@
         @endif
     @endforeach
 
-    
-    @foreach ($posts->where('featured', false)->take(6)->chunk(2) as $row)
-        <div class="flex flex-col md:flex-row md:-mx-6">
-            @foreach ($row as $post)
-                <div class="w-full md:w-1/2 md:mx-6">
-                    @include('_components.post-preview-inline')
-                </div>
-
-                @if (! $loop->last)
-                    <hr class="block md:hidden w-full border-b mt-2 mb-6">
-                @endif
-            @endforeach
-        </div>
-
-        @if (! $loop->last)
-            <hr class="w-full border-b mt-2 mb-6">
-        @endif
-    @endforeach
 @stop
