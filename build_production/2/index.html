@@ -6,21 +6,21 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="mostly development projects and learning">
 
-    <meta property="og:title" content="Javascript confirm before calling wire:click in Laravel Livewire | David Hallin"/>
+    <meta property="og:title" content="David Hallin"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:url" content="https://davidhallin.com/blog/confirming-actions-with-laravel-livewire"/>
+    <meta property="og:url" content="https://davidhallin.com/2"/>
     <meta property="og:description" content="mostly development projects and learning"/>
 
-    <title>Javascript confirm before calling wire:click in Laravel Livewire | David Hallin</title>
+    <title>David Hallin</title>
 
     <link rel="home" href="https://davidhallin.com/">
     <link rel="icon" href="/favicon.ico">
     <link href="/blog/feed.atom" type="application/atom+xml" rel="alternate" title="David Hallin Atom Feed">
 
-    <meta property="og:title" content="Javascript confirm before calling wire:click in Laravel Livewire" />
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://davidhallin.com/blog/confirming-actions-with-laravel-livewire"/>
-    <meta property="og:description" content="Confirm an action with javascript before calling the livewire php function" />
+    <meta property="og:title" content="David Hallin Posts" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://davidhallin.com/2"/>
+    <meta property="og:description" content="The list of blog posts for David Hallin" />
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34189472-1"></script>
@@ -201,72 +201,68 @@
 
 
     <div class="pl-0 lg:pl-10">
+        
+            <div class="flex flex-col mb-4">
+    <p class="text-gray-700 font-medium my-2">
+        March 25, 2020
+    </p>
+
+    <h2 class="text-3xl mt-0">
+        <a
+            href="https://davidhallin.com/blog/bootstrap-vue-form-builder"
+            title="Read more - BootstrapVueFormBuilder"
+            class="text-gray-900 font-extrabold"
+        >BootstrapVueFormBuilder</a>
+    </h2>
+
+
+
+
+
+
+
+
+
+
+    <p class="mb-4 mt-1">Website
+     Git Repo
+
+
+Throughout my career, a huge portion of my regular work comes from creating forms for people.  People always need forms.
+
+The regular progression in my situation is this.
+
+
+I...</p>
+
+    <a
+        href="https://davidhallin.com/blog/bootstrap-vue-form-builder"
+        title="Read more - BootstrapVueFormBuilder"
+        class="uppercase font-semibold tracking-wide mb-2"
+    >Read</a>
+</div>
+
             
-    <h1 class="leading-none mb-2">Javascript confirm before calling wire:click in Laravel Livewire</h1>
-
-    <p class="text-gray-700 text-xl md:mt-0">Dave  •  August 8, 2020</p>
-
-
-
-
-
-
-
-
-
-
-
-    <div class="border-b border-gray-300 mb-4 pb-4" v-pre>
-        <p>First off - I should say - this is taken from <a href="https://github.com/livewire/livewire/issues/366">this issue conversation on github</a> - particularly from <a href="https://github.com/fra000">fra000</a>'s comment on November 14th, 2019</p>
-
-<p>When building any sort of database-driven app, I'll want to have a Javascript Confirmation before actually performing an action for things like deleting something, or modifying something which performs a significant change.</p>
-
-<p>With Livewire, you call the PHP function easily with something like this</p>
-
-<pre><code class="language-html">&lt;button wire:click="delete_object"&gt;DELETE!&lt;/button&gt;
-</code></pre>
-
-<p>But that will call the delete code right away, so rather than doing that, we want to have something that prompts the user to say "Are you sure?" or something along those lines.</p>
-
-<p><img src="/assets/images/post-10/alert-preview.png" /></p>
-
-<p>And here is how -</p>
-
-<pre><code class="language-html">&lt;button onclick="confirm('Are you sure?') || event.stopImmediatePropagation()" 
-        wire:click="delete_object"&gt;DELETE!&lt;/button&gt;
-</code></pre>
-    </div>
-
-    <div class="border-b border-gray-300 pb-4 mb-10" v-pre>
-        <!-- AddToAny BEGIN -->
-        <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
-        <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
-        <a class="a2a_button_facebook"></a>
-        <a class="a2a_button_twitter"></a>
-        <a class="a2a_button_email"></a>
-        <a class="a2a_button_reddit"></a>
-        <a class="a2a_button_pocket"></a>
-        <a class="a2a_button_print"></a>
+            <nav class="flex text-base my-8">
+                            <a
+                    href="/"
+                    title="Previous Page"
+                    class="bg-gray-200 hover:bg-gray-400 rounded mr-3 px-5 py-3"
+                >&LeftArrow;</a>
+            
+                            <a
+                    href="/"
+                    title="Go to Page 1"
+                    class="bg-gray-200 hover:bg-gray-400 text-blue-700 rounded mr-3 px-5 py-3 "
+                >1</a>
+                            <a
+                    href="/2"
+                    title="Go to Page 2"
+                    class="bg-gray-200 hover:bg-gray-400 text-blue-700 rounded mr-3 px-5 py-3 text-blue-600"
+                >2</a>
+            
+                    </nav>
         </div>
-        <script async src="https://static.addtoany.com/menu/page.js"></script>
-        <!-- AddToAny END -->
-
-    </div>
-
-    <nav class="flex justify-between text-sm md:text-base">
-        <div>
-                            <a href="https://davidhallin.com/blog/laravel-handling-null-in-order-by-query" title="Older Post: Handling null values in an &#039;order by&#039; query with Laravel Eloquent (Laravel Beginner, mysql + postgres compatible)">
-                    &LeftArrow; Handling null values in an &#039;order by&#039; query with Laravel Eloquent (Laravel Beginner, mysql + postgres compatible)
-                </a>
-                    </div>
-
-        <div>
-                            <a href="https://davidhallin.com/blog/easy-tailwind-buttons" title="Newer Post: Easy Tailwindcss Buttons">
-                    Easy Tailwindcss Buttons &RightArrow;
-                </a>
-                    </div>
-    </nav>
-    </div>
 </main>
 
 <footer class="bg-white text-center text-sm mt-12 py-2 px-4">
