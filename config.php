@@ -24,6 +24,10 @@ return [
                 });
             },
         ],
+        'projects' => [
+            'path'=>'projects/{filename}',
+            'sort'=>'title',
+        ],
     ],
 
     // helpers

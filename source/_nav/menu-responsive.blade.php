@@ -1,7 +1,7 @@
 <nav id="js-nav-menu" class="nav-menu hidden lg:hidden">
     <ul class="my-0 list-none">
         <li class="text-center"><a
-                title="{{ $page->siteName }} Blog"
+                title="{{ $page->siteName }} Posts"
                 href="/blog"
                 class="nav-menu__item hover:text-blue-500 {{ $page->isActive('/blog') ? 'active text-blue' : '' }}"
             >Posts</a>
@@ -17,7 +17,7 @@
                 target="_blank()" 
                 class="nav-menu__item hover:text-blue-500 {{ $page->isActive('/contact') ? 'active text-blue' : '' }}" 
                 href="https://twitter.com/hallindavid"
-            ><i class="fab fa-twitter mr-2"></i> Twitter
+            ><i class="fab fa-twitter text-twitter-blue mr-2"></i> Twitter
             </a>
         </li>
         <li class="text-center">

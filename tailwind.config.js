@@ -1,6 +1,9 @@
 module.exports = {
   theme: {
     extend: {
+      colors: {
+        'twitter-blue': '#6fa7d8',
+      },
       fontFamily: {
         sans: [
           'Nunito Sans'

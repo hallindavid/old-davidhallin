@@ -1,33 +1,52 @@
+---
+pagination:
+    collection: posts
+    perPage: 10
+---
 @extends('_layouts.master')
 
+@push('meta')
+    <meta property="og:title" content="{{ $page->siteName }} Posts" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ $page->getUrl() }}"/>
+    <meta property="og:description" content="The list of blog posts for {{ $page->siteName }}" />
+@endpush
+
 @section('body')
-    @foreach ($posts->take(20) as $post)
-        <div class="w-full mb-6">
-            <div class="flex flex-wrap justify-between w-full">
-                <div class="w-full md:w-2/3">
-                <h2 class="text-3xl mt-0">
-                    <a href="{{ $post->getUrl() }}" title="Read {{ $post->title }}" class="text-gray-900 font-extrabold">
-                        {{ $post->title }}
-                    </a>
-                </h2>
-                </div>
-                <div class="w-full md:w-1/3 text-right">
-                    <span class="text-gray-700 font-medium my-2">
-                        {{ $post->getDate()->format('F j, Y') }}
-                    </span>
-                </div>
-            </div>
 
-            <p class="mt-0 mb-4">{!! $post->getExcerpt() !!}</p>
+    @foreach ($pagination->items as $post)
+        @include('_components.post-preview-inline')
 
-            <a href="{{ $post->getUrl() }}" title="Read - {{ $post->title }}" class="uppercase tracking-wide mb-4">
-                Read
-            </a>
-        </div>
-
-        @if (! $loop->last)
-            <hr class="border-b my-6">
+        @if ($post != $pagination->items->last())
+            <hr class="border-b-2 border-gray-400 my-6">
         @endif
     @endforeach
 
+    @if ($pagination->pages->count() > 1)
+        <nav class="flex text-base my-8">
+            @if ($previous = $pagination->previous)
+                <a
+                    href="{{ $previous }}"
+                    title="Previous Page"
+                    class="bg-gray-200 hover:bg-gray-400 rounded mr-3 px-5 py-3"
+                >&LeftArrow;</a>
+            @endif
+
+            @foreach ($pagination->pages as $pageNumber => $path)
+                <a
+                    href="{{ $path }}"
+                    title="Go to Page {{ $pageNumber }}"
+                    class="bg-gray-200 hover:bg-gray-400 text-blue-700 rounded mr-3 px-5 py-3 {{ $pagination->currentPage == $pageNumber ? 'text-blue-600' : '' }}"
+                >{{ $pageNumber }}</a>
+            @endforeach
+
+            @if ($next = $pagination->next)
+                <a
+                    href="{{ $next }}"
+                    title="Next Page"
+                    class="bg-gray-200 hover:bg-gray-400 rounded mr-3 px-5 py-3"
+                >&RightArrow;</a>
+            @endif
+        </nav>
+    @endif
 @stop
