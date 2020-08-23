@@ -62,7 +62,7 @@
 
 <main role="main" class="flex-auto w-full container max-w-8xl mx-auto py-16 px-6 flex">
     @include('_nav.menu-sidebar')
-    <div class="pl-0 lg:pl-10">
+    <div class="pl-0 lg:pl-10 w-full">
         @yield('body')
     </div>
 </main>

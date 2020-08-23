@@ -38,7 +38,10 @@
                             :key="result.link"
                             @mousedown.prevent
                         >
-                            {{ result.title }}
+                          <div class="flex flex-col md:flex-row md:justify-between">
+                            <span>{{ result.title }}</span>
+                            <span class="items-center px-3 py-1 rounded-md text-sm font-medium leading-5 bg-gray-200 text-gray-800">{{ result.type}}</span>
+                          </div>
 
                             <span class="block font-normal text-gray-700 text-sm my-1" v-html="result.snippet"></span>
                         </a>
@@ -94,8 +97,8 @@ export default {
     created() {
         axios('/index.json').then(response => {
             this.fuse = new fuse(response.data, {
-                minMatchCharLength: 6,
-                keys: ['title', 'snippet', 'categories'],
+                minMatchCharLength: 4,
+                keys: ['title', 'snippet', 'type'],
             });
         });
     },

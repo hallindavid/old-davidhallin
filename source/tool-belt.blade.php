@@ -8,12 +8,13 @@
 @endpush
 
 @section('body')
-    <div x-data="{ currentView: 'awesome'}">
-        <h1 class="font-mono text-orange-300 flex justify-start items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mr-2" viewBox="0 0 512 512" fill="currentColor">
-                <g>
+    <div x-data="{ currentView: 'awesome'}" class="w-full">
+        <div class="flex flex-row justify-between">
+            <h1 class="font-mono text-orange-300 flex justify-start items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mr-2" viewBox="0 0 512 512" fill="currentColor">
                     <g>
-                        <path d="M490.042,384.371c-45.824-45.824-42.819-42.921-44.109-43.873l-121.297-89.556l47.055-47.051
+                        <g>
+                            <path d="M490.042,384.371c-45.824-45.824-42.819-42.921-44.109-43.873l-121.297-89.556l47.055-47.051
                             c37.832,13.481,80.665,4.161,109.492-24.666c31.406-31.406,39.65-79.421,20.514-119.478c-4.46-9.333-16.829-11.447-24.134-4.14
                             l-38.791,38.791c-5.846,5.846-15.357,5.847-21.207,0c-5.861-5.861-5.861-15.345,0-21.206L456.357,34.4
                             c7.314-7.313,5.187-19.679-4.14-24.133C412.16-8.869,364.146-0.625,332.739,30.78c-28.834,28.834-38.143,71.669-24.666,109.491
@@ -39,47 +40,49 @@
                             L175.556,357.6z M266.182,309.392l37.009-37.006l37.719,27.848l-45.065,45.065C265.205,308.065,267.117,310.309,266.182,309.392z
                              M462.974,474.174c-17.49,12.596-43.296,9.483-60.026-7.247l-39.631-39.63l-48.328-58.731l50.318-50.318l61.91,45.709
                             l41.618,41.619C487.858,424.599,486.636,457.132,462.974,474.174z"/>
+                        </g>
                     </g>
-                </g>
-                <g>
                     <g>
-                        <path d="M447.371,424.2l-59.981-59.981c-5.855-5.856-15.35-5.856-21.206,0c-5.856,5.856-5.856,15.35,0,21.206l59.981,59.981
+                        <g>
+                            <path d="M447.371,424.2l-59.981-59.981c-5.855-5.856-15.35-5.856-21.206,0c-5.856,5.856-5.856,15.35,0,21.206l59.981,59.981
                             c5.855,5.855,15.35,5.856,21.206,0C453.227,439.55,453.227,430.056,447.371,424.2z"/>
+                        </g>
                     </g>
-                </g>
-            </svg>
-            tool-belt
-        </h1>
-        <hr class="border-b-2 border-orange-300 my-6">
+                </svg>
+                tool-belt
+            </h1>
+            <div>
+                <nav class="flex space-x-8">
+                    <button @click="currentView = 'awesome'" class="group inline-flex items-center py-4 px-1 font-medium text-sm leading-5 focus:outline-none"
+                            x-bind:class="{ 'text-orange-300 focus:text-orange-500':currentView == 'awesome', 'text-gray-500 hover:text-gray-700  focus:text-gray-700' : currentView != 'awesome' }">
+                        <svg x-bind:class="{ 'text-orange-300' : currentView == 'awesome', 'text-gray-400': currentView != 'awesome'}" viewBox="0 0 20 20" fill="currentColor" class="-ml-0.5 mr-2 h-5 w-5 group-hover:text-gray-500 group-focus:text-gray-600">
+                            <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span>Awesome View</span>
+                    </button>
+                    <button @click="currentView = 'boring'" class="group inline-flex items-center py-4 px-1 font-medium text-sm leading-5 focus:outline-none"
+                            x-bind:class="{ 'text-orange-300 focus:text-orange-500':currentView == 'boring', 'text-gray-500 hover:text-gray-700  focus:text-gray-700' : currentView != 'boring' }">
+                        <svg x-bind:class="{ 'text-orange-300' : currentView == 'boring', 'text-gray-400': currentView != 'boring'}" viewBox="0 0 20 20" fill="currentColor" class="-ml-0.5 mr-2 h-5 w-5 group-hover:text-gray-500 group-focus:text-gray-600" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span>Boring View</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+
+
+        <hr class="border-b-2 border-orange-300 mt-0 mb-2">
 
         <p class="text-gray-500 text-sm font-mono">
             tools, stacks, repos, projects that i like
         </p>
 
-        <div class="border-b border-gray-200 mb-2">
-            <nav class="flex -mb-px">
-                <button @click="currentView = 'awesome'" class="group inline-flex items-center py-4 px-1 border-b-2 font-medium text-sm leading-5 focus:outline-none"
-                        x-bind:class="{ 'border-indigo-500 text-indigo-600 focus:text-indigo-800 focus:border-indigo-700':currentView == 'awesome', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300  focus:text-gray-700 focus:border-gray-300' : currentView != 'awesome' }">
-                    <svg x-bind:class="{ 'text-indigo-400' : currentView == 'awesome', 'text-gray-400': currentView != 'awesome'}" viewBox="0 0 20 20" fill="currentColor" class="-ml-0.5 mr-2 h-5 w-5 group-hover:text-gray-500 group-focus:text-gray-600">
-                        <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path>
-                    </svg>
-                    <span>Awesome View</span>
-                </button>
-                <button @click="currentView = 'boring'" class="group inline-flex items-center py-4 px-1 border-b-2 font-medium text-sm leading-5 focus:outline-none ml-8"
-                        x-bind:class="{ 'border-indigo-500 text-indigo-600 focus:text-indigo-800 focus:border-indigo-700':currentView == 'boring', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300  focus:text-gray-700 focus:border-gray-300' : currentView != 'boring' }">
-                    <svg x-bind:class="{ 'text-indigo-400' : currentView == 'boring', 'text-gray-400': currentView != 'boring'}" viewBox="0 0 20 20" fill="currentColor" class="-ml-0.5 mr-2 h-5 w-5 group-hover:text-gray-500 group-focus:text-gray-600" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z" clip-rule="evenodd"></path>
-                    </svg>
-                    <span>Boring View</span>
-                </button>
-            </nav>
-        </div>
-
 
         <!-- component -->
         <div class="w-full" x-show="currentView == 'awesome'">
             <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-gray-100 text-sm font-mono subpixel-antialiased
-              bg-gray-800  pb-6 pt-4 rounded-lg leading-normal overflow-hidden">
+              bg-gray-800  pb-6 pt-4 rounded-lg leading-normal w-full">
                 <div class="top mb-2 flex">
                     <div class="h-3 w-3 bg-red-500 rounded-full"></div>
                     <div class="ml-2 h-3 w-3 bg-orange-300 rounded-full"></div>
@@ -90,7 +93,7 @@
                     $lang_cols = [
                         ['heading'=>'language', 'width'=>15],
                         ['heading'=>'comfort', 'width'=>10],
-                        ['heading'=>'note', 'width'=>80]
+                        ['heading'=>'note', 'width'=>95]
                     ];
 
                     $lang_items = [
@@ -142,7 +145,7 @@
                     $framework_cols = [
                         ['heading'=>'item', 'width'=>15],
                         ['heading'=>'category', 'width'=>30],
-                        ['heading'=>'note', 'width'=>60]
+                        ['heading'=>'note', 'width'=>75]
                     ];
 
                     $framework_items = [
@@ -158,6 +161,7 @@
                           ['Jigsaw', 'Static Site Generator', "generate a static site using laravel (like this website)"],
                           ['Laravel', 'Package/Framework', "my preferred framework for all apps these days"],
                           ['Livewire', 'Package/Framework', "allows you to do a lot of fancy js stuff, easily with PHP"],
+                          ['Tenancy', 'Package/Framework', "allows multiple databases, for one laravel app"],
                           ['promptui', 'Package/Framework', "a golang package by manifoldco makes CLI apps beautiful"],
                           ['Cloudflare', 'domain services & ssl', "everybody knows who these guys are"],
                           ['Font Awesome', 'icon package', "lots of great icons"],
@@ -187,8 +191,8 @@
             </div>
         </div>
 
-        <div x-show="currentView == 'boring'">
-            <div class="flex flex-wrap">
+        <div class="w-full" x-show="currentView == 'boring'">
+            <div class=" flex flex-wrap">
                 <div class="w-full md:w-1/2 px-2">
                     <strong class="lowercase text-gray-800 font-bold">Backend</strong>
                     <ul class="pl-8">
@@ -252,7 +256,6 @@
 
                     </ul>
                 </div>
-
             </div>
         </div>
 

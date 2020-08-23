@@ -25,8 +25,8 @@ return [
             },
         ],
         'projects' => [
-            'path'=>'projects/{filename}',
-            'sort'=>'title',
+            'path' => 'projects/{filename}',
+            'sort' => 'title',
         ],
     ],
 
@@ -62,6 +62,6 @@ return [
             : $cleaned;
     },
     'isActive' => function ($page, $path) {
-        return Str::endsWith(trimPath($page->getPath()), trimPath($path));
+        return Str::endsWith(trimPath($page->getPath()), trimPath($path)) || Str::startsWith(trimPath($page->getPath()), trimPath($path)) || Str::is(trimPath($path), trimPath($page->getPath()));
     },
 ];

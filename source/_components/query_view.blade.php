@@ -1,4 +1,4 @@
-<div class="mt-4">
+<div class="mt-4 w-full overflow-hidden">
     <span class="text-green-400 inline">dave@localhost:~$</span>
     <p class="typing items-center pl-2 inline">mysql -e "{{ $query }}"</p>
     @php

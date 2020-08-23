@@ -20,7 +20,7 @@
         </div>
     </a>
 
-    <a href="/projects" @if($page->isActive('/projects')) class="mt-1 {{ $active }} text-yellow-400" aria-current="page" @else class="mt-1 {{ $inactive }} hover:text-yellow-400" @endif >
+    <a href="/projects" @if($page->isActive('/projects*')) class="mt-1 {{ $active }} text-yellow-400" aria-current="page" @else class="mt-1 {{ $inactive }} hover:text-yellow-400" @endif >
         <div class="flex flex-row justify-start items-center">
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5 mr-2">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
