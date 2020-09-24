@@ -6,21 +6,21 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="mostly development projects and learning">
 
-    <meta property="og:title" content="Easy Tailwindcss Buttons | David Hallin"/>
+    <meta property="og:title" content="New Update to Open Source Repository - Manny | David Hallin"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:url" content="https://davidhallin.com/blog/easy-tailwind-buttons"/>
+    <meta property="og:url" content="https://davidhallin.com/blog/update-to-manny"/>
     <meta property="og:description" content="mostly development projects and learning"/>
 
-    <title>Easy Tailwindcss Buttons | David Hallin</title>
+    <title>New Update to Open Source Repository - Manny | David Hallin</title>
 
     <link rel="home" href="https://davidhallin.com/">
     <link rel="icon" href="/favicon.ico">
     <link href="/blog/feed.atom" type="application/atom+xml" rel="alternate" title="David Hallin Atom Feed">
 
-    <meta property="og:title" content="Easy Tailwindcss Buttons" />
+    <meta property="og:title" content="New Update to Open Source Repository - Manny" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://davidhallin.com/blog/easy-tailwind-buttons"/>
-    <meta property="og:description" content="Easy Button Templates for TailwindCss" />
+    <meta property="og:url" content="https://davidhallin.com/blog/update-to-manny"/>
+    <meta property="og:description" content="I added a new feature to Manny, as well as changed the functionality a bit of the strip function" />
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34189472-1"></script>
@@ -202,9 +202,9 @@
 
     <div class="pl-0 lg:pl-10 w-full">
             
-    <h1 class="leading-none mb-2">Easy Tailwindcss Buttons</h1>
+    <h1 class="leading-none mb-2">New Update to Open Source Repository - Manny</h1>
 
-    <p class="text-gray-700 text-xl md:mt-0">Dave  •  August 10, 2020</p>
+    <p class="text-gray-700 text-xl md:mt-0">Dave  •  September 24, 2020</p>
 
 
 
@@ -217,188 +217,84 @@
 
 
     <div class="border-b border-gray-300 mb-4 pb-4" v-pre>
-        <p>If you've not heard of <a href="https://tailwindcss.com/">TailwindCSS</a>, you're missing out.</p>
+        <p>If you haven't heard of Manny, it's an open source package I created in March of 2020.</p>
 
-<p>It's a utility framework - super light weight, easy to learn, and absolutely awesome.</p>
+<p>Repo: <a href="https://github.com/hallindavid/manny">github.com/hallindavid/manny</a><br />
+Blog post explaining what it is: <a href="/blog/livewire-masks-with-manny">Livewire Masks With Manny</a><br />
+Project page: <a href="/projects/manny">Manny</a></p>
 
-<p>I've been using Tailwind for all my recent projects, and most of my projects are data-driven web applications, with buttons as such.</p>
+<p>I made a PR with 2 changes that popped up in a project I was working on.</p>
 
-<p>Now if you've worked with Bootstrap, you're probably used to creating buttons like this</p>
+<h4>Updated Mask to not add on additional characters after we've run out of characters.</h4>
 
-<pre><code class="language-html">&lt;button class="btn btn-primary"&gt;Primary&lt;/button&gt;
+<p>The mask function is typically used like this</p>
+
+<pre><code class="language-php">$postal_code = Manny::mask($user_input, 'A1A 1A1');
 </code></pre>
 
-<p>and out would pop a button like this:</p>
+<p>This first removes all non-alphanumeric characters from the <code>$user_input</code> variable, and then adds them to the pattern string - in this case <code>A1A 1A1</code>.</p>
 
-<p><img src="/assets/images/post-11/bootstrap-primary-button.png" /></p>
-
-<p>This is pretty straight-forward, and I liked being able to remember that if I needed a button, I just had to remember a couple of quick classes to make it how ever I want.</p>
-
-<p>TailwindCSS, out of the box, doesn't do this for you - but it's super easy to do it for yourself.</p>
-
-<p>For my Laravel Projects, when I use the TALL stack preset (TailwindCSS, AlpineJS, Laravel, Livewire), it creates your Sass file like this:</p>
-
-<pre><code class="language-scss"><br />/**
- * This injects Tailwind's base styles, which is a combination of
- * Normalize.css and some additional base styles.
- */
-@tailwind base;
-
-/**
- * Remove the default box-shadow for invalid elements to prevent
- * inputs in Livewire components showing with a
- * red border by default in Firefox.
- */
-input:invalid, textarea:invalid, select:invalid {
-    box-shadow: none;
-}
-/**
- * This injects any component classes registered by plugins.
- */
-@tailwind components;
-/**
- *  CUSTOM CLASSES/COMPONENTS HERE
- */
-
-
-/**
- * This injects all of Tailwind's utility classes, generated based on your
- * config file.
- */
-@tailwind utilities;
-
-[x-cloak] {
-    display: none;
-}
+<pre><code class="language-php">Manny::mask('#####M !@#!@# 4 A', 'A1A 1A1);
+//returns "M4A "
 </code></pre>
 
-<p>Then after you compile with npm, then it pushes all this into your application.</p>
+<p>This is find behavior for user inputs when the string is expected to be finished - like in the postal code example above, but when using a mask for an optionally filled mask, like a phone number with extension like this</p>
 
-<p>So - to do something that makes Tailwind buttons as easy as Bootstrap Buttons, I throw in these custom components</p>
-
-<pre><code class="language-scss">.btn {
-    @apply inline-flex items-center border font-medium transition ease-in-out duration-150 justify-center;
-}
-
-.btn:focus {
-    @apply outline-none;
-}
-
-.btn-xs {
-    @apply px-2.5 py-1.5 text-xs leading-4 rounded;
-}
-
-.btn-sm {
-    @apply px-3 py-2 text-sm leading-4 rounded-md;
-}
-
-.btn-base {
-    @apply px-4 py-2 text-sm leading-5 rounded-md;
-}
-
-.btn-lg {
-    @apply px-4 py-2 text-base leading-6 rounded-md;
-}
-
-.btn-xl {
-    @apply px-6 py-3 text-base leading-6 rounded-md;
-}
-
-.btn-white {
-    @apply border-gray-300 bg-white text-gray-700;
-}
-
-.btn-white:focus {
-    @apply border-blue-300 shadow-outline-blue;
-}
-
-.btn-white:hover {
-    @apply text-gray-500;
-}
-
-.btn-white:active {
-    @apply text-gray-800 bg-gray-50;
-}
-
-.btn-primary {
-    @apply border-transparent bg-indigo-600 text-white;
-}
-
-.btn-primary:focus {
-    @apply border-indigo-700 shadow-outline-indigo;
-}
-
-.btn-primary:hover {
-    @apply bg-indigo-500;
-}
-
-.btn-primary:active {
-    @apply bg-indigo-700;
-}
-
-.btn-danger {
-    @apply border-transparent bg-red-600 text-white;
-}
-
-.btn-danger:focus {
-    @apply border-red-700 shadow-outline-red;
-}
-
-.btn-danger:hover {
-    @apply bg-red-500;
-}
-
-.btn-danger:active {
-    @apply bg-red-700;
-}
-
-.btn-secondary {
-    @apply border-transparent text-indigo-700 bg-indigo-100;
-}
-
-.btn-secondary:focus {
-    @apply border-indigo-300 shadow-outline-indigo;
-}
-
-.btn-secondary:hover {
-    @apply bg-indigo-50;
-}
-
-.btn-secondary:active {
-    @apply bg-indigo-200;
-}
+<pre><code class="language-php">Manny::mask('123-123-1234', '111-111-1111 ext. 111111111');
+// returns "123-123-1234 ext. "
 </code></pre>
 
-<p>Then you can make super easy, and great looking buttons that look like this:</p>
+<p>If the user inputs a phone number without an extension, I wanted it to not append the trailing mask pattern - so the update changes that to return this</p>
 
-<p><img src="/assets/images/post-11/buttons.png" width="80%"></p>
-
-<p>And it's easy to add in what ever other colors or sizes you want eg:</p>
-
-<pre><code class="language-scss"><br />/* For a new color use this */
-.btn-blue {
-    @apply border-transparent bg-blue-600 text-white;
-}
-
-.btn-blue:focus {
-    @apply border-blue-700 shadow-outline-blue;
-}
-
-.btn-blue:hover {
-    @apply bg-blue-500;
-}
-
-.btn-blue:active {
-    @apply bg-blue-700;
-}
-
-/* For a new size use this */
-.btn-really-big {
-    @apply px-10 py-8 text-lg leading-7 rounded-md;
-}
-
-
+<pre><code class="language-php">Manny::mask('1231231234', '111-111-1111 ext. 111111111');
+// returns "123-123-1234"
 </code></pre>
+
+<p>and then the moment the user enters one more key,</p>
+
+<pre><code class="language-php">Manny::mask('12312312345', '111-111-1111 ext. 111111111');
+// returns "123-123-1234 ext. 5"
+</code></pre>
+
+<h5>Added the colon(:) character as an option for the stripper function</h5>
+
+<p>This one came up because of a project I'm working on where we want to allow for special searching via tags, like many apps do these days.</p>
+
+<p>For my use case, when you're using the search box, it starts as an indexed search for invoices - it will grab all records where the search text is included in any of the text fields.</p>
+
+<p>But when a user wants to search for a specific invoice using an invoice number - if that invoice number is 950 - then we actually see numerous results appear, one of them is invoice 950, but others have phone numbers with 950 in them, or 950 is mentioned somewhere in the fields.</p>
+
+<p>So the solution is to check the search string for specific tags, in our case it's <code>inv:xxx</code></p>
+
+<pre><code class="language-php">$search_string = "inv:950 I shouldn't use a search string that hasn't been cleansed";
+$cleansed_search_string = Manny::stripper($search_string, ['alpha','num','space', 'colon']);
+// will be "inv:950 i shouldnt use a search string that hasnt been cleansed"
+</code></pre>
+
+<p>Now that I have cleansed the string, I can iterate over the search body and generate results something like this</p>
+
+<pre><code class="language-php">$invoice_search = null;
+$search_parts = explode(' ', $cleansed_search_string);
+$remaining_search_parts = [];
+
+foreach($search_parts as $search_part) {
+    if (substr($search_part, 0, 4) == 'inv:') {
+        $invoice_search = substr($search_part, 4);
+    } else {
+        $remaining_search_parts[] = $search_part;
+    }
+}
+
+$remaining_search = implode(' ', $remaining_search_parts);
+
+$invoices = Invoices::when($invoice_search !== null, function(Builder $query) use ($invoice_search) {
+    $query-&gt;where('invoice_number', $invoice_search);
+})-&gt;when((strlen($remaining_search) &gt; 0), function(Builder $query) use ($remaining_search) {
+    $query-&gt;where('invoice_body', 'LIKE', '%' . $remaining_search . '%');
+}-&gt;get();
+</code></pre>
+
+<p>So - those are the updates to Manny!</p>
     </div>
 
     <div class="border-b border-gray-300 pb-4 mb-10" v-pre>
@@ -419,15 +315,12 @@ input:invalid, textarea:invalid, select:invalid {
 
     <nav class="flex justify-between text-sm md:text-base">
         <div>
-                            <a href="https://davidhallin.com/blog/confirming-actions-with-laravel-livewire" title="Older Post: Javascript confirm before calling wire:click in Laravel Livewire">
-                    &LeftArrow; Javascript confirm before calling wire:click in Laravel Livewire
+                            <a href="https://davidhallin.com/blog/easy-tailwind-buttons" title="Older Post: Easy Tailwindcss Buttons">
+                    &LeftArrow; Easy Tailwindcss Buttons
                 </a>
                     </div>
 
         <div>
-                            <a href="https://davidhallin.com/blog/update-to-manny" title="Newer Post: New Update to Open Source Repository - Manny">
-                    New Update to Open Source Repository - Manny &RightArrow;
-                </a>
                     </div>
     </nav>
     </div>
