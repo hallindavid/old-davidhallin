@@ -3,12 +3,36 @@
     <title>David Hallin</title>
     <link href="https://davidhallin.com/" />
     <link type="application/atom+xml" rel="self" href="https://davidhallin.com/blog/feed.atom" />
-    <updated>2020-09-24T13:16:49+00:00</updated>
+    <updated>2020-10-14T17:11:08+00:00</updated>
     <id>https://davidhallin.com/blog/feed.atom</id>
     <author>
         <name>David Hallin</name>
     </author>
                 <entry>
+    <id>https://davidhallin.com/blog/introduction-to-youtube-channel</id>
+    <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/introduction-to-youtube-channel" />
+    <title>Introduction to Youtube Channel</title>
+    <published>2020-10-14T00:00:00+00:00</published>
+    <updated>2020-10-14T00:00:00+00:00</updated>
+    <author>
+        <name>Dave</name>
+    </author>
+    <summary type="html">Hi all,
+
+So I&#039;m going to start a youtube channel just showing how I work, and what I do.  Hopefully people like it.
+
+Here is the channel introduction, and I&#039;ll work on adding more and more content to it over time....</summary>
+    <content type="html"><![CDATA[
+        <p>Hi all,</p>
+
+<p>So I'm going to start a youtube channel just showing how I work, and what I do.  Hopefully people like it.</p>
+
+<p>Here is the channel introduction, and I'll work on adding more and more content to it over time.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Ut8oWOLcAYw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    ]]></content>
+</entry>
+            <entry>
     <id>https://davidhallin.com/blog/update-to-manny</id>
     <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/update-to-manny" />
     <title>New Update to Open Source Repository - Manny</title>
