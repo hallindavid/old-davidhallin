@@ -91,6 +91,15 @@
             github
         </div>
     </a>
+
+    <a href="https://youtube.com/c/DavidHallin" target="_blank()" class="{{ $inactive }} hover:text-black">
+        <div class="flex flex-row justify-start items-center">
+        <span class="w-5 h-5 mr-2 text-center">
+          <i class="fab fa-youtube"></i>
+        </span>
+            youtube
+        </div>
+    </a>
 </nav>
 
 
