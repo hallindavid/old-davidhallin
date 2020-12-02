@@ -73,6 +73,12 @@
             <span class="whitespace-no-wrap">tool-belt</span>
         </div>
     </a>
+    <a href="/blog/what-i-use-2020" @if($page->isActive('/blog/what-i-use-2020')) class="mt-1 {{ $active }} text-indigo-600" aria-current="page" @else class="mt-1 {{ $inactive }} hover:text-indigo-500" @endif >
+        <div class="flex flex-row justify-start items-center">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            <span class="whitespace-no-wrap">what i use</span>
+        </div>
+    </a>
 
     <a href="https://twitter.com/david_hallin" target="_blank()" class="{{ $inactive }} hover:text-twitter-blue">
         <div class="flex flex-row justify-start items-center">
