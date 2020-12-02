@@ -3,12 +3,49 @@
     <title>David Hallin</title>
     <link href="https://davidhallin.com/" />
     <link type="application/atom+xml" rel="self" href="https://davidhallin.com/blog/feed.atom" />
-    <updated>2020-12-02T15:14:49+00:00</updated>
+    <updated>2020-12-02T15:36:11+00:00</updated>
     <id>https://davidhallin.com/blog/feed.atom</id>
     <author>
         <name>David Hallin</name>
     </author>
                 <entry>
+    <id>https://davidhallin.com/blog/weather-zsh-function</id>
+    <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/weather-zsh-function" />
+    <title>the weather zsh terminal function</title>
+    <published>2020-12-02T00:00:00+00:00</published>
+    <updated>2020-12-02T00:00:00+00:00</updated>
+    <author>
+        <name>Dave</name>
+    </author>
+    <summary type="html">While I was kind of digging through my configuration files to make the post what i use, I went down a bit of a rabbit hole for my zsh configuration.
+
+I had a bunch of aliases, functions, and plugins in my configuration that I didn&#039;t use anymore, and......</summary>
+    <content type="html"><![CDATA[
+        <p>While I was kind of digging through my configuration files to make the post <a href="/blog/what-i-use-2020">what i use</a>, I went down a bit of a rabbit hole for my zsh configuration.</p>
+
+<p>I had a bunch of aliases, functions, and plugins in my configuration that I didn't use anymore, and didn't need really, so I started to go through them and began looking into which ones were still useful vs which ones I could remove from my .zshrc file.</p>
+
+<p>During that process I stumbled upon the <a href="https://github.com/freekmurze/dotfiles">freekmurze/dotfiles</a> repo, and I found this function that freek is sourcing in his .zshrc</p>
+
+<pre><code class="language-shell">function weather() {
+   city="$1"
+
+   if [ -z "$city" ]; then
+      city="Antwerp"
+   fi
+
+   eval "curl http://wttr.in/${city}"
+}
+</code></pre>
+
+<p>So this function if you open up your terminal, you simply type <code>weather</code> and the weather report comes up beautifully.</p>
+
+<p>I adjusted it slightly so it runs for Peterborough instead of Antwerp, but here is the output.</p>
+
+<p><img src="/assets/images/post-15/weather.png" class="mx-auto" width="80%"/></p>
+    ]]></content>
+</entry>
+            <entry>
     <id>https://davidhallin.com/blog/what-i-use-2020</id>
     <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/what-i-use-2020" />
     <title>what i use</title>
