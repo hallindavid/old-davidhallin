@@ -4,7 +4,7 @@ section: content
 title: what i use
 date: 2020-12-02
 description: inspired by other developers "my setup" pages
-featured: true
+featured: false
 categories: [general]
 ---
 
