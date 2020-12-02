@@ -6,21 +6,21 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="mostly development projects and learning">
 
-    <meta property="og:title" content="Javascript confirm before calling wire:click in Laravel Livewire | David Hallin"/>
+    <meta property="og:title" content="what i use | David Hallin"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:url" content="https://davidhallin.com/blog/confirming-actions-with-laravel-livewire"/>
+    <meta property="og:url" content="https://davidhallin.com/blog/what-i-use-2020"/>
     <meta property="og:description" content="mostly development projects and learning"/>
 
-    <title>Javascript confirm before calling wire:click in Laravel Livewire | David Hallin</title>
+    <title>what i use | David Hallin</title>
 
     <link rel="home" href="https://davidhallin.com/">
     <link rel="icon" href="/favicon.ico">
     <link href="/blog/feed.atom" type="application/atom+xml" rel="alternate" title="David Hallin Atom Feed">
 
-    <meta property="og:title" content="Javascript confirm before calling wire:click in Laravel Livewire" />
+    <meta property="og:title" content="what i use" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://davidhallin.com/blog/confirming-actions-with-laravel-livewire"/>
-    <meta property="og:description" content="Confirm an action with javascript before calling the livewire php function" />
+    <meta property="og:url" content="https://davidhallin.com/blog/what-i-use-2020"/>
+    <meta property="og:description" content="inspired by other developers &quot;my setup&quot; pages" />
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34189472-1"></script>
@@ -179,7 +179,7 @@
             <span class="whitespace-no-wrap">tool-belt</span>
         </div>
     </a>
-    <a href="/blog/what-i-use-2020"  class="mt-1 text-gray-600 focus:text-gray-900 focus:bg-gray-50 px-3 font-mono group px-3 py-2 text-sm leading-5 font-medium rounded-md hover:text-gray-900 focus:outline-none transition ease-in-out duration-150 hover:text-indigo-500"  >
+    <a href="/blog/what-i-use-2020"  class="mt-1 text-gray-900 focus:bg-gray-200 font-mono group pr-3 pl-5 py-2 text-sm leading-5 font-medium rounded-md hover:text-gray-900 focus:outline-none transition ease-in-out duration-150 text-indigo-600" aria-current="page"  >
         <div class="flex flex-row justify-start items-center">
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
             <span class="whitespace-no-wrap">what i use</span>
@@ -217,9 +217,9 @@
 
     <div class="pl-0 lg:pl-10 w-full">
             
-    <h1 class="leading-none mb-2">Javascript confirm before calling wire:click in Laravel Livewire</h1>
+    <h1 class="leading-none mb-2">what i use</h1>
 
-    <p class="text-gray-700 text-xl md:mt-0">Dave  •  August 8, 2020</p>
+    <p class="text-gray-700 text-xl md:mt-0">Dave  •  December 2, 2020</p>
 
 
 
@@ -232,24 +232,71 @@
 
 
     <div class="border-b border-gray-300 mb-4 pb-4" v-pre>
-        <p>First off - I should say - this is taken from <a href="https://github.com/livewire/livewire/issues/366">this issue conversation on github</a> - particularly from <a href="https://github.com/fra000">fra000</a>'s comment on November 14th, 2019</p>
+        <p>This page is inspired by some other developer's "my setup" pages.</p>
 
-<p>When building any sort of database-driven app, I'll want to have a Javascript Confirmation before actually performing an action for things like deleting something, or modifying something which performs a significant change.</p>
+<h2>IDEs</h2>
 
-<p>With Livewire, you call the PHP function easily with something like this</p>
+<p>So I largely do 2 types of programming, PHP and Go.</p>
 
-<pre><code class="language-html">&lt;button wire:click="delete_object"&gt;DELETE!&lt;/button&gt;
-</code></pre>
+<p>For most of my PHP work I use <a href="https://www.jetbrains.com/phpstorm/">PhpStorm</a> and for most of my Go work I use <a href="https://www.jetbrains.com/go/">GoLand</a>.</p>
 
-<p>But that will call the delete code right away, so rather than doing that, we want to have something that prompts the user to say "Are you sure?" or something along those lines.</p>
+<p>These are both made by JetBrains so they have an annual subscription associated with them, but the code completion and package imports make these things pretty awesome.</p>
 
-<p><img src="/assets/images/post-10/alert-preview.png" /></p>
+<p>I use a pretty generic dark theme, and the FiraCode font for both of them.  The only real customization I've done is moving the project panel to the right-hand side which I saw in <a href="https://calebporzio.com/my-vs-code-setup-2">Caleb Porzio's VS Code Setup</a>, and I think it fit's my needs better.</p>
 
-<p>And here is how -</p>
+<p>I also keep a few other IDEs/editors on my system.</p>
 
-<pre><code class="language-html">&lt;button onclick="confirm('Are you sure?') || event.stopImmediatePropagation()" 
-        wire:click="delete_object"&gt;DELETE!&lt;/button&gt;
-</code></pre>
+<p><a href="https://www.sublimetext.com/3">Sublime Text 3</a> - The IDE I was using before - I still find the multiple selection tools really comfortable in Sublime Text, so when I'm trying to do mass edits, to a CSV or something like that, I'll usually pop open Sublime.</p>
+
+<p><a href="https://code.visualstudio.com/">VS Code</a> - I usually use this for my static website projects (using vue or alpine and html)</p>
+
+<h2>Computers</h2>
+
+<p>I have 2 computers that I use for my dev work.</p>
+
+<p>My primary computer is a 2017 15" MacBook Pro</p>
+
+<p><img src="/assets/images/what-i-use/about-mac.jpg" style="height:280px" class="mx-auto"/></p>
+
+<p>My secondary computer is an <a href="https://store.hp.com/CanadaStore/Merch/Offer.aspx?p=hp-spectre-x360-convertible-laptop&lang=EN-CA">HP Spectre x360</a> ( 15.6" 4K/i7/16GB/512SSD )</p>
+
+<p>The reason I need to use two separate machines is because I prefer Mac, and it works for most of my development work, but occasionally I need to build and compile for windows, so I have my HP for that.</p>
+
+<p>The HP also has a great flip over touch screen with a stylus, so it works pretty great for taking notes or doing conferences.</p>
+
+<h2>Other useful dev apps</h2>
+
+<ul>
+<li><a href="https://filezilla-project.org/">Filezilla</a> - FTP client</li>
+<li><a href="https://tableplus.com/">TablePlus</a> - my database client</li>
+<li><a href="https://numi.app/">Numi</a> - quick math and note taking</li>
+<li><a href="https://tinkerwell.app/">Tinkerwell</a> -a must have for Laravel Developers</li>
+<li><a href="https://www.lastpass.com/">LastPass</a> - Password management</li>
+<li><a href="https://brave.com/">Brave</a> - My primary browser</li>
+<li><a href="https://miro.com/">Miro</a> - Fantastic for Planning/Mocking up/documenting ideas</li>
+<li><a href="https://clubhouse.io/">Clubhouse</a> - a absolutely fantastic project management tool (with a generous free tier)</li>
+<li><a href="https://laravel.com/docs/8.x/valet">Laravel Valet</a> - for all my laravel apps</li>
+<li><a href="https://apps.apple.com/us/app/lexi-json-browser/id1462580127?mt=12">Lexi - JSON Browser</a> - when I'm working with a json string this becomes super useful to explore JSON data</li>
+<li><a href="https://apps.apple.com/ca/app/faviconer/id923463607?mt=12">Faviconer</a> - little tool that makes .ICO files for web apps</li>
+<li><a href="https://monosnap.com/">Monosnap</a> - great for making screen recorded videos easily</li>
+</ul>
+
+<h2>My Setup</h2>
+
+<ul>
+<li>Mic - <a href="https://www.audio-technica.com/en-ca/at2020">Audio-Technica AT2020</a></li>
+<li>Mixer/Audio Interface - <a href="https://www.behringer.com/product.html?modelCode=P0ADV">Behringer 302USB</a></li>
+<li>Camera - <a href="https://gopro.com/en/us/shop/hero7-black/tech-specs?pid=CHDHX-701-master">GoPro Hero 7 Black</a></li>
+<li>Capture Card - <a href="https://www.elgato.com/en/gaming/cam-link-4k">Elgato Cam Link 4k</a></li>
+<li>Lighting - the tops are <a href="https://neewer.com/collections/led-panel-lights/products/nl660-led-panel-lights-90089829">Neewer Dimmable bi-color 660 LED lights</a></li>
+<li>Lighting Base - Custom built using an old desk leg &amp; a broom stick handle.</li>
+<li>Laptop Base - Custom built using scrap wood &amp; a 5/8" dowel rod</li>
+<li>Monitor - <a href="https://www.lg.com/us/monitors/lg-43UD79-B-4k-uhd-led-monitor">LG 43" 4K LED Monitor</a></li>
+<li>Keyboard 1 - for when I want to be quiet - <a href="https://www.logitech.com/en-ca/products/keyboards/mx-keys-wireless-keyboard.920-009294.html">Logitech MX Keys</a></li>
+<li>Keyboard 2 - for when I don't care about how clicky it is - <a href="https://www.daskeyboard.com/daskeyboard-4-professional/">dasKeyboard 4 Pro (Mac)</a></li>
+<li>Primary Mouse - <a href="https://www.logitech.com/en-roeu/product/mx-master-2s-flow">Logitech MX Master 2S</a></li>
+<li>On the Go Mouse - <a href="https://www.logitech.com/en-ca/products/mice/mx-anywhere-2s-flow.910-005132.html">Logitech MX Anywhere 2S</a></li>
+</ul>
     </div>
 
     <div class="border-b border-gray-300 pb-4 mb-10" v-pre>
@@ -270,15 +317,12 @@
 
     <nav class="flex justify-between text-sm md:text-base">
         <div>
-                            <a href="https://davidhallin.com/blog/laravel-handling-null-in-order-by-query" title="Older Post: Handling null values in an &#039;order by&#039; query with Laravel Eloquent (Laravel Beginner, mysql + postgres compatible)">
-                    &LeftArrow; Handling null values in an &#039;order by&#039; query with Laravel Eloquent (Laravel Beginner, mysql + postgres compatible)
+                            <a href="https://davidhallin.com/blog/introduction-to-youtube-channel" title="Older Post: Introduction to Youtube Channel">
+                    &LeftArrow; Introduction to Youtube Channel
                 </a>
                     </div>
 
         <div>
-                            <a href="https://davidhallin.com/blog/easy-tailwind-buttons" title="Newer Post: Easy Tailwindcss Buttons">
-                    Easy Tailwindcss Buttons &RightArrow;
-                </a>
                     </div>
     </nav>
     </div>

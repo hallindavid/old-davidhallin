@@ -3,12 +3,98 @@
     <title>David Hallin</title>
     <link href="https://davidhallin.com/" />
     <link type="application/atom+xml" rel="self" href="https://davidhallin.com/blog/feed.atom" />
-    <updated>2020-10-14T17:11:08+00:00</updated>
+    <updated>2020-12-02T15:14:49+00:00</updated>
     <id>https://davidhallin.com/blog/feed.atom</id>
     <author>
         <name>David Hallin</name>
     </author>
                 <entry>
+    <id>https://davidhallin.com/blog/what-i-use-2020</id>
+    <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/what-i-use-2020" />
+    <title>what i use</title>
+    <published>2020-12-02T00:00:00+00:00</published>
+    <updated>2020-12-02T00:00:00+00:00</updated>
+    <author>
+        <name>Dave</name>
+    </author>
+    <summary type="html">This page is inspired by some other developer&#039;s &quot;my setup&quot; pages.
+
+
+
+So I largely do 2 types of programming, PHP and Go.
+
+For most of my PHP work I use PhpStorm and for most of my Go work I use GoLand.
+
+These are both made by JetBrains so they have an......</summary>
+    <content type="html"><![CDATA[
+        <p>This page is inspired by some other developer's "my setup" pages.</p>
+
+<h2>IDEs</h2>
+
+<p>So I largely do 2 types of programming, PHP and Go.</p>
+
+<p>For most of my PHP work I use <a href="https://www.jetbrains.com/phpstorm/">PhpStorm</a> and for most of my Go work I use <a href="https://www.jetbrains.com/go/">GoLand</a>.</p>
+
+<p>These are both made by JetBrains so they have an annual subscription associated with them, but the code completion and package imports make these things pretty awesome.</p>
+
+<p>I use a pretty generic dark theme, and the FiraCode font for both of them.  The only real customization I've done is moving the project panel to the right-hand side which I saw in <a href="https://calebporzio.com/my-vs-code-setup-2">Caleb Porzio's VS Code Setup</a>, and I think it fit's my needs better.</p>
+
+<p>I also keep a few other IDEs/editors on my system.</p>
+
+<p><a href="https://www.sublimetext.com/3">Sublime Text 3</a> - The IDE I was using before - I still find the multiple selection tools really comfortable in Sublime Text, so when I'm trying to do mass edits, to a CSV or something like that, I'll usually pop open Sublime.</p>
+
+<p><a href="https://code.visualstudio.com/">VS Code</a> - I usually use this for my static website projects (using vue or alpine and html)</p>
+
+<h2>Computers</h2>
+
+<p>I have 2 computers that I use for my dev work.</p>
+
+<p>My primary computer is a 2017 15" MacBook Pro</p>
+
+<p><img src="/assets/images/what-i-use/about-mac.jpg" style="height:280px" class="mx-auto"/></p>
+
+<p>My secondary computer is an <a href="https://store.hp.com/CanadaStore/Merch/Offer.aspx?p=hp-spectre-x360-convertible-laptop&lang=EN-CA">HP Spectre x360</a> ( 15.6" 4K/i7/16GB/512SSD )</p>
+
+<p>The reason I need to use two separate machines is because I prefer Mac, and it works for most of my development work, but occasionally I need to build and compile for windows, so I have my HP for that.</p>
+
+<p>The HP also has a great flip over touch screen with a stylus, so it works pretty great for taking notes or doing conferences.</p>
+
+<h2>Other useful dev apps</h2>
+
+<ul>
+<li><a href="https://filezilla-project.org/">Filezilla</a> - FTP client</li>
+<li><a href="https://tableplus.com/">TablePlus</a> - my database client</li>
+<li><a href="https://numi.app/">Numi</a> - quick math and note taking</li>
+<li><a href="https://tinkerwell.app/">Tinkerwell</a> -a must have for Laravel Developers</li>
+<li><a href="https://www.lastpass.com/">LastPass</a> - Password management</li>
+<li><a href="https://brave.com/">Brave</a> - My primary browser</li>
+<li><a href="https://miro.com/">Miro</a> - Fantastic for Planning/Mocking up/documenting ideas</li>
+<li><a href="https://clubhouse.io/">Clubhouse</a> - a absolutely fantastic project management tool (with a generous free tier)</li>
+<li><a href="https://laravel.com/docs/8.x/valet">Laravel Valet</a> - for all my laravel apps</li>
+<li><a href="https://apps.apple.com/us/app/lexi-json-browser/id1462580127?mt=12">Lexi - JSON Browser</a> - when I'm working with a json string this becomes super useful to explore JSON data</li>
+<li><a href="https://apps.apple.com/ca/app/faviconer/id923463607?mt=12">Faviconer</a> - little tool that makes .ICO files for web apps</li>
+<li><a href="https://monosnap.com/">Monosnap</a> - great for making screen recorded videos easily</li>
+</ul>
+
+<h2>My Setup</h2>
+
+<ul>
+<li>Mic - <a href="https://www.audio-technica.com/en-ca/at2020">Audio-Technica AT2020</a></li>
+<li>Mixer/Audio Interface - <a href="https://www.behringer.com/product.html?modelCode=P0ADV">Behringer 302USB</a></li>
+<li>Camera - <a href="https://gopro.com/en/us/shop/hero7-black/tech-specs?pid=CHDHX-701-master">GoPro Hero 7 Black</a></li>
+<li>Capture Card - <a href="https://www.elgato.com/en/gaming/cam-link-4k">Elgato Cam Link 4k</a></li>
+<li>Lighting - the tops are <a href="https://neewer.com/collections/led-panel-lights/products/nl660-led-panel-lights-90089829">Neewer Dimmable bi-color 660 LED lights</a></li>
+<li>Lighting Base - Custom built using an old desk leg &amp; a broom stick handle.</li>
+<li>Laptop Base - Custom built using scrap wood &amp; a 5/8" dowel rod</li>
+<li>Monitor - <a href="https://www.lg.com/us/monitors/lg-43UD79-B-4k-uhd-led-monitor">LG 43" 4K LED Monitor</a></li>
+<li>Keyboard 1 - for when I want to be quiet - <a href="https://www.logitech.com/en-ca/products/keyboards/mx-keys-wireless-keyboard.920-009294.html">Logitech MX Keys</a></li>
+<li>Keyboard 2 - for when I don't care about how clicky it is - <a href="https://www.daskeyboard.com/daskeyboard-4-professional/">dasKeyboard 4 Pro (Mac)</a></li>
+<li>Primary Mouse - <a href="https://www.logitech.com/en-roeu/product/mx-master-2s-flow">Logitech MX Master 2S</a></li>
+<li>On the Go Mouse - <a href="https://www.logitech.com/en-ca/products/mice/mx-anywhere-2s-flow.910-005132.html">Logitech MX Anywhere 2S</a></li>
+</ul>
+    ]]></content>
+</entry>
+            <entry>
     <id>https://davidhallin.com/blog/introduction-to-youtube-channel</id>
     <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/introduction-to-youtube-channel" />
     <title>Introduction to Youtube Channel</title>
