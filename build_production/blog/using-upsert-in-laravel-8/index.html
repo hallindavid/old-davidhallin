@@ -338,7 +338,7 @@ foreach($new_order as $li) {
 
 Item::upsert(collect($new_order)-&gt;map(function($item) use($team_id) {
   return [
-    'id'=&gt;$item['order'],
+    'id'=&gt;$item['value'],
     'team_id'=&gt;$team_id,
     'sort_order'=&gt;$item['order'],
   ];
@@ -370,7 +370,7 @@ update sort_order = values(sort_order), updated_at = values(updated_at)
 
 Item::upsert(collect($new_order)-&gt;map(function($item) use($team_id) {
   return [
-    'id'=&gt;$item['order'],
+    'id'=&gt;$item['value'],
     'name'=&gt;'',
     'due_date'=&gt;now(),
     'team_id'=&gt;$team_id,
