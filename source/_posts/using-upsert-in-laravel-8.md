@@ -126,7 +126,7 @@ $team_id = auth()->user()->currentTeam->id;
 
 Item::upsert(collect($new_order)->map(function($item) use($team_id) {
   return [
-    'id'=>$item['order'],
+    'id'=>$item['value'],
     'team_id'=>$team_id,
     'sort_order'=>$item['order'],
   ];
@@ -162,7 +162,7 @@ $team_id = auth()->user()->currentTeam->id;
 
 Item::upsert(collect($new_order)->map(function($item) use($team_id) {
   return [
-    'id'=>$item['order'],
+    'id'=>$item['value'],
     'name'=>'',
     'due_date'=>now(),
     'team_id'=>$team_id,
