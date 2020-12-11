@@ -3,12 +3,181 @@
     <title>David Hallin</title>
     <link href="https://davidhallin.com/" />
     <link type="application/atom+xml" rel="self" href="https://davidhallin.com/blog/feed.atom" />
-    <updated>2020-12-10T20:45:58+00:00</updated>
+    <updated>2020-12-11T01:40:21+00:00</updated>
     <id>https://davidhallin.com/blog/feed.atom</id>
     <author>
         <name>David Hallin</name>
     </author>
                 <entry>
+    <id>https://davidhallin.com/blog/testing-upsert-vs-update-case</id>
+    <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/testing-upsert-vs-update-case" />
+    <title>Testing Upsert vs update case statements in Laravel &amp; MySql</title>
+    <published>2020-12-10T00:00:00+00:00</published>
+    <updated>2020-12-10T00:00:00+00:00</updated>
+    <author>
+        <name>Dave</name>
+    </author>
+    <summary type="html">First off - if you&#039;ve not read the post using Model::Upsert in laravel 8, check that out before you read this one.  It&#039;s kind of the start of this experiment.
+
+One of the comments that came up in conversation about this post was, rather than using the......</summary>
+    <content type="html"><![CDATA[
+        <p>First off - if you've not read the post <a href="/blog/using-upsert-in-laravel-8/">using Model::Upsert in laravel 8</a>, check that out before you read this one.  It's kind of the start of this experiment.</p>
+
+<p>One of the comments that came up in conversation about this post was, rather than using the insert into, and on duplicate failure, why don't you a cased update query like the following</p>
+
+<pre><code class="language-mysql">update items
+   set sort_order = CASE 
+                        when id = [some_id_here] then 1
+                        when id = [some_id_here] then 2
+                        when id = [some_id_here] then 3
+                        when id = [some_id_here] then 4
+                        when id = [some_id_here] then 5
+                    END
+  where ids in ([all_your_ids_here])
+</code></pre>
+
+<p>which makes a lot of sense.  So I thought that this is actually something that's worth testing, and if it's more efficient, there are probably a lot of people who have sort orders on models in their apps, so if it is a big improvement, then maybe it would be worth putting in the time to making a PR on the laravel framework.</p>
+
+<p>So I spun up <a href="https://github.com/hallindavid/laravel-upsert-test">a laravel app to test it out</a>.</p>
+
+<h3>laravel-upsert-test</h3>
+
+<p>The package itself basically is a Laravel/Livewire app, it has a model called TestTask, which has a sort order.</p>
+
+<p>The app is super easy to spin up, so go ahead and clone it, there are some brief instructions in the readme file.</p>
+
+<h3>the tests</h3>
+
+<p>I tested 4 different methods for updating sort order on groups of tasks</p>
+
+<h4>test 1</h4>
+
+<p>this takes the new ordered array, loops through and updates each model individually.</p>
+
+<pre><code class="language-php">foreach ($new_order as $order) {
+    TestTask::find($order['id'])-&gt;update(['sort_order' =&gt; $order['sort_order']]);
+}
+</code></pre>
+
+<h4>test 2</h4>
+
+<p>this test looks through the new ordered array, and checks the current collection, and only performs updates on records that have changed</p>
+
+<pre><code class="language-php">foreach ($new_order as $order) {
+    if ($items-&gt;firstWhere('id', $order['id'])-&gt;sort_order !== $order['sort_order']) {
+        TestTask::find($order['id'])-&gt;update(['sort_order' =&gt; $order['sort_order']]);
+    }
+}
+</code></pre>
+
+<h4>test 3</h4>
+
+<p>this test uses the new upsert functionality in laravel 8</p>
+
+<pre><code class="language-php">TestTask::upsert($new_order, ['id'], ['sort_order']);
+</code></pre>
+
+<h4>test 4</h4>
+
+<p>this test creates a giant <em>UNSANITZED</em> database update query in this format</p>
+
+<pre><code class="language-mysql">update test_tasks
+set sort_order = CASE WHEN id = ? then 1 WHEN id = ? then 2 WHEN id = ? then 3 END
+</code></pre>
+
+<p>the code for this looks like this.</p>
+
+<pre><code class="language-php">$ids = [];
+
+$cases = '';
+foreach ($new_order as $task) {
+    $ids[] = $task['id'];
+    $cases .= sprintf(' WHEN id = %d THEN %d ', $task['id'], $task['sort_order']);
+}
+$build_query = sprintf("CASE %s END", $cases);
+
+TestTask::query()-&gt;whereIn('id', $ids)-&gt;update([
+    'sort_order' =&gt; DB::raw($build_query)
+]);
+</code></pre>
+
+<h3>my testing procedure</h3>
+
+<ul>
+<li>I ran this application locally on my mac</li>
+<li>I started each batch by a delete (via truncate) and seeding the # of records</li>
+<li>I would let the test complete, wait ~ 2 seconds, then run it again.</li>
+<li>I ran each test 10 times, per data set, and pasted the average in here</li>
+</ul>
+
+<h3>my results</h3>
+
+<table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+  <tr>
+    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"># Records</th>
+    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Test 1</th>
+    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Test 2</th>
+    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Test 3</th>
+    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Test 4</th>
+  </tr>
+</thead>
+<tbody>
+    <tr class="bg-white">
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">100</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">114.5 ms</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">154.3 ms</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">10.1 ms</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">6.8 ms</td>
+  </tr>
+    <tr class="bg-white">
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">250</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">266.2 ms</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">524.3 ms</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">11 ms</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">10.3 ms</td>
+  </tr>
+    <tr class="bg-white">
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">500</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">531.8 ms</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1609.8 ms</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">20.5 ms</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">18.9 ms</td>
+  </tr>
+    <tr class="bg-white">
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1000</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1116.8 ms</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">5210 ms</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">32.6 ms</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">38.4 ms</td>
+  </tr>
+    <tr class="bg-white">
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2500</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2626.5 ms</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">timeout</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">79.5 ms</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">146.5 ms</td>
+  </tr>
+    <tr class="bg-white">
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">5000</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">5263 ms</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">timeout</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">153 ms</td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">524.5 ms</td>
+  </tr>
+</tbody>
+</table>
+
+<h3>my conclusion</h3>
+
+<p>So - all in all, I thought early on, that <code>test4</code> was going to be the clear winner for larger data sets, because it wouldn't be trying to perform an insert, then update, but it turns out that <code>test3</code> (the upsert) is actually super amazingly performant.</p>
+
+<p>one of the things that comes to mind is now that AWS is billing per ms on for Lambda instances, queries like this mean massive cost savings for large-scale apps.</p>
+
+<p>Thanks for reading!</p>
+    ]]></content>
+</entry>
+            <entry>
     <id>https://davidhallin.com/blog/using-upsert-in-laravel-8</id>
     <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/using-upsert-in-laravel-8" />
     <title>using Model::Upsert in laravel 8</title>
@@ -863,49 +1032,6 @@ if (Post::where('user_id', 10)-&gt;first() !== NULL) {
     ]]></content>
 </entry>
             <entry>
-    <id>https://davidhallin.com/blog/its-important-to-be-part-of-a-dev-community</id>
-    <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/its-important-to-be-part-of-a-dev-community" />
-    <title>The importance of being a part of a dev community</title>
-    <published>2020-03-30T00:00:00+00:00</published>
-    <updated>2020-03-30T00:00:00+00:00</updated>
-    <author>
-        <name>Dave</name>
-    </author>
-    <summary type="html">** Note - this is a non-technical post.  If you&#039;re here for the techno-goodies, this is safe to skip. **
-
-I don&#039;t mean &quot;part of a dev community&quot; in a weird cliquey way - when I say being part of a dev community I mean being in a position where you&#039;re......</summary>
-    <content type="html"><![CDATA[
-        <p>** Note - this is a non-technical post.  If you're here for the techno-goodies, this is safe to skip. **</p>
-
-<p>I don't mean "part of a dev community" in a weird cliquey way - when I say being part of a dev community I mean being in a position where you're constantly seeing different people's ideas/thoughts/processes as a method of learning.</p>
-
-<p>About a year ago, I started taking a hard look at my web development work flow.  It had become extremely repetitive and boring.  Some of the libraries I was using were so old that I wasn't able to update to 5.6... which for reference came out in 2014...</p>
-
-<p>In ~2013 I started working with Codeigniter and I loved it.  It was so tiny compared to the other frameworks out there like CakePHP, or Laravel, and was easy enough to pick up and go that I didn't really ever take the time and look back.  This decision took it's toll over time though.</p>
-
-<p><img src="/assets/images/first-open-source-package/framework-compare.png" /></p>
-
-<p>Codeigniter is <strong>small</strong> - This was beneficial for us because of 2 things.</p>
-
-<ol>
-<li>It had a super small footprint. This was good for my team because our architecture was many small deployments.</li>
-<li>It didn't have as many framework-specific abstractions / interfaces we'd need to learn to get moving quickly.</li>
-</ol>
-
-<p>This got messy after a few years.  Codeigniter has great documentation for it's core features, but it doesn't (in my experience) have a large community of people who are working with it.  When I ran into a problem and couldn't figure it out, I'd frequently end up on Stack overflow looking at how people solved it in Laravel or CakePHP or some other system, and then figuring out how to move the solution to Codeigniter.</p>
-
-<p>A little over a year ago, the team started a new project.  I like scrum - so we whipped up an MVP with Codeigniter and took a look at how it was going.  It wasn't scalable, and it showed strain really early.  This particular project desperately needed queue/workers to operate, and using PHP 5.6 (a limitation of some of our custom libs) for brand-new projects was getting stupidly-silly. We needed to do something else quickly, and we had a lot of baggage.</p>
-
-<p>Someone approached me late in 2018 to help fix a few issues on an aging laravel project and I took a look at it, and literally couldn't find the project.  I ended up having to go through a few beginner tutorials to understand the project folder structure, but in that short time - I had to do some googling, and was blown away by how many responses there were for even the most basic of questions.</p>
-
-<p>There were free tutorials everywhere, people going open-source as a full-time career, and very active, obvious leaders in the huge community.</p>
-
-<p>This past year has been the single most learning-intensive experience of my entire life - and I'm hooked - I can't soak it in fast enough to the point where there are nights I can't shut my brain off because of how excited I am about what I'm working on the next day.</p>
-
-<p>I'm quite sure that very few if any people in community recognize my name, but I attribute the level of engagement I feel right now to that community - because when you can see how much stuff is actually going on, then it's really easy to pull up your socks and get in the game.</p>
-    ]]></content>
-</entry>
-            <entry>
     <id>https://davidhallin.com/blog/livewire-masks-with-manny</id>
     <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/livewire-masks-with-manny" />
     <title>Masking Livewire inputs with manny</title>
@@ -1201,6 +1327,49 @@ $this-&gt;time = Manny::mask($this-&gt;time, "11:11");
 
 <p>To view the source code from this example go to the GitHub repo
 <a href="https://github.com/hallindavid/livewire-masks-with-manny">hallindavid/livewire-masks-with-manny</a></p>
+    ]]></content>
+</entry>
+            <entry>
+    <id>https://davidhallin.com/blog/its-important-to-be-part-of-a-dev-community</id>
+    <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/its-important-to-be-part-of-a-dev-community" />
+    <title>The importance of being a part of a dev community</title>
+    <published>2020-03-30T00:00:00+00:00</published>
+    <updated>2020-03-30T00:00:00+00:00</updated>
+    <author>
+        <name>Dave</name>
+    </author>
+    <summary type="html">** Note - this is a non-technical post.  If you&#039;re here for the techno-goodies, this is safe to skip. **
+
+I don&#039;t mean &quot;part of a dev community&quot; in a weird cliquey way - when I say being part of a dev community I mean being in a position where you&#039;re......</summary>
+    <content type="html"><![CDATA[
+        <p>** Note - this is a non-technical post.  If you're here for the techno-goodies, this is safe to skip. **</p>
+
+<p>I don't mean "part of a dev community" in a weird cliquey way - when I say being part of a dev community I mean being in a position where you're constantly seeing different people's ideas/thoughts/processes as a method of learning.</p>
+
+<p>About a year ago, I started taking a hard look at my web development work flow.  It had become extremely repetitive and boring.  Some of the libraries I was using were so old that I wasn't able to update to 5.6... which for reference came out in 2014...</p>
+
+<p>In ~2013 I started working with Codeigniter and I loved it.  It was so tiny compared to the other frameworks out there like CakePHP, or Laravel, and was easy enough to pick up and go that I didn't really ever take the time and look back.  This decision took it's toll over time though.</p>
+
+<p><img src="/assets/images/first-open-source-package/framework-compare.png" /></p>
+
+<p>Codeigniter is <strong>small</strong> - This was beneficial for us because of 2 things.</p>
+
+<ol>
+<li>It had a super small footprint. This was good for my team because our architecture was many small deployments.</li>
+<li>It didn't have as many framework-specific abstractions / interfaces we'd need to learn to get moving quickly.</li>
+</ol>
+
+<p>This got messy after a few years.  Codeigniter has great documentation for it's core features, but it doesn't (in my experience) have a large community of people who are working with it.  When I ran into a problem and couldn't figure it out, I'd frequently end up on Stack overflow looking at how people solved it in Laravel or CakePHP or some other system, and then figuring out how to move the solution to Codeigniter.</p>
+
+<p>A little over a year ago, the team started a new project.  I like scrum - so we whipped up an MVP with Codeigniter and took a look at how it was going.  It wasn't scalable, and it showed strain really early.  This particular project desperately needed queue/workers to operate, and using PHP 5.6 (a limitation of some of our custom libs) for brand-new projects was getting stupidly-silly. We needed to do something else quickly, and we had a lot of baggage.</p>
+
+<p>Someone approached me late in 2018 to help fix a few issues on an aging laravel project and I took a look at it, and literally couldn't find the project.  I ended up having to go through a few beginner tutorials to understand the project folder structure, but in that short time - I had to do some googling, and was blown away by how many responses there were for even the most basic of questions.</p>
+
+<p>There were free tutorials everywhere, people going open-source as a full-time career, and very active, obvious leaders in the huge community.</p>
+
+<p>This past year has been the single most learning-intensive experience of my entire life - and I'm hooked - I can't soak it in fast enough to the point where there are nights I can't shut my brain off because of how excited I am about what I'm working on the next day.</p>
+
+<p>I'm quite sure that very few if any people in community recognize my name, but I attribute the level of engagement I feel right now to that community - because when you can see how much stuff is actually going on, then it's really easy to pull up your socks and get in the game.</p>
     ]]></content>
 </entry>
             <entry>
