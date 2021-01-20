@@ -3,12 +3,37 @@
     <title>David Hallin</title>
     <link href="https://davidhallin.com/" />
     <link type="application/atom+xml" rel="self" href="https://davidhallin.com/blog/feed.atom" />
-    <updated>2020-12-11T01:40:21+00:00</updated>
+    <updated>2021-01-20T15:01:43+00:00</updated>
     <id>https://davidhallin.com/blog/feed.atom</id>
     <author>
         <name>David Hallin</name>
     </author>
                 <entry>
+    <id>https://davidhallin.com/blog/alpine-transitions-previewer</id>
+    <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/alpine-transitions-previewer" />
+    <title>New opensource project- Alpine Transitions Previewer</title>
+    <published>2021-01-20T00:00:00+00:00</published>
+    <updated>2021-01-20T00:00:00+00:00</updated>
+    <author>
+        <name>Dave</name>
+    </author>
+    <summary type="html">This is an open-source Alpine.js &amp;amp; TailwindCSS mini-web app application which allows you to preview/tweak your Alpine.js transitions in real time before copying them to your project
+
+Here are the relevant links:
+
+Github Pages Deployment
+ Git Repo......</summary>
+    <content type="html"><![CDATA[
+        <p>This is an open-source Alpine.js &amp; TailwindCSS mini-web app application which allows you to preview/tweak your Alpine.js transitions in real time before copying them to your project</p>
+
+<p>Here are the relevant links:</p>
+
+<p><a href="https://hallindavid.github.io/alpine-transition-preview/" target="_blank" class="py-4 px-6 my-4 bg-gray-900 text-white hover:text-gray-400 text-2xl">Github Pages Deployment</a>
+<a href="https://github.com/hallindavid/alpine-transition-preview" target="_blank" class="py-4 my-4 px-6 bg-gray-900 text-white hover:text-gray-400 text-2xl"><i class="fab fa-github"></i> Git Repo</a>
+<a href="/projects/alpine-transitions-preview" class="py-4 px-6 my-4 bg-gray-900 text-white hover:text-gray-400 text-2xl">Project Page</a></p>
+    ]]></content>
+</entry>
+            <entry>
     <id>https://davidhallin.com/blog/testing-upsert-vs-update-case</id>
     <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/testing-upsert-vs-update-case" />
     <title>Testing Upsert vs update case statements in Laravel &amp; MySql</title>
