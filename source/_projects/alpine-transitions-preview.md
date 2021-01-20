@@ -12,10 +12,10 @@ description: an open source project to preview alpine transitions in realtime
 
 If you use Alpine.js and Tailwindcss, this can fit in really nicely to your design process, but if you also have a <a href="https://tailwindui.com" target="_blank">TailwindUI</a> license, there is a bit more value.
 
-alpine-transitions-preview is an open-source (MIT) one-page alpine.js/tailwindcss application which is designed to perform primarily two functions.
+alpine-transitions-preview is an open-source (MIT) one-page Alpine.js/tailwindcss application which is designed to perform primarily two functions.
 it is not affiliated or supported by alpine.js or tailwindcss
 
-1. It allows you to preview your alpinejs transitions so you can preview & tweak them easily before moving them to your application. (see below)
+1. It allows you to preview your Alpine.js transitions so you can preview & tweak them easily before moving them to your application. (see below)
 
 <img src="/assets/images/alpine-transitions/alpine-transitions.gif" class="mx-auto my-4 w-3/4"/><br />
 
