@@ -6,21 +6,21 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="mostly development projects and learning">
 
-    <meta property="og:title" content="BootstrapVueFormBuilder | David Hallin"/>
+    <meta property="og:title" content="a re-usable, sharable, committable Honeybadger post-deployment script | David Hallin"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:url" content="https://davidhallin.com/blog/bootstrap-vue-form-builder"/>
+    <meta property="og:url" content="https://davidhallin.com/blog/honeybadger-post-deployment-script"/>
     <meta property="og:description" content="mostly development projects and learning"/>
 
-    <title>BootstrapVueFormBuilder | David Hallin</title>
+    <title>a re-usable, sharable, committable Honeybadger post-deployment script | David Hallin</title>
 
     <link rel="home" href="https://davidhallin.com/">
     <link rel="icon" href="/favicon.ico">
     <link href="/blog/feed.atom" type="application/atom+xml" rel="alternate" title="David Hallin Atom Feed">
 
-    <meta property="og:title" content="BootstrapVueFormBuilder" />
+    <meta property="og:title" content="a re-usable, sharable, committable Honeybadger post-deployment script" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://davidhallin.com/blog/bootstrap-vue-form-builder"/>
-    <meta property="og:description" content="It is a way to quickly scaffold Bootstrap Vue forms" />
+    <meta property="og:url" content="https://davidhallin.com/blog/honeybadger-post-deployment-script"/>
+    <meta property="og:description" content="If you use honeybadger, and want to track deployments, this script is for you." />
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34189472-1"></script>
@@ -217,9 +217,9 @@
 
     <div class="pl-0 lg:pl-10 w-full">
             
-    <h1 class="leading-none mb-2">BootstrapVueFormBuilder</h1>
+    <h1 class="leading-none mb-2">a re-usable, sharable, committable Honeybadger post-deployment script</h1>
 
-    <p class="text-gray-700 text-xl md:mt-0">Dave  •  March 25, 2020</p>
+    <p class="text-gray-700 text-xl md:mt-0">Dave  •  March 2, 2021</p>
 
 
 
@@ -232,143 +232,42 @@
 
 
     <div class="border-b border-gray-300 mb-4 pb-4" v-pre>
-        <h3>What is BootstrapVueFormBuilder?</h3>
+        <p>Quick link to the GIST: <a href="https://gist.github.com/hallindavid/5225d76646f2f7b6fde9da30af140198">View Gist on Github</a></p>
 
-<div class="mx-auto text-center">
-    <img src="/assets/images/post-2/quick-scaffold.gif" class="mx-auto my-4"/><br />
-    <a href="https://bootstrapvueformbuilder.com" target="_blank" class="py-4 px-6 my-4 bg-gray-900 text-white hover:text-gray-400 text-2xl">Website</a>
-    <a href="https://github.com/hallindavid/bootstrapvueformbuilder" target="_blank" class="py-4 my-4 px-6 bg-gray-900 text-white hover:text-gray-400 text-2xl"><i class="fab fa-github"></i> Git Repo</a>
-</div>
+<h2>Some background info</h2>
 
-<p>Throughout my career, a huge portion of my regular work comes from creating forms for people.  People always need forms.</p>
+<p>I use <a href="https://www.honeybadger.io/">Honeybadger</a> for some of my applications, and today, I started pushing deployments to Honeybadger, but I wanted a file I was comfy committing to the repositiory.</p>
 
-<p>The regular progression in my situation is this.</p>
+<p>I also didn't want each person who does a manual deployment to have to set it up on their device - it should just run.</p>
 
-<ol>
-<li>I spend a bunch of time building a form</li>
-<li>The customer likes the form, then tries it</li>
-<li>The customer asks for changes to the form because they missed a field, or had an extra field they didn't need</li>
-<li>Adding / removing those fields doesn't work in the nice grid layout that I built</li>
-<li>Build new Grid layout for fields</li>
-<li>Ensure responsive</li>
-<li>Fix validation because you were being sloppy when rapidly doing the <code>cmd+x</code> + <code>cmd+v</code> all over the place and broke it</li>
-</ol>
+<p>So I wrote this little script and thought it may help others out</p>
 
-<iframe class="mx-auto" src="https://giphy.com/embed/GTTxe2PWPftOU" width="480" height="352" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+<h3>Setup</h3>
 
-<p class="text-center"><a href="https://giphy.com/gifs/computer-pics-smash-GTTxe2PWPftOU">via GIPHY</a></p>
+<p>1) Open terminal, browse to your project and get the file and save it by running this command</p>
 
-<p>The idea behind this open-source project is to make it easy to scaffold out forms with the layout/responsiveness and then you can save them as .json files and can go back and modify them if you need to.</p>
-
-<p><strong>Note</strong> - this is using the <a href="https://bootstrap-vue.js.org/" target="_blank()"> BootstrapVue</a> Package - which basically allows us to do Vue.js validation prior to actually posting the form to the backend/api.</p>
-
-<p>So you scaffold out a basic form using the interface - see the gif above.</p>
-
-<p>Here's a super basic example:
-<img src="/assets/images/post-2/simple-form.png" class="mx-auto w-full" /></p>
-
-<p>There's not a lot to this one, but you can preview it in different window sizes, and make sure that when you shrink the page down, it looks like this instead
-<img src="/assets/images/post-2/small-simple-form.png" class="mx-auto w-full" /></p>
-
-<p>So you take the code export, add it to your project, give it to the customer, and wait for feedback.
-You also save a JSON export of your form</p>
-
-<pre><code>[
-    {
-        "custom_class":"",
-        "items":[
-            {
-                "id":1585137446098,
-                "show_editor":true,
-                "label":"First Name",
-                "label_class":"",
-                "scaffold_validation":false,
-                "valid_feedback":"",
-                "invalid_feedback":"Please enter a first name",
-                "custom_model":false,
-                "model":"first_name",
-                "is_switch":false,
-                "type":"input-text",
-                "description":"",
-                "placeholder":"",
-                "min":"",
-                "max":"",
-                "num_rows":"",
-                "max_rows":"",
-                "size":"md",
-                "step":"",
-                "cols":"12",
-                "cols_sm":"",
-                "cols_md":"6",
-                "cols_lg":""
-                ,"cols_xl":"",
-                "label_cols":"3",
-                "label_cols_sm":"",
-                "label_cols_md":"",
-                "label_cols_lg":"",
-                "label_cols_xl":"",
-                "label_align":"center",
-                "label_align_sm":"",
-                "label_align_md":"",
-                "label_align_lg":"",
-                "label_align_xl":"",
-                "select_options":[]
-            },
-            {
-                "id":1585137487177,
-                "show_editor":false,
-                "label":"Last Name",
-                "label_class":"",
-                "scaffold_validation":false,
-                "valid_feedback":"",
-                "invalid_feedback":"Please enter a last name",
-                "custom_model":false,
-                "model":"last_name",
-                "is_switch":false,
-                "type":"input-text",
-                "description":"",
-                "placeholder":"",
-                "min":"",
-                "max":"",
-                "num_rows":"",
-                "max_rows":"",
-                "size":"md",
-                "step":"",
-                "cols":"12",
-                "cols_sm":"",
-                "cols_md":"6",
-                "cols_lg":"",
-                "cols_xl":"",
-                "label_cols":"3",
-                "label_cols_sm":"",
-                "label_cols_md":"",
-                "label_cols_lg":"",
-                "label_cols_xl":"",
-                "label_align":"center",
-                "label_align_sm":"",
-                "label_align_md":"",
-                "label_align_lg":"",
-                "label_align_xl":"",
-                "select_options":[]
-            }
-        ]
-    }
-]
+<pre><code class="language-shell"># grabs the gist, saves it in a file called post_deployment_script.sh
+curl https://gist.githubusercontent.com/hallindavid/5225d76646f2f7b6fde9da30af140198/raw/309b994d7ea005e4587b0991920eb98f38a0feb9/post_deployment_script.sh &gt; post_deployment_script.sh
 </code></pre>
 
-<p>It's just got the basic info about your fields, so when the customer comes back, you take that JSON file, re-import it into the BootstrapVueFormBuilder and you can do things like</p>
+<p>2) Add execution rights on the file by running this command</p>
 
-<ul>
-<li>click-and-drag the fields around to re-organize them</li>
-<li>resize with instant-preview</li>
-<li>make sure the adjusted form is still responsive etc.</li>
-</ul>
+<pre><code class="language-shell">chmod +x post_deployment_script.sh
+</code></pre>
 
-<p>And when you're doing a form with this tool, it will automatically add the basic vuejs data-bindings for your fields, which often times can be a pain</p>
+<p>3) Configure the file to meet your needs.  Open it up, the code is pretty readable, you can configure things like how you want to determine the users name, or the environment etc.
+This is particularly valuable if you run multiple <code>production</code> environments and maybe want to track them seperately eg 'prod-canada' &amp; 'prod-usa'</p>
 
-<p>Anyways, Hope you guys like it!</p>
+<p>4) Finally, to actually run the deployment script use the following command</p>
 
-<p>If you want to try it out, feel free to copy/paste the JSON code above, and go to <a href="https://bootstrapvueformbuilder.com" target="_blank()">bootstrapvueformbuilder.com</a> and import it.</p>
+<pre><code class="language-shell"># If using the file or overridden options for setting environment
+./post_deployment_script.sh
+
+# If using the parameter option for setting environment
+./post_deployment_script.sh development
+</code></pre>
+
+<p>Here is a link to the GIST again: <a href="https://gist.github.com/hallindavid/5225d76646f2f7b6fde9da30af140198">View Gist on Github</a></p>
     </div>
 
     <div class="border-b border-gray-300 pb-4 mb-10" v-pre>
@@ -389,15 +288,12 @@ You also save a JSON export of your form</p>
 
     <nav class="flex justify-between text-sm md:text-base">
         <div>
-                            <a href="https://davidhallin.com/blog/first-post" title="Older Post: First Post">
-                    &LeftArrow; First Post
+                            <a href="https://davidhallin.com/blog/alpine-transitions-previewer" title="Older Post: New opensource project- Alpine Transitions Previewer">
+                    &LeftArrow; New opensource project- Alpine Transitions Previewer
                 </a>
                     </div>
 
         <div>
-                            <a href="https://davidhallin.com/blog/sublime-snippets-location" title="Newer Post: How to use Sublime Text Snippets and improve your workflow">
-                    How to use Sublime Text Snippets and improve your workflow &RightArrow;
-                </a>
                     </div>
     </nav>
     </div>

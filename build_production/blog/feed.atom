@@ -3,12 +3,67 @@
     <title>David Hallin</title>
     <link href="https://davidhallin.com/" />
     <link type="application/atom+xml" rel="self" href="https://davidhallin.com/blog/feed.atom" />
-    <updated>2021-01-20T15:01:43+00:00</updated>
+    <updated>2021-03-02T17:21:21+00:00</updated>
     <id>https://davidhallin.com/blog/feed.atom</id>
     <author>
         <name>David Hallin</name>
     </author>
                 <entry>
+    <id>https://davidhallin.com/blog/honeybadger-post-deployment-script</id>
+    <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/honeybadger-post-deployment-script" />
+    <title>a re-usable, sharable, committable Honeybadger post-deployment script</title>
+    <published>2021-03-02T00:00:00+00:00</published>
+    <updated>2021-03-02T00:00:00+00:00</updated>
+    <author>
+        <name>Dave</name>
+    </author>
+    <summary type="html">Quick link to the GIST: View Gist on Github
+
+
+
+I use Honeybadger for some of my applications, and today, I started pushing deployments to Honeybadger, but I wanted a file I was comfy committing to the repositiory.
+
+I also didn&#039;t want each person who does......</summary>
+    <content type="html"><![CDATA[
+        <p>Quick link to the GIST: <a href="https://gist.github.com/hallindavid/5225d76646f2f7b6fde9da30af140198">View Gist on Github</a></p>
+
+<h2>Some background info</h2>
+
+<p>I use <a href="https://www.honeybadger.io/">Honeybadger</a> for some of my applications, and today, I started pushing deployments to Honeybadger, but I wanted a file I was comfy committing to the repositiory.</p>
+
+<p>I also didn't want each person who does a manual deployment to have to set it up on their device - it should just run.</p>
+
+<p>So I wrote this little script and thought it may help others out</p>
+
+<h3>Setup</h3>
+
+<p>1) Open terminal, browse to your project and get the file and save it by running this command</p>
+
+<pre><code class="language-shell"># grabs the gist, saves it in a file called post_deployment_script.sh
+curl https://gist.githubusercontent.com/hallindavid/5225d76646f2f7b6fde9da30af140198/raw/309b994d7ea005e4587b0991920eb98f38a0feb9/post_deployment_script.sh &gt; post_deployment_script.sh
+</code></pre>
+
+<p>2) Add execution rights on the file by running this command</p>
+
+<pre><code class="language-shell">chmod +x post_deployment_script.sh
+</code></pre>
+
+<p>3) Configure the file to meet your needs.  Open it up, the code is pretty readable, you can configure things like how you want to determine the users name, or the environment etc.
+This is particularly valuable if you run multiple <code>production</code> environments and maybe want to track them seperately eg 'prod-canada' &amp; 'prod-usa'</p>
+
+<p>4) Finally, to actually run the deployment script use the following command</p>
+
+<pre><code class="language-shell"># If using the file or overridden options for setting environment
+./post_deployment_script.sh
+
+# If using the parameter option for setting environment
+./post_deployment_script.sh development
+</code></pre>
+
+<p>Here is a link to the GIST again: <a href="https://gist.github.com/hallindavid/5225d76646f2f7b6fde9da30af140198">View Gist on Github</a></p>
+    ]]></content>
+</entry>
+            <entry>
     <id>https://davidhallin.com/blog/alpine-transitions-previewer</id>
     <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/alpine-transitions-previewer" />
     <title>New opensource project- Alpine Transitions Previewer</title>
@@ -376,43 +431,6 @@ Item::upsert(collect($new_order)-&gt;map(function($item) use($team_id) {
     ]]></content>
 </entry>
             <entry>
-    <id>https://davidhallin.com/blog/weather-zsh-function</id>
-    <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/weather-zsh-function" />
-    <title>the weather zsh terminal function</title>
-    <published>2020-12-02T00:00:00+00:00</published>
-    <updated>2020-12-02T00:00:00+00:00</updated>
-    <author>
-        <name>Dave</name>
-    </author>
-    <summary type="html">While I was kind of digging through my configuration files to make the post what i use, I went down a bit of a rabbit hole for my zsh configuration.
-
-I had a bunch of aliases, functions, and plugins in my configuration that I didn&#039;t use anymore, and......</summary>
-    <content type="html"><![CDATA[
-        <p>While I was kind of digging through my configuration files to make the post <a href="/blog/what-i-use-2020">what i use</a>, I went down a bit of a rabbit hole for my zsh configuration.</p>
-
-<p>I had a bunch of aliases, functions, and plugins in my configuration that I didn't use anymore, and didn't need really, so I started to go through them and began looking into which ones were still useful vs which ones I could remove from my .zshrc file.</p>
-
-<p>During that process I stumbled upon the <a href="https://github.com/freekmurze/dotfiles">freekmurze/dotfiles</a> repo, and I found this function that freek is sourcing in his .zshrc</p>
-
-<pre><code class="language-shell">function weather() {
-   city="$1"
-
-   if [ -z "$city" ]; then
-      city="Antwerp"
-   fi
-
-   eval "curl http://wttr.in/${city}"
-}
-</code></pre>
-
-<p>So this function if you open up your terminal, you simply type <code>weather</code> and the weather report comes up beautifully.</p>
-
-<p>I adjusted it slightly so it runs for Peterborough instead of Antwerp, but here is the output.</p>
-
-<p><img src="/assets/images/post-15/weather.png" class="mx-auto" width="80%"/></p>
-    ]]></content>
-</entry>
-            <entry>
     <id>https://davidhallin.com/blog/what-i-use-2020</id>
     <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/what-i-use-2020" />
     <title>what i use</title>
@@ -496,6 +514,43 @@ These are both made by JetBrains so they have an......</summary>
 <li>Primary Mouse - <a href="https://www.logitech.com/en-roeu/product/mx-master-2s-flow">Logitech MX Master 2S</a></li>
 <li>On the Go Mouse - <a href="https://www.logitech.com/en-ca/products/mice/mx-anywhere-2s-flow.910-005132.html">Logitech MX Anywhere 2S</a></li>
 </ul>
+    ]]></content>
+</entry>
+            <entry>
+    <id>https://davidhallin.com/blog/weather-zsh-function</id>
+    <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/weather-zsh-function" />
+    <title>the weather zsh terminal function</title>
+    <published>2020-12-02T00:00:00+00:00</published>
+    <updated>2020-12-02T00:00:00+00:00</updated>
+    <author>
+        <name>Dave</name>
+    </author>
+    <summary type="html">While I was kind of digging through my configuration files to make the post what i use, I went down a bit of a rabbit hole for my zsh configuration.
+
+I had a bunch of aliases, functions, and plugins in my configuration that I didn&#039;t use anymore, and......</summary>
+    <content type="html"><![CDATA[
+        <p>While I was kind of digging through my configuration files to make the post <a href="/blog/what-i-use-2020">what i use</a>, I went down a bit of a rabbit hole for my zsh configuration.</p>
+
+<p>I had a bunch of aliases, functions, and plugins in my configuration that I didn't use anymore, and didn't need really, so I started to go through them and began looking into which ones were still useful vs which ones I could remove from my .zshrc file.</p>
+
+<p>During that process I stumbled upon the <a href="https://github.com/freekmurze/dotfiles">freekmurze/dotfiles</a> repo, and I found this function that freek is sourcing in his .zshrc</p>
+
+<pre><code class="language-shell">function weather() {
+   city="$1"
+
+   if [ -z "$city" ]; then
+      city="Antwerp"
+   fi
+
+   eval "curl http://wttr.in/${city}"
+}
+</code></pre>
+
+<p>So this function if you open up your terminal, you simply type <code>weather</code> and the weather report comes up beautifully.</p>
+
+<p>I adjusted it slightly so it runs for Peterborough instead of Antwerp, but here is the output.</p>
+
+<p><img src="/assets/images/post-15/weather.png" class="mx-auto" width="80%"/></p>
     ]]></content>
 </entry>
             <entry>
@@ -1642,30 +1697,6 @@ git branch -D gh-pages
     ]]></content>
 </entry>
             <entry>
-    <id>https://davidhallin.com/blog/first-post</id>
-    <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/first-post" />
-    <title>First Post</title>
-    <published>2020-03-25T00:00:00+00:00</published>
-    <updated>2020-03-25T00:00:00+00:00</updated>
-    <author>
-        <name>Dave</name>
-    </author>
-    <summary type="html">Well - I just used Jigsaw to build this site.  I started at 6:30 AM, and at the time of writing, it&#039;s 7:28 AM on March 25th, 2020.
-
-If you&#039;re already comfortable with Laravel, Jigsaw is by far the easiest static-site generation tool I&#039;ve played with so......</summary>
-    <content type="html"><![CDATA[
-        <p>Well - I just used Jigsaw to build this site.  I started at 6:30 AM, and at the time of writing, it's 7:28 AM on March 25th, 2020.</p>
-
-<p>If you're already comfortable with Laravel, <a href="https://jigsaw.tighten.co">Jigsaw</a> is by far the easiest static-site generation tool I've played with so far - I've tried a few like Gatsby, and Nuxt, and I think they are awesome, but if you're a PHP dev at heart, Jigsaw is goign to be an easier go for you.</p>
-
-<p>This website (davidhallin.com) is totally open-source.  You can take a look at the repo here <a href="https://github.com/hallindavid/davidhallin" target="_blank()">github.com/hallindavid/davidhallin</a></p>
-
-<p>I pushed this website to GitHub pages - which is free hosting for static websites that are open-source.</p>
-
-<p>For <strong>just 1 hour of work</strong> I think it's pretty decent to have a blog themed, all the basic info added, and pushed to production hosting with SSL.</p>
-    ]]></content>
-</entry>
-            <entry>
     <id>https://davidhallin.com/blog/bootstrap-vue-form-builder</id>
     <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/bootstrap-vue-form-builder" />
     <title>BootstrapVueFormBuilder</title>
@@ -1823,6 +1854,30 @@ You also save a JSON export of your form</p>
 <p>Anyways, Hope you guys like it!</p>
 
 <p>If you want to try it out, feel free to copy/paste the JSON code above, and go to <a href="https://bootstrapvueformbuilder.com" target="_blank()">bootstrapvueformbuilder.com</a> and import it.</p>
+    ]]></content>
+</entry>
+            <entry>
+    <id>https://davidhallin.com/blog/first-post</id>
+    <link type="text/html" rel="alternate" href="https://davidhallin.com/blog/first-post" />
+    <title>First Post</title>
+    <published>2020-03-25T00:00:00+00:00</published>
+    <updated>2020-03-25T00:00:00+00:00</updated>
+    <author>
+        <name>Dave</name>
+    </author>
+    <summary type="html">Well - I just used Jigsaw to build this site.  I started at 6:30 AM, and at the time of writing, it&#039;s 7:28 AM on March 25th, 2020.
+
+If you&#039;re already comfortable with Laravel, Jigsaw is by far the easiest static-site generation tool I&#039;ve played with so......</summary>
+    <content type="html"><![CDATA[
+        <p>Well - I just used Jigsaw to build this site.  I started at 6:30 AM, and at the time of writing, it's 7:28 AM on March 25th, 2020.</p>
+
+<p>If you're already comfortable with Laravel, <a href="https://jigsaw.tighten.co">Jigsaw</a> is by far the easiest static-site generation tool I've played with so far - I've tried a few like Gatsby, and Nuxt, and I think they are awesome, but if you're a PHP dev at heart, Jigsaw is goign to be an easier go for you.</p>
+
+<p>This website (davidhallin.com) is totally open-source.  You can take a look at the repo here <a href="https://github.com/hallindavid/davidhallin" target="_blank()">github.com/hallindavid/davidhallin</a></p>
+
+<p>I pushed this website to GitHub pages - which is free hosting for static websites that are open-source.</p>
+
+<p>For <strong>just 1 hour of work</strong> I think it's pretty decent to have a blog themed, all the basic info added, and pushed to production hosting with SSL.</p>
     ]]></content>
 </entry>
     </feed>
